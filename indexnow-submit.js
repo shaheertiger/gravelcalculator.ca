@@ -3,26 +3,21 @@
    Usage: node indexnow-submit.js
    Notifies search engines instantly when pages are added or updated. */
 const https = require("https");
+const fs = require("fs");
 
 const HOST = "www.gravelcalculator.ca";
 const KEY = "5388d65ed7ed42d5ac6bb2b63fd1abfb";
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 
-const paths = [
-  "/", "/calculators.html",
-  "/cubic-yards-of-gravel.html", "/gravel-tonnage-calculator.html",
-  "/gravel-coverage-calculator.html", "/bulk-bagged-gravel-calculator.html",
-  "/pea-gravel-calculator.html", "/gravel-driveway-calculator.html",
-  "/crushed-gravel-calculator.html", "/french-drain-gravel-calculator.html",
-  "/patio-gravel-calculator.html", "/aquarium-gravel-calculator.html",
-  "/calculateur-de-gravier.html", "/privacy.html", "/terms.html"
-];
+// Read every URL from sitemap.xml so this stays in sync as pages are added.
+const sitemap = fs.readFileSync(__dirname + "/sitemap.xml", "utf8");
+const urlList = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
 
 const body = JSON.stringify({
   host: HOST,
   key: KEY,
   keyLocation: KEY_LOCATION,
-  urlList: paths.map(p => `https://${HOST}${p}`)
+  urlList
 });
 
 const req = https.request({
@@ -38,4 +33,4 @@ const req = https.request({
 req.on("error", e => console.error("IndexNow error:", e.message));
 req.write(body);
 req.end();
-console.log(`Submitting ${paths.length} URLs to IndexNow…`);
+console.log(`Submitting ${urlList.length} URLs to IndexNow…`);
