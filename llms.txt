@@ -26,6 +26,7 @@
 
 ## Pages
 - Home / main gravel calculator: https://www.gravelcalculator.ca/
+- All calculators (hub/directory): https://www.gravelcalculator.ca/calculators.html
 - Cubic yards of gravel calculator: https://www.gravelcalculator.ca/cubic-yards-of-gravel.html
 - Gravel tonnage calculator: https://www.gravelcalculator.ca/gravel-tonnage-calculator.html
 - Gravel coverage calculator: https://www.gravelcalculator.ca/gravel-coverage-calculator.html

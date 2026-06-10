@@ -183,7 +183,7 @@ function header(currentSlug) {
       <a href="/cubic-yards-of-gravel.html">Yards</a>
       <a href="/gravel-driveway-calculator.html">Driveway</a>
       <a href="/pea-gravel-calculator.html">Pea Gravel</a>
-      <a href="/#calculators">All Tools</a>
+      <a href="/calculators.html">All Tools</a>
     </nav>
   </div>
 </header>`;
@@ -950,4 +950,97 @@ ${footer()}
 fs.writeFileSync("calculateur-de-gravier.html", frPage);
 console.log("wrote calculateur-de-gravier.html");
 
-console.log("Done. " + (pages.length + 2) + " pages generated.");
+/* 12. Calculators hub page */
+const HUB = [
+  { slug: "", name: "Gravel Calculator", desc: "The main calculator — estimate gravel volume, weight (tonnes), cubic yards and cost for any area by total area, rectangle or circle." },
+  { slug: "cubic-yards-of-gravel.html", name: "Cubic Yards of Gravel Calculator", desc: "Find how many cubic yards (yards) of gravel you need. Enter area in feet and depth in inches to get yardage instantly." },
+  { slug: "gravel-tonnage-calculator.html", name: "Gravel Tonnage Calculator", desc: "Convert your gravel volume into tonnes, kilograms and pounds using the density of your chosen gravel type." },
+  { slug: "gravel-coverage-calculator.html", name: "Gravel Coverage Calculator", desc: "See how much area a tonne or cubic yard of gravel covers — in square feet, square yards and square metres." },
+  { slug: "bulk-bagged-gravel-calculator.html", name: "Bulk &amp; Bagged Gravel Calculator", desc: "Work out how many bags of gravel you need, or how much bulk gravel by the tonne, and compare which is cheaper." },
+  { slug: "pea-gravel-calculator.html", name: "Pea Gravel Calculator", desc: "Estimate pea gravel for patios, paths and play areas — density preset to pea gravel, with bag counts and coverage." },
+  { slug: "gravel-driveway-calculator.html", name: "Driveway Gravel Calculator", desc: "Calculate how much gravel a driveway needs, including base and top layers, in cubic yards and tonnes." },
+  { slug: "crushed-gravel-calculator.html", name: "Crushed Gravel Calculator", desc: "For 3/4&quot;, 20 mm, crusher run and 0–3/4&quot; clear stone — common Canadian crushed sizes for bases and drainage." },
+  { slug: "french-drain-gravel-calculator.html", name: "French Drain Gravel Calculator", desc: "Estimate the washed clear stone for a French drain trench by length, width and gravel depth." },
+  { slug: "patio-gravel-calculator.html", name: "Patio Gravel Calculator", desc: "Calculate the crushed-stone base for a paver or gravel patio by area and base depth." },
+  { slug: "aquarium-gravel-calculator.html", name: "Aquarium Gravel Calculator", desc: "Estimate fish-tank gravel/substrate in pounds, kilograms and litres from your tank's length, width and depth." },
+  { slug: "calculateur-de-gravier.html", name: "Calculateur de Gravier (Français)", desc: "Version française : estimez le gravier en vrac (volume, tonnes, verges cubes) et le coût." }
+];
+const hubFaqs = [
+  { q: "Which gravel calculator should I use?", a: "Use the main gravel calculator for any project. For specific jobs, pick the matching tool — driveway, patio, pea gravel, crushed stone, French drain, aquarium — which comes preset with sensible defaults. Use the cubic yards or tonnage calculators if you order by yardage or weight." },
+  { q: "Are all the calculators free?", a: "Yes. Every calculator on GravelCalculator.ca is free, works in metric and imperial units, and runs entirely in your browser — nothing is stored." },
+  { q: "Do the calculators include cost?", a: "Yes. Each tool has an optional price field so you can estimate the material cost in Canadian dollars per tonne, kilogram, cubic metre or cubic yard." }
+];
+const hubTiles = HUB.map(h =>
+  `      <a class="hub-card" href="/${h.slug}"><span class="hub-name">${h.name}</span><span class="hub-desc">${h.desc}</span></a>`
+).join("\n");
+
+const hubPage = `<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Gravel Calculators | Free Gravel, Tonnage &amp; Cost Tools</title>
+<meta name="description" content="Browse all free gravel calculators: gravel, cubic yards, tonnage, coverage, pea gravel, driveway, crushed stone, French drain, patio and aquarium calculators for Canada.">
+<meta name="keywords" content="gravel calculator, gravel calculators, gravel calculator canada, cubic yards of gravel calculator, gravel tonnage calculator, pea gravel calculator, driveway gravel calculator">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="${SITE}/calculators.html">
+<meta name="theme-color" content="#1f6f43">
+<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GravelCalculator.ca">
+<meta property="og:title" content="All Gravel Calculators | Free Tools">
+<meta property="og:description" content="Browse all free gravel calculators for Canada — gravel, yards, tonnage, coverage, pea gravel, driveway, crushed stone and more.">
+<meta property="og:url" content="${SITE}/calculators.html">
+<meta property="og:locale" content="en_CA">
+<meta property="og:image" content="${SITE}/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="All Gravel Calculators">
+<meta name="twitter:description" content="Every free gravel calculator in one place.">
+<meta name="twitter:image" content="${SITE}/og-image.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage","name":"All Gravel Calculators","url":"${SITE}/calculators.html","inLanguage":"en-CA","description":"A directory of free gravel calculators for volume, tonnage, coverage and cost.","hasPart":[${HUB.map(h => `{"@type":"WebApplication","name":"${h.name.replace(/&amp;/g,'and').replace(/&quot;/g,'in')}","url":"${SITE}/${h.slug}","applicationCategory":"UtilitiesApplication","isAccessibleForFree":true}`).join(",")}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"${SITE}/"},{"@type":"ListItem","position":2,"name":"All Calculators","item":"${SITE}/calculators.html"}]}
+</script>
+<script type="application/ld+json">
+${faqJsonLd(hubFaqs)}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADS_CLIENT}" crossorigin="anonymous"></script>
+</head>
+<body>
+${header("calculators.html")}
+<nav class="breadcrumbs wrap" aria-label="Breadcrumb">
+  <ol><li><a href="/">Home</a></li><li aria-current="page">All Calculators</li></ol>
+</nav>
+<main class="wrap">
+  <article>
+  <h1>All Gravel Calculators</h1>
+  <p class="lede">Every free <strong>gravel calculator</strong> on GravelCalculator.ca in one place. Pick the tool that matches your project — each estimates volume, weight (tonnes), cubic yards and cost in metric or imperial units.</p>
+  <section id="all" aria-labelledby="all-h">
+    <h2 id="all-h" class="visually-hidden">List of gravel calculators</h2>
+    <div class="hub-grid">
+${hubTiles}
+    </div>
+  </section>
+${adSlot("2222223301")}
+  <section id="about">
+    <h2>How to choose a gravel calculator</h2>
+    <p>Start with the <a href="/">main gravel calculator</a> for any project. If you order by the cubic yard, use the <a href="/cubic-yards-of-gravel.html">cubic yards calculator</a>; if you order by weight, use the <a href="/gravel-tonnage-calculator.html">tonnage calculator</a>. For specific jobs, the <a href="/gravel-driveway-calculator.html">driveway</a>, <a href="/patio-gravel-calculator.html">patio</a>, <a href="/pea-gravel-calculator.html">pea gravel</a>, <a href="/crushed-gravel-calculator.html">crushed gravel</a> and <a href="/french-drain-gravel-calculator.html">French drain</a> calculators come preset with the right depth and density. There's also an <a href="/aquarium-gravel-calculator.html">aquarium gravel calculator</a> for fish tanks and a <a href="/calculateur-de-gravier.html">French-language version</a>.</p>
+  </section>
+${faqHtml(hubFaqs)}
+  <p class="disclaimer"><strong>Disclaimer:</strong> All results are estimates. Actual gravel quantities vary with type, particle size, moisture and compaction. Costs cover material only and exclude labour, delivery and taxes.</p>
+  </article>
+</main>
+${footer()}
+</body>
+</html>
+`;
+fs.writeFileSync("calculators.html", hubPage);
+console.log("wrote calculators.html");
+
+console.log("Done. " + (pages.length + 3) + " pages generated.");
