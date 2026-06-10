@@ -152,12 +152,15 @@ const CALCS = [
   { slug: "", name: "Gravel Calculator" },
   { slug: "cubic-yards-of-gravel.html", name: "Cubic Yards Calculator" },
   { slug: "gravel-tonnage-calculator.html", name: "Gravel Tonnage Calculator" },
+  { slug: "gravel-coverage-calculator.html", name: "Gravel Coverage Calculator" },
+  { slug: "bulk-bagged-gravel-calculator.html", name: "Bulk &amp; Bagged Gravel Calculator" },
   { slug: "pea-gravel-calculator.html", name: "Pea Gravel Calculator" },
   { slug: "gravel-driveway-calculator.html", name: "Driveway Gravel Calculator" },
   { slug: "crushed-gravel-calculator.html", name: "Crushed Gravel Calculator" },
   { slug: "french-drain-gravel-calculator.html", name: "French Drain Calculator" },
   { slug: "patio-gravel-calculator.html", name: "Patio Gravel Calculator" },
-  { slug: "aquarium-gravel-calculator.html", name: "Aquarium Gravel Calculator" }
+  { slug: "aquarium-gravel-calculator.html", name: "Aquarium Gravel Calculator" },
+  { slug: "calculateur-de-gravier.html", name: "Calculateur de Gravier (FR)" }
 ];
 
 function calcGrid(currentSlug) {
@@ -599,6 +602,88 @@ pages.push({
   ]
 });
 
+/* 9. Coverage calculator */
+pages.push({
+  slug: "gravel-coverage-calculator.html",
+  title: "Gravel Coverage Calculator | How Much Area Gravel Covers",
+  desc: "Gravel coverage calculator. Find out how much area gravel covers, or how much gravel you need for a given area, in square feet, square yards and square metres.",
+  keywords: "gravel coverage calculator, area calculator for gravel, calculate square yards of gravel, gravel area calculator, how much area does gravel cover, gravel coverage per tonne",
+  appName: "Gravel Coverage Calculator",
+  crumb: "Coverage Calculator",
+  h1: "Gravel Coverage Calculator",
+  lede: "Find <strong>how much area your gravel will cover</strong>, or how much gravel a given area needs. Enter the area and depth to see the volume, tonnes and square-foot/square-yard coverage.",
+  calcBar: "Enter area and depth to see gravel coverage",
+  defaults: { shape: "area", area: 100, areaUnit: "ft2", depth: 2, depthUnit: "in", density: "1.522", priceUnit: "t" },
+  adSlots: ["2222223001", "2222223002"],
+  content: `  <section id="guide">
+    <h2>How much area does gravel cover?</h2>
+    <p>Gravel coverage depends on the <strong>depth</strong> of the layer. The deeper the gravel, the less area a given amount covers. As a rule, one tonne of typical gravel (≈1.5 t/m³) provides about <strong>0.67 m³</strong> of material.</p>
+    <div class="formula-box">
+      <p class="formula"><strong>Coverage area</strong> = Volume ÷ Depth</p>
+      <p class="formula"><strong>Square yards</strong> = Square feet ÷ 9</p>
+    </div>
+    <h3>Coverage per tonne of gravel</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Depth</th><th>Coverage (m²)</th><th>Coverage (ft²)</th><th>Coverage (yd²)</th></tr></thead>
+      <tbody>
+        <tr><td>2.5 cm (1 in)</td><td>≈ 26 m²</td><td>≈ 280 ft²</td><td>≈ 31 yd²</td></tr>
+        <tr><td>5 cm (2 in)</td><td>≈ 13 m²</td><td>≈ 140 ft²</td><td>≈ 16 yd²</td></tr>
+        <tr><td>7.5 cm (3 in)</td><td>≈ 8.9 m²</td><td>≈ 96 ft²</td><td>≈ 11 yd²</td></tr>
+        <tr><td>10 cm (4 in)</td><td>≈ 6.7 m²</td><td>≈ 72 ft²</td><td>≈ 8 yd²</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Coverage per cubic yard</h3>
+    <p>One cubic yard of gravel covers about <strong>162 ft² at 2 inches</strong>, 108 ft² at 3 inches, or 81 ft² at 4 inches deep.</p>
+  </section>`,
+  faqs: [
+    { q: "How much area does a tonne of gravel cover?", a: "About 13 m² (140 ft²) at a 5 cm (2 inch) depth for typical gravel. At 1 inch it covers roughly 26 m² (280 ft²); at 4 inches about 6.7 m² (72 ft²)." },
+    { q: "How much area does a yard of gravel cover?", a: "One cubic yard covers about 162 ft² at 2 inches deep, 108 ft² at 3 inches, or 81 ft² at 4 inches deep." },
+    { q: "How do I calculate square yards of gravel?", a: "Divide the area in square feet by 9 to get square yards. The calculator accepts square feet, square yards or square metres directly." },
+    { q: "How do I work out coverage from a depth?", a: "Divide the gravel volume by the depth. The calculator does this automatically and shows coverage in m², ft² and yd²." }
+  ]
+});
+
+/* 10. Bulk & bagged */
+pages.push({
+  slug: "bulk-bagged-gravel-calculator.html",
+  title: "Bulk &amp; Bagged Gravel Calculator | How Many Bags of Gravel",
+  desc: "Bulk and bagged gravel calculator. Work out how many bags of gravel you need, or how much bulk gravel by the tonne or cubic yard, and compare the cost.",
+  keywords: "bagged gravel calculator, bulk gravel calculator, how many bags of gravel, burnco gravel calculator, gravel bag calculator, bulk vs bagged gravel",
+  appName: "Bulk and Bagged Gravel Calculator",
+  crumb: "Bulk &amp; Bagged Calculator",
+  h1: "Bulk &amp; Bagged Gravel Calculator",
+  lede: "Work out how much gravel you need and whether to buy it <strong>bagged or in bulk</strong>. Enter your area and depth to get the volume, tonnes, cubic yards and an estimate of the number of bags.",
+  calcBar: "Enter area and depth — then compare bags vs bulk",
+  defaults: { shape: "area", area: 100, areaUnit: "ft2", depth: 2, depthUnit: "in", density: "1.522", priceUnit: "t" },
+  adSlots: ["2222223101", "2222223102"],
+  content: `  <section id="guide">
+    <h2>How many bags of gravel do I need?</h2>
+    <p>Bagged gravel is sold by volume or weight. Common sizes and how many fill a cubic yard:</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Bag size</th><th>Approx. weight</th><th>Bags per cubic yard</th><th>Bags per tonne</th></tr></thead>
+      <tbody>
+        <tr><td>0.5 ft³</td><td>≈ 50 lb (23 kg)</td><td>≈ 54</td><td>≈ 44</td></tr>
+        <tr><td>1.0 ft³</td><td>≈ 100 lb (45 kg)</td><td>≈ 27</td><td>≈ 22</td></tr>
+        <tr><td>25 kg bag</td><td>25 kg</td><td>≈ 48</td><td>40</td></tr>
+        <tr><td>Bulk bag (tote)</td><td>≈ 1 tonne (0.5–0.7 yd³)</td><td>≈ 1.4</td><td>1</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Bulk vs bagged: which is cheaper?</h3>
+    <ul class="use-list">
+      <li><strong>Bagged</strong> gravel is convenient for small jobs (under ~1 yd³) and easy to carry, but costs much more per tonne.</li>
+      <li><strong>Bulk</strong> (loose or 1-tonne tote bags) is far cheaper per tonne and best for driveways and larger areas, but needs delivery and somewhere to dump it.</li>
+      <li>As a rough rule, once you need more than about <strong>1 cubic yard (≈40 bags)</strong>, bulk delivery wins on price.</li>
+    </ul>
+    <p>Suppliers such as landscape-supply yards and big-box stores (and regional suppliers like BURNCO in Western Canada) sell both — use the calculated tonnage or yardage above to request a quote.</p>
+  </section>`,
+  faqs: [
+    { q: "How many bags of gravel are in a cubic yard?", a: "About 54 half-cubic-foot bags, or 27 one-cubic-foot bags, per cubic yard. For 25 kg bags it is roughly 48 bags per cubic yard." },
+    { q: "How many bags of gravel do I need?", a: "Calculate the volume (area × depth), then divide by the bag size. The calculator shows the total volume and weight so you can divide by your chosen bag size." },
+    { q: "Is bulk gravel cheaper than bagged?", a: "Yes — bulk gravel is much cheaper per tonne. Bagged gravel only makes sense for small jobs under about one cubic yard where convenience matters more than price." },
+    { q: "How much does a bulk bag of gravel weigh?", a: "A bulk 'tote' bag typically holds about 1 tonne, which is roughly 0.5–0.7 cubic yards of gravel." }
+  ]
+});
+
 /* write standard pages */
 pages.forEach(p => {
   fs.writeFileSync(p.slug, page(p));
@@ -757,4 +842,112 @@ ${footer()}
 fs.writeFileSync("aquarium-gravel-calculator.html", aquariumPage);
 console.log("wrote aquarium-gravel-calculator.html");
 
-console.log("Done. " + (pages.length + 1) + " pages generated.");
+/* 11. French page (Quebec / bilingual Canada) */
+const frFaqs = [
+  { q: "Combien de gravier ai-je besoin ?", a: "Multipliez la surface à couvrir par la profondeur pour obtenir le volume, puis multipliez par la densité du gravier (environ 1,5 t/m³) pour obtenir le poids. Par exemple, 200 m² sur 3 cm = 6 m³, soit environ 9 tonnes." },
+  { q: "Combien pèse un mètre cube de gravier ?", a: "Environ 1,5 tonne pour du gravier ordinaire, variant d'environ 1,44 t/m³ pour la roche de rivière à 2,0 t/m³ pour du gravier humide." },
+  { q: "Quelle surface couvre une tonne de gravier ?", a: "Environ 13 m² à une profondeur de 5 cm (2 pouces) pour du gravier ordinaire." },
+  { q: "Comment calculer le gravier en vrac ?", a: "Calculez le volume (surface × profondeur), puis convertissez-le en tonnes avec la densité. Le calculateur ci-dessus le fait automatiquement, en unités métriques ou impériales." }
+];
+const frCalc = calcBlock({ defaults: { shape: "area", area: 200, areaUnit: "m2", depth: 5, depthUnit: "cm", density: "1.522", priceUnit: "t" }, calcBar: "Entrez vos mesures et cliquez sur Calculer" })
+  .replace("Area to cover", "Surface à couvrir").replace("Total area", "Surface totale").replace(">Total area<", ">Surface totale<")
+  .replace("Rectangle", "Rectangle").replace("Circle", "Cercle")
+  .replace(/square metres/g, "mètres carrés").replace(/square feet/g, "pieds carrés").replace(/square yards/g, "verges carrées")
+  .replace("Length &amp; width", "Longueur et largeur").replace('placeholder="Length"', 'placeholder="Longueur"').replace('placeholder="Width"', 'placeholder="Largeur"')
+  .replace(/>metres</g, ">mètres<").replace(/>centimetres</g, ">centimètres<").replace(/>feet</g, ">pieds<").replace(/>inches</g, ">pouces<").replace(/>yards</g, ">verges<")
+  .replace("Diameter", "Diamètre").replace('placeholder="Diameter"', 'placeholder="Diamètre"')
+  .replace("Depth of gravel", "Profondeur du gravier")
+  .replace("Gravel density", "Densité du gravier").replace("Custom density", "Densité personnalisée").replace("Custom density…", "Densité personnalisée…")
+  .replace("Price (optional)", "Prix (optionnel)").replace("per tonne", "par tonne").replace("per kg", "par kg").replace("per cubic yard", "par verge cube")
+  .replace(">Calculate<", ">Calculer<").replace(">Clear<", ">Effacer<")
+  .replace("Estimated gravel needed", "Gravier estimé requis")
+  .replace("cubic yards (yd³)", "verges cubes (vg³)").replace("tonnes (metric)", "tonnes (métriques)").replace("cubic metres (m³)", "mètres cubes (m³)")
+  .replace("cubic feet (ft³)", "pieds cubes (pi³)").replace("kilograms", "kilogrammes").replace("pounds (lb)", "livres (lb)")
+  .replace("Estimated material cost:", "Coût estimé des matériaux :")
+  .replace(/Estimates only.*settling\. Costs exclude labour and delivery\./, "Estimations seulement. Prévoyez 5 à 10 % de plus pour le compactage. Les coûts excluent la main-d'œuvre et la livraison.");
+
+const frPage = `<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculateur de Gravier | Estimez le Gravier en Vrac (Canada)</title>
+<meta name="description" content="Calculateur de gravier gratuit. Estimez la quantité de gravier en vrac (volume, tonnes, verges cubes) et le coût pour une entrée, un patio ou un aménagement. Unités métriques et impériales.">
+<meta name="keywords" content="calculateur de gravier, calculateur de vrac gravel, calcul vrac gravel, calcul gravier, calculateur gravier vrac, combien de gravier">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="${SITE}/calculateur-de-gravier.html">
+<link rel="alternate" hreflang="en-ca" href="${SITE}/">
+<link rel="alternate" hreflang="fr-ca" href="${SITE}/calculateur-de-gravier.html">
+<meta name="theme-color" content="#1f6f43">
+<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GravelCalculator.ca">
+<meta property="og:title" content="Calculateur de Gravier | Estimez le Gravier en Vrac">
+<meta property="og:description" content="Estimez la quantité et le coût du gravier en vrac. Unités métriques et impériales.">
+<meta property="og:url" content="${SITE}/calculateur-de-gravier.html">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:image" content="${SITE}/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calculateur de Gravier">
+<meta name="twitter:description" content="Estimez la quantité et le coût du gravier en vrac.">
+<meta name="twitter:image" content="${SITE}/og-image.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Calculateur de Gravier","url":"${SITE}/calculateur-de-gravier.html","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","description":"Calculateur de gravier pour estimer le volume, le poids en tonnes, les verges cubes et le coût du gravier en vrac.","inLanguage":"fr-CA","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"${SITE}/"},{"@type":"ListItem","position":2,"name":"Calculateur de Gravier","item":"${SITE}/calculateur-de-gravier.html"}]}
+</script>
+<script type="application/ld+json">
+${faqJsonLd(frFaqs)}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADS_CLIENT}" crossorigin="anonymous"></script>
+</head>
+<body>
+${header("calculateur-de-gravier.html")}
+<nav class="breadcrumbs wrap" aria-label="Fil d'Ariane">
+  <ol><li><a href="/">Accueil</a></li><li aria-current="page">Calculateur de Gravier</li></ol>
+</nav>
+<main class="wrap">
+  <article>
+  <h1>Calculateur de Gravier</h1>
+  <p class="lede">Estimez <strong>la quantité de gravier en vrac</strong> nécessaire pour une entrée, un patio, un sentier ou un aménagement paysager. Obtenez le <strong>volume, le poids en tonnes, les verges cubes</strong> et une estimation du <strong>coût en dollars canadiens</strong>. <a href="/">English version</a>.</p>
+  <section id="calculator" aria-labelledby="calc-heading">
+    <h2 id="calc-heading" class="visually-hidden">Outil calculateur de gravier</h2>
+${frCalc}
+  </section>
+${adSlot("2222223201")}
+  <section id="guide">
+    <h2>Comment calculer la quantité de gravier ?</h2>
+    <p>La quantité de gravier dépend de la <strong>surface</strong> à couvrir et de la <strong>profondeur</strong> de la couche.</p>
+    <ol class="steps">
+      <li>Mesurez la surface (longueur × largeur, ou le diamètre pour un cercle).</li>
+      <li>Choisissez une profondeur — 5 à 10 cm (2 à 4 pouces) est courant.</li>
+      <li>Multipliez surface × profondeur pour obtenir le volume.</li>
+      <li>Multipliez le volume par la densité pour obtenir le poids en tonnes.</li>
+    </ol>
+    <div class="formula-box">
+      <p class="formula"><strong>Volume</strong> = Surface × Profondeur</p>
+      <p class="formula"><strong>Poids (tonnes)</strong> = Volume (m³) × Densité (t/m³)</p>
+    </div>
+    <h3>Exemple</h3>
+    <p>200 m² sur 3 cm de profondeur = 6 m³, soit environ <strong>9 tonnes</strong> de gravier ordinaire. Prévoyez 5 à 10 % de plus pour le compactage.</p>
+  </section>
+${adSlot("2222223202")}
+${faqHtml(frFaqs)}
+${calcGrid("calculateur-de-gravier.html")}
+  <p class="disclaimer"><strong>Avertissement :</strong> Les résultats sont des estimations basées sur les valeurs saisies et des densités typiques. Les quantités réelles varient selon le type de gravier, la granulométrie, l'humidité et le compactage. Les coûts excluent la main-d'œuvre, la livraison et les taxes.</p>
+  </article>
+</main>
+${footer()}
+<script src="/script.js" defer></script>
+</body>
+</html>
+`;
+fs.writeFileSync("calculateur-de-gravier.html", frPage);
+console.log("wrote calculateur-de-gravier.html");
+
+console.log("Done. " + (pages.length + 2) + " pages generated.");

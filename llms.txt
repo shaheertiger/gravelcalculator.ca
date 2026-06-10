@@ -28,6 +28,9 @@
 - Home / main gravel calculator: https://www.gravelcalculator.ca/
 - Cubic yards of gravel calculator: https://www.gravelcalculator.ca/cubic-yards-of-gravel.html
 - Gravel tonnage calculator: https://www.gravelcalculator.ca/gravel-tonnage-calculator.html
+- Gravel coverage calculator: https://www.gravelcalculator.ca/gravel-coverage-calculator.html
+- Bulk & bagged gravel calculator: https://www.gravelcalculator.ca/bulk-bagged-gravel-calculator.html
+- Calculateur de gravier (French / Canada): https://www.gravelcalculator.ca/calculateur-de-gravier.html
 - Pea gravel calculator: https://www.gravelcalculator.ca/pea-gravel-calculator.html
 - Gravel driveway calculator: https://www.gravelcalculator.ca/gravel-driveway-calculator.html
 - Crushed gravel calculator (3/4", 20mm, clear stone): https://www.gravelcalculator.ca/crushed-gravel-calculator.html
