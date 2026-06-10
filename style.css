@@ -140,6 +140,20 @@ details[open] summary { border-bottom: 1px solid var(--line); margin-bottom: 8px
   .row { grid-template-columns: 1fr; gap: 6px; }
   .actions .label { display: none; }
   .result-grid { grid-template-columns: repeat(2, 1fr); }
-  h1 { font-size: 1.7rem; }
+  h1 { font-size: 1.55rem; margin: 10px 0 6px; }
   .main-nav { gap: 12px; }
+
+  /* Bring the calculator into the first fold on mobile.
+     Visual reorder only — DOM/source order is unchanged for SEO/LLMs. */
+  main article { display: flex; flex-direction: column; }
+  main article > h1 { order: -2; }
+  main article > #calculator { order: -1; }
+  /* everything else keeps source order (default order: 0) */
+
+  .site-header .header-inner { padding-top: 8px; padding-bottom: 8px; }
+  .breadcrumbs { padding-top: 8px; }
+  .lede { font-size: 1rem; margin: 12px 0; }
+  .calc-card { margin-top: 10px; }
+  .calc-bar { padding: 10px 14px; font-size: .9rem; }
+  .calc-grid { padding: 14px; gap: 10px; }
 }
