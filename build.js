@@ -226,6 +226,7 @@ function adSlot(slot) {
 function faqJsonLd(faqs) {
   return JSON.stringify({
     "@context": "https://schema.org", "@type": "FAQPage",
+    speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", ".lede", "#faq"] },
     mainEntity: faqs.map(f => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } }))
   });
 }
@@ -269,7 +270,10 @@ function page(cfg) {
 <link rel="preconnect" href="https://pagead2.googlesyndication.com">
 <link rel="stylesheet" href="/style.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"${cfg.appName}","url":"${url}","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","description":"${cfg.desc}","inLanguage":"en-CA","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"${cfg.appName}","url":"${url}","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","description":"${cfg.desc}","inLanguage":"en-CA","isAccessibleForFree":true,"dateModified":"${LASTMOD}","offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"},"publisher":{"@type":"Organization","name":"GravelCalculator.ca","url":"${SITE}/","logo":"${SITE}/favicon.svg"},"potentialAction":{"@type":"UseAction","target":"${url}"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"GravelCalculator.ca","url":"${SITE}/","logo":"${SITE}/favicon.svg","description":"Free gravel, tonnage and cost calculators for Canada."}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"${SITE}/"},{"@type":"ListItem","position":2,"name":"${cfg.crumb}","item":"${url}"}]}

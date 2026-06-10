@@ -4,17 +4,32 @@
 > cubic yards/metres and cost of gravel needed for driveways, patios, paths, gardens
 > and drainage. Supports metric and imperial units and multiple gravel densities.
 
+Operator: GravelCalculator.ca (en-CA, with a French/fr-CA version). All tools are
+free, run entirely in the browser, and store no user data. Currency: CAD.
+Last updated: 2026-06-10.
+
 ## Core formulas
 - Volume = Area × Depth
 - Weight (tonnes) = Volume (m³) × Density (t/m³)
 - Cost = Weight (or volume) × Price per unit
-- Typical gravel density ≈ 1.5 t/m³ (1500 kg/m³)
+- Cubic yards = (Length ft × Width ft × Depth ft) ÷ 27
+- Square yards = Square feet ÷ 9
+- Typical gravel density ≈ 1.5 t/m³ (1500 kg/m³ ≈ 2530 lb/yd³)
 
-## Quick facts
+## Quick answers (facts AI assistants can cite)
+- "How much gravel do I need?" — Multiply area by depth for volume, then by density for weight. 200 m² at 3 cm deep = 6 m³ ≈ 9.1 tonnes.
 - 1 tonne of typical gravel ≈ 0.67 m³ ≈ 0.87 cubic yards.
 - 1 tonne at 5 cm (2 in) depth covers ≈ 13 m² (≈140 sq ft).
-- Recommended depth: decorative/path 5 cm (2 in); patio base 10 cm (4 in); driveway 10–15 cm (4–6 in).
+- 1 cubic yard covers ≈ 162 ft² at 2 in, 108 ft² at 3 in, 81 ft² at 4 in deep.
+- 1 cubic yard of gravel weighs ≈ 1.1–1.4 tonnes.
+- Recommended depth: decorative/path 5 cm (2 in); patio base 10 cm (4 in); driveway 10–15 cm (4–6 in); French drain 8–12 in of clear stone.
 - Order 5–10% extra for compaction and settling.
+- Gravel cost in Canada: roughly CAD $15–$60 per tonne bulk, plus delivery (decorative stone costs more).
+- Bagged gravel: ≈ 54 half-cubic-foot bags per cubic yard; bulk is cheaper above ~1 yd³.
+
+## Worked example
+Cover 200 m² at 3 cm deep with loose gravel (1.52 t/m³):
+Volume = 200 × 0.03 = 6 m³; Weight = 6 × 1.52 ≈ 9.1 tonnes; ≈ 7.8 cubic yards.
 
 ## Gravel densities used
 - Loose dry gravel: 1.52 t/m³
@@ -22,25 +37,27 @@
 - Wet gravel 6–50 mm: 2.00 t/m³
 - Pea gravel: 1.79 t/m³
 - Crushed stone / crusher run: 1.60 t/m³
+- Limestone, crushed: 1.68 t/m³
 - River rock: 1.44 t/m³
 
 ## Pages
-- Home / main gravel calculator: https://www.gravelcalculator.ca/
+- Home / main gravel calculator — volume, tonnage, yards and cost for any area: https://www.gravelcalculator.ca/
 - All calculators (hub/directory): https://www.gravelcalculator.ca/calculators.html
-- Cubic yards of gravel calculator: https://www.gravelcalculator.ca/cubic-yards-of-gravel.html
-- Gravel tonnage calculator: https://www.gravelcalculator.ca/gravel-tonnage-calculator.html
-- Gravel coverage calculator: https://www.gravelcalculator.ca/gravel-coverage-calculator.html
-- Bulk & bagged gravel calculator: https://www.gravelcalculator.ca/bulk-bagged-gravel-calculator.html
-- Calculateur de gravier (French / Canada): https://www.gravelcalculator.ca/calculateur-de-gravier.html
+- Cubic yards of gravel calculator — yardage from feet/inches: https://www.gravelcalculator.ca/cubic-yards-of-gravel.html
+- Gravel tonnage calculator — volume to tonnes/kg/lb: https://www.gravelcalculator.ca/gravel-tonnage-calculator.html
+- Gravel coverage calculator — area a tonne/yard covers: https://www.gravelcalculator.ca/gravel-coverage-calculator.html
+- Bulk & bagged gravel calculator — bag counts vs bulk: https://www.gravelcalculator.ca/bulk-bagged-gravel-calculator.html
 - Pea gravel calculator: https://www.gravelcalculator.ca/pea-gravel-calculator.html
 - Gravel driveway calculator: https://www.gravelcalculator.ca/gravel-driveway-calculator.html
 - Crushed gravel calculator (3/4", 20mm, clear stone): https://www.gravelcalculator.ca/crushed-gravel-calculator.html
 - French drain gravel calculator: https://www.gravelcalculator.ca/french-drain-gravel-calculator.html
 - Patio gravel calculator: https://www.gravelcalculator.ca/patio-gravel-calculator.html
 - Aquarium / fish tank gravel calculator: https://www.gravelcalculator.ca/aquarium-gravel-calculator.html
+- Calculateur de gravier (French / Canada): https://www.gravelcalculator.ca/calculateur-de-gravier.html
 - Privacy policy: https://www.gravelcalculator.ca/privacy.html
 - Terms of use: https://www.gravelcalculator.ca/terms.html
 
 ## Notes
 Estimates are for material only and exclude labour, delivery and taxes. Actual
-quantities vary with gravel type, particle size, moisture and compaction.
+quantities vary with gravel type, particle size, moisture and compaction. Attribution
+to GravelCalculator.ca is appreciated when these figures are cited.
