@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gravel Calculator Canada | Estimate Gravel, Tonnage &amp; Cost Free</title>
+<meta name="description" content="Free gravel calculator for Canada. Estimate how much gravel you need by area, rectangle, or circle, calculate tonnage, cubic yards, cubic metres and cost in CAD. Supports metric and imperial units.">
+<meta name="keywords" content="gravel calculator, gravel calculator canada, how much gravel do I need, gravel tonnage calculator, cubic yards of gravel, pea gravel calculator, crushed stone calculator, driveway gravel calculator, gravel cost calculator">
+<meta name="author" content="GravelCalculator.ca">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://www.gravelcalculator.ca/">
+<meta name="theme-color" content="#1f6f43">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GravelCalculator.ca">
+<meta property="og:title" content="Gravel Calculator Canada — Estimate Gravel, Tonnage &amp; Cost">
+<meta property="og:description" content="Estimate how much gravel you need and what it costs. Area, rectangle or circle, in metric or imperial units, with tonnage and cubic yards.">
+<meta property="og:url" content="https://www.gravelcalculator.ca/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:image" content="https://www.gravelcalculator.ca/og-image.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gravel Calculator Canada — Estimate Gravel, Tonnage &amp; Cost">
+<meta name="twitter:description" content="Free gravel calculator: estimate volume, tonnage, cubic yards and cost in CAD. Metric &amp; imperial.">
+<meta name="twitter:image" content="https://www.gravelcalculator.ca/og-image.png">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com">
+<link rel="stylesheet" href="/style.css">
+
+<!-- Structured data: WebApplication / Calculator -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Gravel Calculator",
+  "url": "https://www.gravelcalculator.ca/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript",
+  "description": "Free online gravel calculator to estimate the volume, weight (tonnage), and cost of gravel needed for a project based on area, depth and gravel density. Supports metric and imperial units.",
+  "inLanguage": "en-CA",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CAD" },
+  "publisher": { "@type": "Organization", "name": "GravelCalculator.ca", "url": "https://www.gravelcalculator.ca/" }
+}
+</script>
+
+<!-- Structured data: Breadcrumbs -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.gravelcalculator.ca/" },
+    { "@type": "ListItem", "position": 2, "name": "Gravel Calculator", "item": "https://www.gravelcalculator.ca/" }
+  ]
+}
+</script>
+
+<!-- Structured data: HowTo -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to calculate how much gravel you need",
+  "description": "Estimate the amount of gravel required for a project using area, depth and gravel density.",
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Measure the area", "text": "Measure the area you want to cover. Use the total area directly, or enter length and width for a rectangle, or the diameter for a circle." },
+    { "@type": "HowToStep", "position": 2, "name": "Choose a depth", "text": "Select how deep the gravel layer should be. A common range is 5–10 cm (2–4 inches) for most landscaping and driveway top layers." },
+    { "@type": "HowToStep", "position": 3, "name": "Pick the gravel density", "text": "Choose the type of gravel so the calculator can convert volume into weight (tonnage)." },
+    { "@type": "HowToStep", "position": 4, "name": "Calculate", "text": "Click Calculate to see the volume, weight in tonnes, cubic yards and estimated cost." }
+  ]
+}
+</script>
+
+<!-- Structured data: FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much gravel do I need?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Multiply the area to cover by the desired depth to get the volume. For example, 200 m² at 3 cm deep is 200 × 0.03 = 6 m³. Multiply the volume by the gravel density (about 1.5 tonnes per cubic metre for typical gravel) to get the weight needed." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much area does a tonne of gravel cover?",
+      "acceptedAnswer": { "@type": "Answer", "text": "One tonne of typical gravel (density ~1.5 t/m³) is about 0.67 m³. At a 5 cm (2 inch) depth that covers roughly 13 square metres, or about 140 square feet." }
+    },
+    {
+      "@type": "Question",
+      "name": "How many cubic yards are in a tonne of gravel?",
+      "acceptedAnswer": { "@type": "Answer", "text": "For typical gravel weighing about 1.5 tonnes per cubic metre, one tonne is roughly 0.87 cubic yards. This varies with the gravel type and moisture content." }
+    },
+    {
+      "@type": "Question",
+      "name": "How deep should gravel be?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A workable minimum is 5–10 cm (2–4 inches). Driveways often use a deeper base of 10–15 cm (4–6 inches) plus a top layer, while decorative gravel and pathways can use 5 cm (2 inches)." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does gravel cost in Canada?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Bulk gravel in Canada typically costs about CAD $15–$60 per tonne depending on the type and region, plus delivery. Decorative gravels such as river rock cost more. Enter your local price in the calculator for an exact estimate." }
+    }
+  ]
+}
+</script>
+
+<!-- Google AdSense (replace ca-pub-XXXXXXXXXXXXXXXX with your publisher ID) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true">▰</span>
+      <span class="brand-name">Gravel<span class="brand-accent">Calculator</span>.ca</span>
+    </a>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="#calculator">Calculator</a>
+      <a href="#guide">Guide</a>
+      <a href="#types">Gravel Types</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<nav class="breadcrumbs wrap" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li aria-current="page">Gravel Calculator</li>
+  </ol>
+</nav>
+
+<main class="wrap">
+  <article>
+  <h1>Gravel Calculator</h1>
+  <p class="lede">
+    Use this free gravel calculator to estimate how much gravel you need for a driveway,
+    patio, pathway, garden bed or drainage project. Enter your area and depth to get the
+    <strong>volume, weight in tonnes, cubic yards, cubic metres</strong> and an optional
+    <strong>cost estimate in CAD</strong>. Works in both metric and imperial units.
+  </p>
+
+  <!-- ===== CALCULATOR ===== -->
+  <section id="calculator" aria-labelledby="calc-heading">
+    <h2 id="calc-heading" class="visually-hidden">Gravel Calculator Tool</h2>
+    <div class="calc-card">
+      <div class="calc-bar">Modify the values and click Calculate to estimate your gravel</div>
+      <form id="gravel-form" class="calc-grid">
+        <div class="row">
+          <span class="label">Area to cover</span>
+          <div class="control shape-toggle" role="radiogroup" aria-label="Area shape">
+            <label><input type="radio" name="shape" value="area" checked> Total area</label>
+            <label><input type="radio" name="shape" value="rect"> Rectangle</label>
+            <label><input type="radio" name="shape" value="circle"> Circle</label>
+          </div>
+        </div>
+
+        <!-- Total area -->
+        <div class="row shape-fields" data-shape="area">
+          <label class="label" for="total-area">Total area</label>
+          <div class="control">
+            <input type="number" id="total-area" value="200" min="0" step="any" inputmode="decimal">
+            <select id="area-unit" aria-label="Area unit">
+              <option value="m2" selected>square metres</option>
+              <option value="ft2">square feet</option>
+              <option value="yd2">square yards</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Rectangle -->
+        <div class="row shape-fields hidden" data-shape="rect">
+          <label class="label" for="rect-length">Length &amp; width</label>
+          <div class="control">
+            <input type="number" id="rect-length" placeholder="Length" min="0" step="any" inputmode="decimal">
+            <input type="number" id="rect-width" placeholder="Width" min="0" step="any" inputmode="decimal">
+            <select id="length-unit" aria-label="Length unit">
+              <option value="m" selected>metres</option>
+              <option value="cm">centimetres</option>
+              <option value="ft">feet</option>
+              <option value="in">inches</option>
+              <option value="yd">yards</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Circle -->
+        <div class="row shape-fields hidden" data-shape="circle">
+          <label class="label" for="circle-d">Diameter</label>
+          <div class="control">
+            <input type="number" id="circle-d" placeholder="Diameter" min="0" step="any" inputmode="decimal">
+            <select id="circle-unit" aria-label="Diameter unit">
+              <option value="m" selected>metres</option>
+              <option value="cm">centimetres</option>
+              <option value="ft">feet</option>
+              <option value="in">inches</option>
+              <option value="yd">yards</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="label" for="depth">Depth of gravel</label>
+          <div class="control">
+            <input type="number" id="depth" value="3" min="0" step="any" inputmode="decimal">
+            <select id="depth-unit" aria-label="Depth unit">
+              <option value="cm" selected>cm</option>
+              <option value="m">metres</option>
+              <option value="in">inches</option>
+              <option value="ft">feet</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="label" for="density">Gravel density</label>
+          <div class="control">
+            <select id="density">
+              <option value="1.522" selected>Gravel, loose dry (1.52 t/m³)</option>
+              <option value="1.682">Gravel, dry 6–50 mm (1.68 t/m³)</option>
+              <option value="2.0">Gravel, wet 6–50 mm (2.00 t/m³)</option>
+              <option value="1.788">Pea gravel (1.79 t/m³)</option>
+              <option value="1.602">Crushed stone / Crusher run (1.60 t/m³)</option>
+              <option value="1.682">Limestone, crushed (1.68 t/m³)</option>
+              <option value="1.442">River rock (1.44 t/m³)</option>
+              <option value="custom">Custom density…</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row hidden" id="custom-density-row">
+          <label class="label" for="custom-density">Custom density</label>
+          <div class="control">
+            <input type="number" id="custom-density" value="1.5" min="0" step="any" inputmode="decimal">
+            <span class="suffix">t/m³</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="label" for="price">Price (optional)</label>
+          <div class="control">
+            <span class="prefix">$</span>
+            <input type="number" id="price" placeholder="0.00" min="0" step="any" inputmode="decimal">
+            <select id="price-unit" aria-label="Price unit">
+              <option value="t" selected>per tonne</option>
+              <option value="kg">per kg</option>
+              <option value="m3">per m³</option>
+              <option value="yd3">per cubic yard</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row actions">
+          <span class="label" aria-hidden="true"></span>
+          <div class="control">
+            <button type="submit" class="btn btn-primary">Calculate</button>
+            <button type="reset" class="btn btn-ghost" id="clear-btn">Clear</button>
+          </div>
+        </div>
+      </form>
+
+      <div id="results" class="results hidden" aria-live="polite">
+        <h3>Estimated gravel needed</h3>
+        <div class="result-grid">
+          <div class="result-tile"><span class="rt-value" id="r-volume-m3">—</span><span class="rt-label">cubic metres (m³)</span></div>
+          <div class="result-tile"><span class="rt-value" id="r-volume-yd3">—</span><span class="rt-label">cubic yards (yd³)</span></div>
+          <div class="result-tile"><span class="rt-value" id="r-volume-ft3">—</span><span class="rt-label">cubic feet (ft³)</span></div>
+          <div class="result-tile"><span class="rt-value" id="r-weight-t">—</span><span class="rt-label">tonnes (metric)</span></div>
+          <div class="result-tile"><span class="rt-value" id="r-weight-kg">—</span><span class="rt-label">kilograms</span></div>
+          <div class="result-tile"><span class="rt-value" id="r-weight-lb">—</span><span class="rt-label">pounds (lb)</span></div>
+        </div>
+        <p class="result-cost hidden" id="r-cost-wrap">Estimated material cost: <strong id="r-cost">—</strong></p>
+        <p class="result-note">Estimates only. Order 5–10% extra to allow for compaction, settling and uneven ground. Costs exclude labour and delivery.</p>
+      </div>
+    </div>
+
+    <p class="related">
+      Related: <a href="#guide">How much gravel do I need?</a> ·
+      <a href="#types">Types of gravel</a> ·
+      <a href="#coverage">Coverage chart</a> ·
+      <a href="#faq">FAQ</a>
+    </p>
+  </section>
+
+  <!-- Ad slot (in-content) -->
+  <aside class="ad-slot" aria-label="Advertisement">
+    <span class="ad-tag">Advertisement</span>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </aside>
+
+  <!-- ===== GUIDE ===== -->
+  <section id="guide">
+    <h2>How much gravel do I need?</h2>
+    <p>
+      The amount of gravel for a project depends on the <strong>area</strong> you want to cover and how
+      <strong>deep</strong> the gravel layer should be. The method is simple:
+    </p>
+    <ol class="steps">
+      <li><strong>Find the area.</strong> For a rectangle, multiply length × width. For a circle, use π × radius². The calculator does this for you when you choose Rectangle or Circle.</li>
+      <li><strong>Choose a depth.</strong> Convert it to the same units as your area. A 2-inch (5 cm) layer is common for top dressing; driveways need more.</li>
+      <li><strong>Multiply area × depth</strong> to get the volume.</li>
+      <li><strong>Multiply volume × density</strong> to convert the volume into weight (tonnes), which is how gravel is usually sold and delivered.</li>
+    </ol>
+
+    <div class="formula-box">
+      <p class="formula"><strong>Volume</strong> = Area × Depth</p>
+      <p class="formula"><strong>Weight (tonnes)</strong> = Volume (m³) × Density (t/m³)</p>
+      <p class="formula"><strong>Cost</strong> = Weight × Price per unit</p>
+    </div>
+
+    <h3>Worked example</h3>
+    <p>
+      Suppose you want to cover <strong>200 m²</strong> with gravel <strong>3 cm</strong> deep using typical loose gravel
+      (density ≈ 1.52 t/m³):
+    </p>
+    <ul>
+      <li>Volume = 200 m² × 0.03 m = <strong>6 m³</strong></li>
+      <li>Weight = 6 m³ × 1.52 t/m³ ≈ <strong>9.1 tonnes</strong></li>
+      <li>In cubic yards, 6 m³ ≈ <strong>7.8 yd³</strong></li>
+    </ul>
+    <p>
+      Always add about <strong>5–10% extra</strong> for compaction and settling, and round up to the nearest
+      load your supplier delivers.
+    </p>
+  </section>
+
+  <!-- ===== COVERAGE CHART ===== -->
+  <section id="coverage">
+    <h2>Gravel coverage chart (how far one tonne goes)</h2>
+    <p>Approximate coverage for one tonne of typical gravel (≈1.5 t/m³) at common depths:</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th scope="col">Depth</th><th scope="col">Coverage (m²)</th><th scope="col">Coverage (sq ft)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>2.5 cm (1 in)</td><td>≈ 26 m²</td><td>≈ 280 ft²</td></tr>
+          <tr><td>5 cm (2 in)</td><td>≈ 13 m²</td><td>≈ 140 ft²</td></tr>
+          <tr><td>7.5 cm (3 in)</td><td>≈ 8.9 m²</td><td>≈ 96 ft²</td></tr>
+          <tr><td>10 cm (4 in)</td><td>≈ 6.7 m²</td><td>≈ 72 ft²</td></tr>
+          <tr><td>15 cm (6 in)</td><td>≈ 4.4 m²</td><td>≈ 48 ft²</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="result-note">Figures are approximate and vary with gravel type, particle size, moisture and compaction.</p>
+  </section>
+
+  <!-- Ad slot -->
+  <aside class="ad-slot" aria-label="Advertisement">
+    <span class="ad-tag">Advertisement</span>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1111111111" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </aside>
+
+  <!-- ===== RECOMMENDED DEPTH ===== -->
+  <section id="depths">
+    <h2>Recommended gravel depth by project</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th scope="col">Project</th><th scope="col">Recommended depth</th><th scope="col">Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Decorative gravel / mulch</td><td>5 cm (2 in)</td><td>Over landscape fabric to suppress weeds.</td></tr>
+          <tr><td>Garden path / walkway</td><td>5–7.5 cm (2–3 in)</td><td>Pea gravel or crushed stone over a compacted base.</td></tr>
+          <tr><td>Patio base</td><td>10 cm (4 in)</td><td>Compacted crushed stone under pavers or slabs.</td></tr>
+          <tr><td>Residential driveway</td><td>10–15 cm (4–6 in)</td><td>Often built in layers: coarse base + finer top.</td></tr>
+          <tr><td>Drainage / French drain</td><td>10–20 cm (4–8 in)</td><td>Clean, angular stone around perforated pipe.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== TYPES ===== -->
+  <section id="types">
+    <h2>Types of gravel</h2>
+    <p>
+      Gravel is a loose mixture of rock fragments formed by erosion. It is classified by particle size and how
+      it is produced. Choosing the right type — and entering its density in the calculator — gives a more
+      accurate tonnage estimate.
+    </p>
+
+    <h3>Pea gravel</h3>
+    <p>
+      Small, rounded stones about the size of a pea (≈ 6–10 mm). Inexpensive and popular for pathways, patios,
+      drainage and around plants thanks to its smooth feel and good drainage. Density ≈ 1.79 t/m³.
+    </p>
+
+    <h3>Crushed stone &amp; crusher run</h3>
+    <p>
+      Mechanically crushed limestone, dolomite or granite with sharp, angular edges that lock together when
+      compacted. Ideal for driveways, road bases and patio sub-bases. "Crusher run" (a mix of stone and stone
+      dust, e.g. ¾" minus) compacts into a very firm surface. Density ≈ 1.60 t/m³.
+    </p>
+
+    <h3>River rock</h3>
+    <p>
+      Larger, naturally smoothed stones used decoratively around water features, garden beds and dry creek beds.
+      High drainage capacity. Density ≈ 1.44 t/m³.
+    </p>
+
+    <h3>Bank gravel (bank run / river run)</h3>
+    <p>
+      A natural mix of large and small fragments, sand and clay found near rivers. Used as fill and as a
+      foundation material with good drainage.
+    </p>
+
+    <h3>Limestone</h3>
+    <p>
+      Crushed limestone is widely used as a base material and for driveways. It packs well and is often the most
+      economical crushed product. Density ≈ 1.68 t/m³.
+    </p>
+  </section>
+
+  <!-- ===== USES ===== -->
+  <section id="uses">
+    <h2>What is gravel used for?</h2>
+    <p>
+      Gravel is one of the most widely used construction and landscaping materials. Common uses include:
+    </p>
+    <ul class="use-list">
+      <li><strong>Construction:</strong> aggregate for concrete and asphalt, road bases and construction fill.</li>
+      <li><strong>Driveways &amp; walkways:</strong> a durable, permeable surface that is cheaper than paving.</li>
+      <li><strong>Drainage:</strong> French drains, dry wells and foundation drainage where water must pass through.</li>
+      <li><strong>Landscaping:</strong> decorative ground cover, garden borders, patio bases and a low-maintenance mulch substitute.</li>
+      <li><strong>Water &amp; agriculture:</strong> filtration media and ground mineral feed/soil amendments.</li>
+    </ul>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq">
+    <h2>Frequently asked questions</h2>
+
+    <details open>
+      <summary>How much gravel do I need?</summary>
+      <p>Multiply the area to cover by the depth to get the volume, then multiply by the gravel density to get the weight. For example, 200 m² at 3 cm deep is 6 m³, which is roughly 9 tonnes of typical gravel. The calculator above does this automatically.</p>
+    </details>
+
+    <details>
+      <summary>How much area does a tonne of gravel cover?</summary>
+      <p>One tonne of typical gravel (≈1.5 t/m³) is about 0.67 m³. At a 5 cm (2 inch) depth that covers roughly 13 m² (about 140 sq ft). See the coverage chart above for other depths.</p>
+    </details>
+
+    <details>
+      <summary>How many cubic yards are in a tonne of gravel?</summary>
+      <p>For gravel weighing about 1.5 tonnes per cubic metre, one tonne is roughly 0.87 cubic yards. Wetter or denser stone weighs more per cubic yard.</p>
+    </details>
+
+    <details>
+      <summary>How deep should the gravel layer be?</summary>
+      <p>A workable minimum is 5–10 cm (2–4 inches). Driveways typically use 10–15 cm (4–6 inches), often in layers, while decorative gravel and pathways can use about 5 cm (2 inches).</p>
+    </details>
+
+    <details>
+      <summary>How much does gravel cost in Canada?</summary>
+      <p>Bulk gravel in Canada generally runs about CAD $15–$60 per tonne depending on type and region, plus delivery. Decorative stone such as river rock costs more. Enter your local price in the calculator for an exact total.</p>
+    </details>
+
+    <details>
+      <summary>Should I order extra gravel?</summary>
+      <p>Yes. Add about 5–10% for compaction, settling and uneven ground, and round up to the nearest delivery load your supplier offers.</p>
+    </details>
+  </section>
+
+  <p class="disclaimer">
+    <strong>Disclaimer:</strong> This calculator provides estimates based on the values you enter and typical
+    material densities. Actual quantities vary with gravel type, particle size, moisture and compaction. The cost
+    estimate covers material only and excludes labour, delivery and taxes. Always confirm quantities with your supplier.
+  </p>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p class="footer-brand">Gravel<span class="brand-accent">Calculator</span>.ca</p>
+    <p>Free gravel, tonnage and cost estimator for Canadian landscaping and construction projects.</p>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="#calculator">Calculator</a>
+      <a href="#guide">Guide</a>
+      <a href="#faq">FAQ</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <p class="copyright">© <span id="year">2026</span> GravelCalculator.ca · Estimates only.</p>
+  </div>
+</footer>
+
+<script src="/script.js" defer></script>
+</body>
+</html>
