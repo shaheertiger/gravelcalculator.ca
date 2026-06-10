@@ -21,6 +21,9 @@ const DENSITIES = [
   { v: "1.602", label: "Crushed stone / Crusher run (1.60 t/m³)" },
   { v: "1.682c", label: "Limestone, crushed (1.68 t/m³)", real: "1.682" },
   { v: "1.442", label: "River rock (1.44 t/m³)" },
+  { v: "1.5", label: "Landscape / decorative rock (1.50 t/m³)" },
+  { v: "1.6", label: "Sand, dry (1.60 t/m³)" },
+  { v: "1.3", label: "Topsoil / garden soil (1.30 t/m³)" },
   { v: "custom", label: "Custom density…" }
 ];
 
@@ -164,6 +167,11 @@ const CALCS = [
   { slug: "french-drain-gravel-calculator.html", name: "French Drain Calculator" },
   { slug: "patio-gravel-calculator.html", name: "Patio Gravel Calculator" },
   { slug: "aquarium-gravel-calculator.html", name: "Aquarium Gravel Calculator" },
+  { slug: "cubic-yard-calculator.html", name: "Cubic Yard Calculator" },
+  { slug: "landscape-rock-calculator.html", name: "Landscape Rock &amp; Stone Calculator" },
+  { slug: "topsoil-calculator.html", name: "Topsoil &amp; Soil Calculator" },
+  { slug: "sand-calculator.html", name: "Sand Calculator" },
+  { slug: "aggregate-calculator.html", name: "Aggregate &amp; Material Calculator" },
   { slug: "calculateur-de-gravier.html", name: "Calculateur de Gravier (FR)" }
 ];
 
@@ -266,6 +274,8 @@ function page(cfg) {
 <meta name="twitter:description" content="${cfg.desc}">
 <meta name="twitter:image" content="${SITE}/og-image.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com">
 <link rel="stylesheet" href="/style.css">
@@ -693,6 +703,198 @@ pages.push({
   ]
 });
 
+/* 11. Cubic yard calculator (generic + conversions) */
+pages.push({
+  slug: "cubic-yard-calculator.html",
+  title: "Cubic Yard Calculator | Yardage Calculator for Gravel, Dirt &amp; Stone",
+  desc: "Free cubic yard calculator. Convert area and depth into cubic yards (yardage) for gravel, dirt, mulch, sand or stone, with cubic-feet, square-yard and cy-to-tons conversions.",
+  keywords: "cubic yard calculator, cy calculator, yardage calculator, cubic yards calculator, cf to cy calculator, square yards to cubic yards, cy to tons, cubic yard calculator dirt, volumetric weight calculator",
+  appName: "Cubic Yard Calculator",
+  crumb: "Cubic Yard Calculator",
+  h1: "Cubic Yard Calculator",
+  lede: "A general <strong>cubic yard (yardage) calculator</strong> for gravel, dirt, mulch, sand or stone. Enter area in feet and depth in inches to get cubic yards, plus tonnes and conversions for cubic feet, square yards and cubic-yards-to-tons.",
+  calcBar: "Enter area in feet and depth in inches to get cubic yards",
+  defaults: { shape: "area", area: 100, areaUnit: "ft2", depth: 4, depthUnit: "in", density: "1.522", priceUnit: "yd3" },
+  adSlots: ["2222223401", "2222223402"],
+  content: `  <section id="guide">
+    <h2>How to calculate cubic yards</h2>
+    <p>A <strong>cubic yard</strong> is 27 cubic feet (3 ft × 3 ft × 3 ft). To find yardage for any material:</p>
+    <div class="formula-box">
+      <p class="formula"><strong>Cubic yards</strong> = (Length ft × Width ft × Depth ft) ÷ 27</p>
+      <p class="formula"><strong>Cubic feet → cubic yards</strong>: ft³ ÷ 27 (cf to cy)</p>
+      <p class="formula"><strong>Square yards → cubic yards</strong>: yd² × (depth ft ÷ 3)</p>
+      <p class="formula"><strong>Cubic yards → tons</strong>: yd³ × (density ÷ 0.842) for US tons, or × density × 0.765 ÷ 1.10 …use the calculator</p>
+    </div>
+    <h3>Quick conversions</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Conversion</th><th>Factor</th></tr></thead>
+      <tbody>
+        <tr><td>Cubic feet to cubic yards (cf to cy)</td><td>÷ 27</td></tr>
+        <tr><td>Cubic yards to cubic feet</td><td>× 27</td></tr>
+        <tr><td>Square feet to square yards</td><td>÷ 9</td></tr>
+        <tr><td>Cubic metres to cubic yards</td><td>× 1.308</td></tr>
+        <tr><td>Cubic yard of gravel to tonnes</td><td>≈ × 1.15</td></tr>
+        <tr><td>Cubic yard of topsoil to tonnes</td><td>≈ × 1.0</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Example</h3>
+    <p>100 ft² at 4 inches deep: 100 × (4 ÷ 12) = 33.3 ft³; 33.3 ÷ 27 ≈ <strong>1.23 cubic yards</strong>.</p>
+  </section>`,
+  faqs: [
+    { q: "How do I calculate cubic yards?", a: "Multiply length (ft) × width (ft) × depth (ft), then divide by 27. For depth in inches, divide inches by 12 first. The calculator does this for any units." },
+    { q: "How do I convert cubic feet to cubic yards?", a: "Divide cubic feet by 27. For example, 54 ft³ ÷ 27 = 2 cubic yards." },
+    { q: "How do I convert cubic yards to tons?", a: "Multiply cubic yards by the material density. A cubic yard of gravel is roughly 1.1–1.4 tonnes; topsoil is about 1 tonne; sand about 1.2 tonnes. Enter a price per yard or tonne to also estimate cost." },
+    { q: "How many cubic feet are in a cubic yard?", a: "27 cubic feet equal one cubic yard (3 × 3 × 3 feet)." }
+  ]
+});
+
+/* 12. Landscape rock & stone */
+pages.push({
+  slug: "landscape-rock-calculator.html",
+  title: "Landscape Rock Calculator | Stone &amp; Decorative Rock Coverage",
+  desc: "Landscape rock and stone calculator. Estimate how much decorative rock, river stone or landscaping stone you need by area and depth, in tonnes, cubic yards and cost.",
+  keywords: "landscape rock calculator, rock calculator, stone calculator, landscaping rock calculator, decorative stone calculator, landscape calculator, river rock calculator",
+  appName: "Landscape Rock Calculator",
+  crumb: "Landscape Rock Calculator",
+  h1: "Landscape Rock &amp; Stone Calculator",
+  lede: "Estimate <strong>landscape rock and decorative stone</strong> for garden beds, borders, dry creek beds and ground cover. Enter the area and depth to get the rock needed in tonnes, cubic yards and cost.",
+  calcBar: "Enter area and depth — density preset for landscape rock",
+  defaults: { shape: "area", area: 200, areaUnit: "ft2", depth: 2, depthUnit: "in", density: "1.5", priceUnit: "t" },
+  adSlots: ["2222223501", "2222223502"],
+  content: `  <section id="guide">
+    <h2>How much landscape rock do I need?</h2>
+    <p>Decorative <strong>landscape rock and stone</strong> is estimated like gravel: area × depth gives the volume, then multiply by density (≈1.5 t/m³ for most landscape rock, ≈1.44 t/m³ for river rock).</p>
+    <ul class="use-list">
+      <li><strong>Decorative ground cover:</strong> 5 cm (2 in) over landscape fabric.</li>
+      <li><strong>River rock beds / borders:</strong> 5–7.5 cm (2–3 in).</li>
+      <li><strong>Larger feature stone:</strong> roughly the diameter of the stone.</li>
+    </ul>
+    <h3>Landscape rock coverage per tonne</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Depth</th><th>Coverage (m²)</th><th>Coverage (ft²)</th></tr></thead>
+      <tbody>
+        <tr><td>5 cm (2 in)</td><td>≈ 13 m²</td><td>≈ 140 ft²</td></tr>
+        <tr><td>7.5 cm (3 in)</td><td>≈ 8.9 m²</td><td>≈ 96 ft²</td></tr>
+        <tr><td>10 cm (4 in)</td><td>≈ 6.7 m²</td><td>≈ 72 ft²</td></tr>
+      </tbody>
+    </table></div>
+  </section>`,
+  faqs: [
+    { q: "How much landscape rock do I need?", a: "Multiply the bed area by the depth (usually 2–3 inches), then by the rock density (~1.5 t/m³). The calculator returns tonnes and cubic yards. Lay landscape fabric underneath to limit weeds and sinking." },
+    { q: "How much does landscape rock weigh?", a: "Most decorative landscape rock weighs about 1.5 tonnes per cubic metre; smooth river rock is lighter at about 1.44 t/m³." },
+    { q: "How deep should decorative rock be?", a: "About 2 inches (5 cm) for ground cover, or 2–3 inches for river rock beds and borders." },
+    { q: "How much area does a tonne of landscape rock cover?", a: "Roughly 13 m² (140 ft²) at a 2 inch depth." }
+  ]
+});
+
+/* 13. Topsoil & soil */
+pages.push({
+  slug: "topsoil-calculator.html",
+  title: "Topsoil Calculator | How Much Soil Do I Need (Yards &amp; Bags)",
+  desc: "Free topsoil calculator. Work out how much topsoil or garden soil you need for beds, lawns and raised beds, in cubic yards, cubic metres, tonnes and bags.",
+  keywords: "topsoil calculator, top soil calculator, soil calculator, garden soil calculator, how much topsoil do i need, raised bed soil calculator, dirt calculator",
+  appName: "Topsoil Calculator",
+  crumb: "Topsoil Calculator",
+  h1: "Topsoil &amp; Soil Calculator",
+  lede: "Calculate <strong>how much topsoil or garden soil you need</strong> for lawns, garden beds and raised beds. Enter the area and depth to get the soil in cubic yards, cubic metres, tonnes and bags.",
+  calcBar: "Enter area and depth — density preset for topsoil",
+  defaults: { shape: "area", area: 100, areaUnit: "ft2", depth: 4, depthUnit: "in", density: "1.3", priceUnit: "yd3" },
+  adSlots: ["2222223601", "2222223602"],
+  content: `  <section id="guide">
+    <h2>How much topsoil do I need?</h2>
+    <p>Topsoil is estimated by area × depth. Loose topsoil weighs about <strong>1.3 t/m³</strong> (≈1 tonne per cubic yard), though wet or compost-rich soil is heavier.</p>
+    <ul class="use-list">
+      <li><strong>New lawn / overseeding:</strong> 5–10 cm (2–4 in).</li>
+      <li><strong>Garden beds:</strong> 15–20 cm (6–8 in).</li>
+      <li><strong>Raised beds:</strong> fill to the box depth (often 25–30 cm / 10–12 in).</li>
+    </ul>
+    <h3>Bags of topsoil</h3>
+    <p>Bagged soil is often sold in 25 L bags — about <strong>30 bags per cubic yard</strong> (≈40 bags per m³). Bulk delivery is much cheaper for beds and lawns.</p>
+    <div class="formula-box"><p class="formula"><strong>Topsoil (yd³)</strong> = (Length ft × Width ft × Depth ft) ÷ 27</p></div>
+  </section>`,
+  faqs: [
+    { q: "How much topsoil do I need?", a: "Multiply the area by the depth. For example, 100 ft² at 4 inches needs about 1.2 cubic yards. The calculator shows cubic yards, tonnes and bags." },
+    { q: "How much does a cubic yard of topsoil weigh?", a: "About 1 tonne (roughly 1,000–1,300 kg) for typical screened topsoil; wetter or compost-heavy soil weighs more." },
+    { q: "How many bags of topsoil in a cubic yard?", a: "About 30 bags of 25 litres each per cubic yard. Bulk delivery is cheaper for larger areas." },
+    { q: "How deep should topsoil be for a new lawn?", a: "About 2–4 inches (5–10 cm) of quality topsoil before seeding or sodding." }
+  ]
+});
+
+/* 14. Sand */
+pages.push({
+  slug: "sand-calculator.html",
+  title: "Sand Calculator | How Much Sand Do I Need (Yards, Tonnes &amp; Bags)",
+  desc: "Free sand calculator. Estimate how much sand you need for paver bases, sandboxes, bedding and fill, in cubic yards, cubic metres, tonnes and bags.",
+  keywords: "sand calculator, how much sand do i need, paver sand calculator, sandbox sand calculator, sand and gravel calculator, bedding sand calculator",
+  appName: "Sand Calculator",
+  crumb: "Sand Calculator",
+  h1: "Sand Calculator",
+  lede: "Estimate <strong>how much sand you need</strong> for a paver base, sandbox, bedding layer or fill. Enter the area and depth to get the sand in cubic yards, tonnes and bags.",
+  calcBar: "Enter area and depth — density preset for dry sand",
+  defaults: { shape: "area", area: 100, areaUnit: "ft2", depth: 1, depthUnit: "in", density: "1.6", priceUnit: "t" },
+  adSlots: ["2222223701", "2222223702"],
+  content: `  <section id="guide">
+    <h2>How much sand do I need?</h2>
+    <p>Sand is estimated by area × depth. Dry sand weighs about <strong>1.6 t/m³</strong> (wet sand is heavier, ≈1.92 t/m³). Common uses and depths:</p>
+    <ul class="use-list">
+      <li><strong>Paver setting bed:</strong> 2.5 cm (1 in) of coarse sand over a compacted base.</li>
+      <li><strong>Sandbox:</strong> fill to the desired play depth (often 20–30 cm / 8–12 in).</li>
+      <li><strong>Bedding / levelling:</strong> 2.5–5 cm (1–2 in).</li>
+    </ul>
+    <p>For patios and paths, sand is paired with a crushed-stone base — see the <a href="/patio-gravel-calculator.html">patio gravel calculator</a>.</p>
+    <h3>Bags of sand</h3>
+    <p>Bagged sand is commonly 25 kg; there are roughly <strong>60 bags per cubic yard</strong>. Bulk sand by the tonne is far cheaper for larger jobs.</p>
+  </section>`,
+  faqs: [
+    { q: "How much sand do I need?", a: "Multiply the area by the depth. A 100 ft² paver bed at 1 inch needs about 0.3 cubic yards (≈0.6 tonnes) of sand. The calculator shows cubic yards, tonnes and bags." },
+    { q: "How much does a cubic yard of sand weigh?", a: "About 1.2–1.4 tonnes for dry sand, and more when wet (up to ~1.5 tonnes per cubic yard)." },
+    { q: "How much sand for a paver base?", a: "A 1 inch (2.5 cm) coarse-sand setting bed over a compacted crushed-stone base. Calculate the base separately with the patio or crushed gravel calculator." },
+    { q: "How many bags of sand in a cubic yard?", a: "Roughly 60 bags of 25 kg each per cubic yard; bulk sand is cheaper for larger areas." }
+  ]
+});
+
+/* 15. Aggregate / material */
+pages.push({
+  slug: "aggregate-calculator.html",
+  title: "Aggregate Calculator | Material Calculator for Gravel, Stone &amp; Base",
+  desc: "All-purpose aggregate and material calculator. Estimate gravel, crushed stone, sand or base aggregate by area and depth, in tonnes, cubic yards, cubic metres and cost.",
+  keywords: "aggregate calculator, material calculator, landscape calculator, construction aggregate calculator, base material calculator, gravel and stone calculator",
+  appName: "Aggregate Calculator",
+  crumb: "Aggregate Calculator",
+  h1: "Aggregate &amp; Material Calculator",
+  lede: "An all-purpose <strong>aggregate and material calculator</strong> for gravel, crushed stone, sand and base. Choose the material, enter the area and depth, and get the volume, tonnage, cubic yards and cost.",
+  calcBar: "Choose material, enter area and depth",
+  defaults: { shape: "area", area: 100, areaUnit: "m2", depth: 10, depthUnit: "cm", density: "1.602", priceUnit: "t" },
+  adSlots: ["2222223801", "2222223802"],
+  content: `  <section id="guide">
+    <h2>What is construction aggregate?</h2>
+    <p><strong>Aggregate</strong> is the broad term for granular materials — gravel, crushed stone, sand and recycled concrete — used for bases, concrete, drainage and fill. Pick the material in the density menu so the tonnage is accurate.</p>
+    <h3>Common aggregate densities</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Material</th><th>Density (t/m³)</th></tr></thead>
+      <tbody>
+        <tr><td>Crushed stone / crusher run (base)</td><td>1.60</td></tr>
+        <tr><td>Gravel</td><td>1.52</td></tr>
+        <tr><td>Sand</td><td>1.60</td></tr>
+        <tr><td>Limestone</td><td>1.68</td></tr>
+        <tr><td>River rock</td><td>1.44</td></tr>
+      </tbody>
+    </table></div>
+    <h3>How to calculate aggregate</h3>
+    <div class="formula-box">
+      <p class="formula"><strong>Volume</strong> = Area × Depth</p>
+      <p class="formula"><strong>Tonnes</strong> = Volume (m³) × Density (t/m³)</p>
+    </div>
+    <p>For a compacted base under a driveway or patio, 10–15 cm (4–6 in) of crusher run is typical. See the <a href="/crushed-gravel-calculator.html">crushed gravel calculator</a> for Canadian sizes.</p>
+  </section>`,
+  faqs: [
+    { q: "How do I calculate how much aggregate I need?", a: "Multiply area by depth for the volume, then by the material density for the weight in tonnes. Select the material in the calculator so the density is correct." },
+    { q: "What is the density of aggregate?", a: "Most construction aggregate is about 1.5–1.7 tonnes per cubic metre; sand ~1.6, crushed stone ~1.6, gravel ~1.52, limestone ~1.68." },
+    { q: "How much aggregate for a base layer?", a: "A compacted base for a driveway or patio is typically 10–15 cm (4–6 inches) of crusher run. Enter your area and depth for the exact tonnage." },
+    { q: "Is aggregate sold by weight or volume?", a: "Bulk aggregate is usually sold by the tonne, and sometimes by the cubic yard. The calculator gives both plus cost." }
+  ]
+});
+
 /* write standard pages */
 pages.forEach(p => {
   fs.writeFileSync(p.slug, page(p));
@@ -808,6 +1010,8 @@ const aquariumPage = `<!DOCTYPE html>
 <meta name="twitter:description" content="Estimate aquarium gravel/substrate from tank size.">
 <meta name="twitter:image" content="${SITE}/og-image.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com">
 <link rel="stylesheet" href="/style.css">
@@ -901,6 +1105,8 @@ const frPage = `<!DOCTYPE html>
 <meta name="twitter:description" content="Estimez la quantité et le coût du gravier en vrac.">
 <meta name="twitter:image" content="${SITE}/og-image.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com">
 <link rel="stylesheet" href="/style.css">
@@ -972,6 +1178,11 @@ const HUB = [
   { slug: "french-drain-gravel-calculator.html", name: "French Drain Gravel Calculator", desc: "Estimate the washed clear stone for a French drain trench by length, width and gravel depth." },
   { slug: "patio-gravel-calculator.html", name: "Patio Gravel Calculator", desc: "Calculate the crushed-stone base for a paver or gravel patio by area and base depth." },
   { slug: "aquarium-gravel-calculator.html", name: "Aquarium Gravel Calculator", desc: "Estimate fish-tank gravel/substrate in pounds, kilograms and litres from your tank's length, width and depth." },
+  { slug: "cubic-yard-calculator.html", name: "Cubic Yard Calculator", desc: "General cubic yard / yardage calculator for gravel, dirt, mulch and stone, with cubic-feet and square-yard conversions." },
+  { slug: "landscape-rock-calculator.html", name: "Landscape Rock &amp; Stone Calculator", desc: "Estimate decorative landscape rock and stone by area and depth, in tonnes and cubic yards." },
+  { slug: "topsoil-calculator.html", name: "Topsoil &amp; Soil Calculator", desc: "Calculate how much topsoil or garden soil you need for beds and lawns, in cubic yards, tonnes and bags." },
+  { slug: "sand-calculator.html", name: "Sand Calculator", desc: "Estimate sand for paver bases, sandboxes and bedding, in cubic yards, tonnes and bags." },
+  { slug: "aggregate-calculator.html", name: "Aggregate &amp; Material Calculator", desc: "All-purpose aggregate/material calculator for gravel, stone, sand and base — volume, tonnage and cost." },
   { slug: "calculateur-de-gravier.html", name: "Calculateur de Gravier (Français)", desc: "Version française : estimez le gravier en vrac (volume, tonnes, verges cubes) et le coût." }
 ];
 const hubFaqs = [
@@ -1007,6 +1218,8 @@ const hubPage = `<!DOCTYPE html>
 <meta name="twitter:description" content="Every free gravel calculator in one place.">
 <meta name="twitter:image" content="${SITE}/og-image.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com">
 <link rel="stylesheet" href="/style.css">

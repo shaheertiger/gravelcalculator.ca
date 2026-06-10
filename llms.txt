@@ -53,6 +53,11 @@ Volume = 200 × 0.03 = 6 m³; Weight = 6 × 1.52 ≈ 9.1 tonnes; ≈ 7.8 cubic y
 - French drain gravel calculator: https://www.gravelcalculator.ca/french-drain-gravel-calculator.html
 - Patio gravel calculator: https://www.gravelcalculator.ca/patio-gravel-calculator.html
 - Aquarium / fish tank gravel calculator: https://www.gravelcalculator.ca/aquarium-gravel-calculator.html
+- Cubic yard calculator (generic yardage + conversions): https://www.gravelcalculator.ca/cubic-yard-calculator.html
+- Landscape rock & stone calculator: https://www.gravelcalculator.ca/landscape-rock-calculator.html
+- Topsoil & soil calculator: https://www.gravelcalculator.ca/topsoil-calculator.html
+- Sand calculator: https://www.gravelcalculator.ca/sand-calculator.html
+- Aggregate & material calculator: https://www.gravelcalculator.ca/aggregate-calculator.html
 - Calculateur de gravier (French / Canada): https://www.gravelcalculator.ca/calculateur-de-gravier.html
 - Privacy policy: https://www.gravelcalculator.ca/privacy.html
 - Terms of use: https://www.gravelcalculator.ca/terms.html
