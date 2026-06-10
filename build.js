@@ -172,6 +172,7 @@ const CALCS = [
   { slug: "topsoil-calculator.html", name: "Topsoil &amp; Soil Calculator" },
   { slug: "sand-calculator.html", name: "Sand Calculator" },
   { slug: "aggregate-calculator.html", name: "Aggregate &amp; Material Calculator" },
+  { slug: "concrete-calculator.html", name: "Concrete Calculator" },
   { slug: "calculateur-de-gravier.html", name: "Calculateur de Gravier (FR)" }
 ];
 
@@ -1055,6 +1056,197 @@ ${footer()}
 fs.writeFileSync("aquarium-gravel-calculator.html", aquariumPage);
 console.log("wrote aquarium-gravel-calculator.html");
 
+/* Concrete calculator (custom: slab / area / round column, bags + cost) */
+const concreteFaqs = [
+  { q: "How do I calculate concrete?", a: "Multiply length × width × thickness for a slab (or π × radius² × height for a column) to get the volume, then convert to cubic yards or cubic metres. The calculator also estimates the number of pre-mix bags. Add 5–10% for waste and spillage." },
+  { q: "How many bags of concrete in a cubic yard?", a: "A cubic yard is 27 ft³, so it takes about 45 bags of 80 lb, 60 bags of 60 lb, or 90 bags of 40 lb pre-mix concrete. For more than about 1 cubic yard, ready-mix delivery is usually cheaper." },
+  { q: "How much does a yard of concrete cover?", a: "One cubic yard covers about 65 ft² at 5 inches thick, 81 ft² at 4 inches, or 108 ft² at 3 inches thick." },
+  { q: "How much does concrete weigh?", a: "Standard concrete weighs about 2.4 tonnes per cubic metre (≈4,050 lb per cubic yard)." },
+  { q: "Should I add extra concrete?", a: "Yes — add 5–10% for spillage, over-excavation and uneven subgrade. Running short mid-pour creates a weak cold joint, so it is better to slightly over-order." }
+];
+const concreteCalc = `    <div class="calc-card">
+      <div class="calc-bar">Choose a shape, enter dimensions, and click Calculate</div>
+      <form id="concrete-form" class="calc-grid">
+        <div class="row">
+          <span class="label">Shape</span>
+          <div class="control shape-toggle" role="radiogroup" aria-label="Concrete shape">
+            <label><input type="radio" name="cshape" value="slab" checked> Slab / footing</label>
+            <label><input type="radio" name="cshape" value="area"> Total area</label>
+            <label><input type="radio" name="cshape" value="column"> Round column / tube</label>
+          </div>
+        </div>
+        <div class="row shape-fields" data-cshape="slab">
+          <label class="label" for="c-length">Length &amp; width</label>
+          <div class="control">
+            <input type="number" id="c-length" placeholder="Length" value="10" min="0" step="any" inputmode="decimal">
+            <input type="number" id="c-width" placeholder="Width" value="10" min="0" step="any" inputmode="decimal">
+            <select id="c-len-unit" aria-label="Length unit"><option value="ft" selected>feet</option><option value="m">metres</option><option value="in">inches</option><option value="yd">yards</option></select>
+          </div>
+        </div>
+        <div class="row shape-fields hidden" data-cshape="area">
+          <label class="label" for="c-area">Total area</label>
+          <div class="control">
+            <input type="number" id="c-area" placeholder="Area" value="100" min="0" step="any" inputmode="decimal">
+            <select id="c-area-unit" aria-label="Area unit"><option value="ft2" selected>square feet</option><option value="m2">square metres</option><option value="yd2">square yards</option></select>
+          </div>
+        </div>
+        <div class="row shape-fields" data-cshape="slab">
+          <label class="label" for="c-thick">Thickness</label>
+          <div class="control">
+            <input type="number" id="c-thick" value="4" min="0" step="any" inputmode="decimal">
+            <select id="c-thick-unit" aria-label="Thickness unit"><option value="in" selected>inches</option><option value="cm">cm</option><option value="ft">feet</option><option value="m">metres</option></select>
+          </div>
+        </div>
+        <div class="row shape-fields hidden" data-cshape="column">
+          <label class="label" for="c-diam">Diameter &amp; height</label>
+          <div class="control">
+            <input type="number" id="c-diam" placeholder="Diameter" value="12" min="0" step="any" inputmode="decimal">
+            <input type="number" id="c-height" placeholder="Height" value="48" min="0" step="any" inputmode="decimal">
+            <select id="c-col-unit" aria-label="Column unit"><option value="in" selected>inches</option><option value="cm">cm</option><option value="ft">feet</option><option value="m">metres</option></select>
+          </div>
+        </div>
+        <div class="row">
+          <label class="label" for="c-bag">Pre-mix bag size</label>
+          <div class="control">
+            <select id="c-bag"><option value="80lb" selected>80 lb bag (0.60 ft³)</option><option value="60lb">60 lb bag (0.45 ft³)</option><option value="40lb">40 lb bag (0.30 ft³)</option><option value="30kg">30 kg bag (0.46 ft³)</option><option value="25kg">25 kg bag (0.38 ft³)</option></select>
+          </div>
+        </div>
+        <div class="row">
+          <label class="label" for="c-waste">Waste allowance</label>
+          <div class="control"><input type="number" id="c-waste" value="10" min="0" step="any" inputmode="decimal"><span class="suffix">%</span></div>
+        </div>
+        <div class="row">
+          <label class="label" for="c-price">Price (optional)</label>
+          <div class="control">
+            <span class="prefix">$</span>
+            <input type="number" id="c-price" placeholder="0.00" min="0" step="any" inputmode="decimal">
+            <select id="c-price-unit" aria-label="Price unit"><option value="yd3" selected>per cubic yard</option><option value="m3">per m³</option><option value="bag">per bag</option></select>
+          </div>
+        </div>
+        <div class="row actions">
+          <span class="label" aria-hidden="true"></span>
+          <div class="control"><button type="submit" class="btn btn-primary">Calculate</button><button type="reset" class="btn btn-ghost" id="c-clear">Clear</button></div>
+        </div>
+      </form>
+      <div id="c-results" class="results hidden" aria-live="polite">
+        <h3>Estimated concrete needed</h3>
+        <div class="result-grid">
+          <div class="result-tile"><span class="rt-value" id="c-yd3">—</span><span class="rt-label">cubic yards (yd³)</span></div>
+          <div class="result-tile"><span class="rt-value" id="c-m3">—</span><span class="rt-label">cubic metres (m³)</span></div>
+          <div class="result-tile"><span class="rt-value" id="c-ft3">—</span><span class="rt-label">cubic feet (ft³)</span></div>
+          <div class="result-tile"><span class="rt-value" id="c-bags">—</span><span class="rt-label">pre-mix bags</span></div>
+          <div class="result-tile"><span class="rt-value" id="c-t">—</span><span class="rt-label">tonnes (weight)</span></div>
+        </div>
+        <p class="result-cost hidden" id="c-cost-wrap">Estimated cost: <strong id="c-cost">—</strong></p>
+        <p class="result-note">Includes your waste allowance. For more than ~1 cubic yard, ready-mix delivery is usually cheaper than bags.</p>
+      </div>
+    </div>`;
+
+const concreteContent = `  <section id="guide">
+    <h2>How to calculate concrete</h2>
+    <p>Concrete is ordered by <strong>volume</strong> — cubic yards for ready-mix delivery, or bags for small pours. Find the volume, then convert:</p>
+    <div class="formula-box">
+      <p class="formula"><strong>Slab volume</strong> = Length × Width × Thickness</p>
+      <p class="formula"><strong>Column volume</strong> = π × radius² × Height</p>
+      <p class="formula"><strong>Cubic yards</strong> = cubic feet ÷ 27</p>
+    </div>
+    <h3>Bags of concrete per cubic yard</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Bag size</th><th>Yield</th><th>Bags per yd³</th><th>Bags per m³</th></tr></thead>
+      <tbody>
+        <tr><td>80 lb</td><td>0.60 ft³</td><td>≈ 45</td><td>≈ 59</td></tr>
+        <tr><td>60 lb</td><td>0.45 ft³</td><td>≈ 60</td><td>≈ 79</td></tr>
+        <tr><td>40 lb</td><td>0.30 ft³</td><td>≈ 90</td><td>≈ 118</td></tr>
+        <tr><td>30 kg</td><td>0.46 ft³</td><td>≈ 59</td><td>≈ 77</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Slab coverage per cubic yard</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Thickness</th><th>Coverage</th></tr></thead>
+      <tbody>
+        <tr><td>3 in</td><td>≈ 108 ft²</td></tr>
+        <tr><td>4 in</td><td>≈ 81 ft²</td></tr>
+        <tr><td>5 in</td><td>≈ 65 ft²</td></tr>
+        <tr><td>6 in</td><td>≈ 54 ft²</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Example</h3>
+    <p>A 10 ft × 10 ft slab at 4 inches thick = 100 × (4 ÷ 12) = 33.3 ft³ ≈ <strong>1.23 cubic yards</strong> (about 1.36 yd³ with 10% waste). That's roughly 56 bags of 80 lb mix — at this size, ready-mix is cheaper.</p>
+    <p>A gravel sub-base is recommended under most slabs — see the <a href="/crushed-gravel-calculator.html">crushed gravel calculator</a> for the base layer.</p>
+  </section>`;
+
+const concretePage = `<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concrete Calculator | Cubic Yards, Bags &amp; Cost (Slab, Column)</title>
+<meta name="description" content="Free concrete calculator. Work out concrete in cubic yards, cubic metres and pre-mix bags for slabs, footings and round columns, with a waste allowance and cost estimate.">
+<meta name="keywords" content="concrete calculator, concrete calculator yards, concrete mix calculator, bags of concrete calculator, slab concrete calculator, cubic yards of concrete, sonotube concrete calculator">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="${SITE}/concrete-calculator.html">
+<meta name="theme-color" content="#1f6f43">
+<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GravelCalculator.ca">
+<meta property="og:title" content="Concrete Calculator | Cubic Yards, Bags &amp; Cost">
+<meta property="og:description" content="Estimate concrete in cubic yards, cubic metres and bags for slabs, footings and columns.">
+<meta property="og:url" content="${SITE}/concrete-calculator.html">
+<meta property="og:locale" content="en_CA">
+<meta property="og:image" content="${SITE}/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Concrete Calculator">
+<meta name="twitter:description" content="Concrete in cubic yards, bags and cost for slabs and columns.">
+<meta name="twitter:image" content="${SITE}/og-image.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Concrete Calculator","url":"${SITE}/concrete-calculator.html","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","description":"Estimate concrete volume in cubic yards and cubic metres, the number of pre-mix bags, and the cost for slabs, footings and round columns.","inLanguage":"en-CA","isAccessibleForFree":true,"dateModified":"${LASTMOD}","offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"},"publisher":{"@type":"Organization","name":"GravelCalculator.ca","url":"${SITE}/","logo":"${SITE}/favicon.svg"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"GravelCalculator.ca","url":"${SITE}/","logo":"${SITE}/favicon.svg","description":"Free gravel, tonnage and cost calculators for Canada."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"${SITE}/"},{"@type":"ListItem","position":2,"name":"Concrete Calculator","item":"${SITE}/concrete-calculator.html"}]}
+</script>
+<script type="application/ld+json">
+${faqJsonLd(concreteFaqs)}
+</script>
+${ADS_LOADER}
+</head>
+<body>
+${header("concrete-calculator.html")}
+<nav class="breadcrumbs wrap" aria-label="Breadcrumb">
+  <ol><li><a href="/">Home</a></li><li aria-current="page">Concrete Calculator</li></ol>
+</nav>
+<main class="wrap">
+  <article>
+  <h1>Concrete Calculator</h1>
+  <p class="lede">Estimate <strong>how much concrete you need</strong> for a slab, footing or round column. Get the volume in <strong>cubic yards and cubic metres</strong>, the number of <strong>pre-mix bags</strong>, and an optional <strong>cost</strong> — with a built-in waste allowance.</p>
+  <section id="calculator" aria-labelledby="calc-heading">
+    <h2 id="calc-heading" class="visually-hidden">Concrete Calculator Tool</h2>
+${concreteCalc}
+  </section>
+${adSlot("2222223901")}
+${concreteContent}
+${adSlot("2222223902")}
+${faqHtml(concreteFaqs)}
+${calcGrid("concrete-calculator.html")}
+  <p class="disclaimer"><strong>Disclaimer:</strong> Concrete estimates are approximate and depend on subgrade, formwork and over-excavation. Order 5–10% extra to avoid running short during a pour. Costs exclude reinforcement, labour, delivery and taxes.</p>
+  </article>
+</main>
+${footer()}
+<script src="/concrete.js" defer></script>
+</body>
+</html>
+`;
+fs.writeFileSync("concrete-calculator.html", concretePage);
+console.log("wrote concrete-calculator.html");
+
 /* 11. French page (Quebec / bilingual Canada) */
 const frFaqs = [
   { q: "Combien de gravier ai-je besoin ?", a: "Multipliez la surface à couvrir par la profondeur pour obtenir le volume, puis multipliez par la densité du gravier (environ 1,5 t/m³) pour obtenir le poids. Par exemple, 200 m² sur 3 cm = 6 m³, soit environ 9 tonnes." },
@@ -1183,6 +1375,7 @@ const HUB = [
   { slug: "topsoil-calculator.html", name: "Topsoil &amp; Soil Calculator", desc: "Calculate how much topsoil or garden soil you need for beds and lawns, in cubic yards, tonnes and bags." },
   { slug: "sand-calculator.html", name: "Sand Calculator", desc: "Estimate sand for paver bases, sandboxes and bedding, in cubic yards, tonnes and bags." },
   { slug: "aggregate-calculator.html", name: "Aggregate &amp; Material Calculator", desc: "All-purpose aggregate/material calculator for gravel, stone, sand and base — volume, tonnage and cost." },
+  { slug: "concrete-calculator.html", name: "Concrete Calculator", desc: "Estimate concrete for slabs, footings and round columns in cubic yards, cubic metres, pre-mix bags and cost." },
   { slug: "calculateur-de-gravier.html", name: "Calculateur de Gravier (Français)", desc: "Version française : estimez le gravier en vrac (volume, tonnes, verges cubes) et le coût." }
 ];
 const hubFaqs = [

@@ -58,6 +58,7 @@ Volume = 200 × 0.03 = 6 m³; Weight = 6 × 1.52 ≈ 9.1 tonnes; ≈ 7.8 cubic y
 - Topsoil & soil calculator: https://www.gravelcalculator.ca/topsoil-calculator.html
 - Sand calculator: https://www.gravelcalculator.ca/sand-calculator.html
 - Aggregate & material calculator: https://www.gravelcalculator.ca/aggregate-calculator.html
+- Concrete calculator (slabs, footings, columns — cubic yards, bags, cost): https://www.gravelcalculator.ca/concrete-calculator.html
 - Calculateur de gravier (French / Canada): https://www.gravelcalculator.ca/calculateur-de-gravier.html
 - Privacy policy: https://www.gravelcalculator.ca/privacy.html
 - Terms of use: https://www.gravelcalculator.ca/terms.html
