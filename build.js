@@ -281,7 +281,7 @@ function page(cfg) {
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com">
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style.css?v=3">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"${cfg.appName}","url":"${url}","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","description":"${cfg.desc}","inLanguage":"en-CA","isAccessibleForFree":true,"dateModified":"${LASTMOD}","offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"},"publisher":{"@type":"Organization","name":"GravelCalculator.ca","url":"${SITE}/","logo":"${SITE}/favicon.svg"},"potentialAction":{"@type":"UseAction","target":"${url}"}}
 </script>
@@ -1017,7 +1017,7 @@ const aquariumPage = `<!DOCTYPE html>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com">
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style.css?v=3">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Aquarium Gravel Calculator","url":"${SITE}/aquarium-gravel-calculator.html","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","description":"Estimate how much aquarium gravel or substrate a fish tank needs from its length, width and substrate depth.","inLanguage":"en-CA","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"}}
 </script>
@@ -1051,7 +1051,7 @@ ${calcGrid("aquarium-gravel-calculator.html")}
   </article>
 </main>
 ${footer()}
-<script src="/aquarium.js" defer></script>
+<script src="/aquarium.js?v=3" defer></script>
 </body>
 </html>
 `;
@@ -1205,7 +1205,7 @@ const concretePage = `<!DOCTYPE html>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com">
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style.css?v=3">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Concrete Calculator","url":"${SITE}/concrete-calculator.html","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","description":"Estimate concrete volume in cubic yards and cubic metres, the number of pre-mix bags, and the cost for slabs, footings and round columns.","inLanguage":"en-CA","isAccessibleForFree":true,"dateModified":"${LASTMOD}","offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"},"publisher":{"@type":"Organization","name":"GravelCalculator.ca","url":"${SITE}/","logo":"${SITE}/favicon.svg"}}
 </script>
@@ -1242,7 +1242,7 @@ ${calcGrid("concrete-calculator.html")}
   </article>
 </main>
 ${footer()}
-<script src="/concrete.js" defer></script>
+<script src="/concrete.js?v=3" defer></script>
 </body>
 </html>
 `;
@@ -1303,7 +1303,7 @@ const frPage = `<!DOCTYPE html>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com">
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style.css?v=3">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Calculateur de Gravier","url":"${SITE}/calculateur-de-gravier.html","applicationCategory":"UtilitiesApplication","operatingSystem":"All","browserRequirements":"Requires JavaScript","description":"Calculateur de gravier pour estimer le volume, le poids en tonnes, les verges cubes et le coût du gravier en vrac.","inLanguage":"fr-CA","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"}}
 </script>
@@ -1352,7 +1352,7 @@ ${calcGrid("calculateur-de-gravier.html")}
   </article>
 </main>
 ${footer()}
-<script src="/script.js" defer></script>
+<script src="/script.js?v=3" defer></script>
 </body>
 </html>
 `;
@@ -1417,7 +1417,7 @@ const hubPage = `<!DOCTYPE html>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com">
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style.css?v=3">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CollectionPage","name":"All Gravel Calculators","url":"${SITE}/calculators.html","inLanguage":"en-CA","description":"A directory of free gravel calculators for volume, tonnage, coverage and cost.","hasPart":[${HUB.map(h => `{"@type":"WebApplication","name":"${h.name.replace(/&amp;/g,'and').replace(/&quot;/g,'in')}","url":"${SITE}/${h.slug}","applicationCategory":"UtilitiesApplication","isAccessibleForFree":true}`).join(",")}]}
 </script>
