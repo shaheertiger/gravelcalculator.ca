@@ -6,7 +6,11 @@ const fs = require("fs");
 const SITE = "https://www.gravelcalculator.ca";
 const YEAR = 2026;
 const LASTMOD = "2026-06-10";
-const ADS_CLIENT = "ca-pub-XXXXXXXXXXXXXXXX";
+const ADS_CLIENT = "ca-pub-2963693328827195";
+// AdSense verification/serving loader stays in <head> on every page (needed for site review).
+const ADS_LOADER = `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADS_CLIENT}" crossorigin="anonymous"></script>`;
+// Ad <ins> unit boxes are off for now; set true to show them once approved.
+const ADS_ENABLED = false;
 
 /* ---- density options (value = t/m3) ---- */
 const DENSITIES = [
@@ -211,6 +215,7 @@ function footer() {
 }
 
 function adSlot(slot) {
+  if (!ADS_ENABLED) return `  <!-- ad slot ${slot} hidden (set ADS_ENABLED = true in build.js to show) -->`;
   return `  <aside class="ad-slot" aria-label="Advertisement">
     <span class="ad-tag">Advertisement</span>
     <ins class="adsbygoogle" style="display:block" data-ad-client="${ADS_CLIENT}" data-ad-slot="${slot}" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -272,7 +277,7 @@ function page(cfg) {
 <script type="application/ld+json">
 ${faqJsonLd(cfg.faqs)}
 </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADS_CLIENT}" crossorigin="anonymous"></script>
+${ADS_LOADER}
 </head>
 <body>
 ${header(cfg.slug)}
@@ -811,7 +816,7 @@ const aquariumPage = `<!DOCTYPE html>
 <script type="application/ld+json">
 ${faqJsonLd(aquariumFaqs)}
 </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADS_CLIENT}" crossorigin="anonymous"></script>
+${ADS_LOADER}
 </head>
 <body>
 ${header("aquarium-gravel-calculator.html")}
@@ -904,7 +909,7 @@ const frPage = `<!DOCTYPE html>
 <script type="application/ld+json">
 ${faqJsonLd(frFaqs)}
 </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADS_CLIENT}" crossorigin="anonymous"></script>
+${ADS_LOADER}
 </head>
 <body>
 ${header("calculateur-de-gravier.html")}
@@ -1010,7 +1015,7 @@ const hubPage = `<!DOCTYPE html>
 <script type="application/ld+json">
 ${faqJsonLd(hubFaqs)}
 </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADS_CLIENT}" crossorigin="anonymous"></script>
+${ADS_LOADER}
 </head>
 <body>
 ${header("calculators.html")}
