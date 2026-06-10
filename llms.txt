@@ -25,7 +25,15 @@
 - River rock: 1.44 t/m³
 
 ## Pages
-- Home / calculator: https://www.gravelcalculator.ca/
+- Home / main gravel calculator: https://www.gravelcalculator.ca/
+- Cubic yards of gravel calculator: https://www.gravelcalculator.ca/cubic-yards-of-gravel.html
+- Gravel tonnage calculator: https://www.gravelcalculator.ca/gravel-tonnage-calculator.html
+- Pea gravel calculator: https://www.gravelcalculator.ca/pea-gravel-calculator.html
+- Gravel driveway calculator: https://www.gravelcalculator.ca/gravel-driveway-calculator.html
+- Crushed gravel calculator (3/4", 20mm, clear stone): https://www.gravelcalculator.ca/crushed-gravel-calculator.html
+- French drain gravel calculator: https://www.gravelcalculator.ca/french-drain-gravel-calculator.html
+- Patio gravel calculator: https://www.gravelcalculator.ca/patio-gravel-calculator.html
+- Aquarium / fish tank gravel calculator: https://www.gravelcalculator.ca/aquarium-gravel-calculator.html
 - Privacy policy: https://www.gravelcalculator.ca/privacy.html
 - Terms of use: https://www.gravelcalculator.ca/terms.html
 

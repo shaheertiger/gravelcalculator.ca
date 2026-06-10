@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!-- Bing Webmaster Tools site verification.
+     Replace the user key below with the value from
+     https://www.bing.com/webmasters (Add site → XML File verification),
+     then this file is served at https://www.gravelcalculator.ca/BingSiteAuth.xml -->
+<users>
+  <user>REPLACE_WITH_BING_VERIFICATION_KEY</user>
+</users>
