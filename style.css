@@ -156,4 +156,9 @@ details[open] summary { border-bottom: 1px solid var(--line); margin-bottom: 8px
   .calc-card { margin-top: 10px; }
   .calc-bar { padding: 10px 14px; font-size: .9rem; }
   .calc-grid { padding: 14px; gap: 10px; }
+
+  /* single-column tiles to avoid overflow on very narrow phones */
+  .calc-tiles, .hub-grid { grid-template-columns: 1fr; }
+  table { font-size: .9rem; }
+  th, td { padding: 8px 10px; }
 }
