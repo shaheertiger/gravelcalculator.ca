@@ -197,6 +197,7 @@ function header(currentSlug) {
       <a href="/gravel-driveway-calculator.html">Driveway</a>
       <a href="/pea-gravel-calculator.html">Pea Gravel</a>
       <a href="/calculators.html">All Tools</a>
+      <a href="/blog/">Blog</a>
     </nav>
   </div>
 </header>`;
@@ -214,6 +215,7 @@ function footer() {
       <a href="/pea-gravel-calculator.html">Pea Gravel</a>
       <a href="/gravel-driveway-calculator.html">Driveway</a>
       <a href="/crushed-gravel-calculator.html">Crushed Gravel</a>
+      <a href="/blog/">Blog</a>
       <a href="/about.html">About</a>
       <a href="/contact.html">Contact</a>
       <a href="/privacy.html">Privacy</a>
@@ -1460,4 +1462,795 @@ ${footer()}
 fs.writeFileSync("calculators.html", hubPage);
 console.log("wrote calculators.html");
 
-console.log("Done. " + (pages.length + 3) + " pages generated.");
+/* =================== BLOG =================== */
+const BLOG_MOD = "2026-06-19";
+
+/* CTA callout that links into a calculator (placed near the top of every post) */
+function blogCta(cfg) {
+  const t = cfg.ctaTarget || { slug: "", label: "Gravel Calculator" };
+  const text = cfg.ctaText ||
+    `<strong>Need the exact amount?</strong> Use our free <a href="/${t.slug}">${t.label}</a> to estimate tonnes, cubic yards, cubic metres and cost in CAD.`;
+  return `  <aside class="blog-cta">
+    <p>${text}</p>
+    <a class="btn btn-primary" href="/${t.slug}">Open the calculator</a>
+  </aside>`;
+}
+
+/* curated "related calculators" cards, looked up from HUB by slug */
+function relatedCalcCards(slugs) {
+  const cards = slugs.map(s => {
+    const h = HUB.find(x => x.slug === s);
+    return h ? `      <a class="hub-card" href="/${h.slug}"><span class="hub-name">${h.name}</span><span class="hub-desc">${h.desc}</span></a>` : "";
+  }).filter(Boolean).join("\n");
+  return `  <section id="related-tools" aria-labelledby="rel-h">
+    <h2 id="rel-h">Related gravel calculators</h2>
+    <div class="hub-grid">
+${cards}
+    </div>
+  </section>`;
+}
+
+function prettyDate(iso) {
+  const [y, m, d] = iso.split("-").map(Number);
+  const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  return `${months[m - 1]} ${d}, ${y}`;
+}
+
+function blogPost(cfg) {
+  const url = `${SITE}/blog/${cfg.slug}`;
+  const pub = cfg.date || BLOG_MOD;
+  const mod = cfg.modified || BLOG_MOD;
+  const related = cfg.related && cfg.related.length ? relatedCalcCards(cfg.related) : "";
+  return `<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${cfg.title}</title>
+<meta name="description" content="${cfg.desc}">
+<meta name="keywords" content="${cfg.keywords}">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="${url}">
+<meta name="theme-color" content="#1f6f43">
+<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="GravelCalculator.ca">
+<meta property="og:title" content="${cfg.title}">
+<meta property="og:description" content="${cfg.desc}">
+<meta property="og:url" content="${url}">
+<meta property="og:locale" content="en_CA">
+<meta property="og:image" content="${SITE}/og-image.png">
+<meta property="article:published_time" content="${pub}">
+<meta property="article:modified_time" content="${mod}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${cfg.title}">
+<meta name="twitter:description" content="${cfg.desc}">
+<meta name="twitter:image" content="${SITE}/og-image.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com">
+<link rel="stylesheet" href="/style.css?v=3">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"${cfg.h1.replace(/"/g,'\\"')}","description":"${cfg.desc}","url":"${url}","mainEntityOfPage":{"@type":"WebPage","@id":"${url}"},"datePublished":"${pub}","dateModified":"${mod}","inLanguage":"en-CA","image":"${SITE}/og-image.png","author":{"@type":"Organization","name":"GravelCalculator.ca","url":"${SITE}/"},"publisher":{"@type":"Organization","name":"GravelCalculator.ca","logo":{"@type":"ImageObject","url":"${SITE}/favicon.svg"}}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"${SITE}/"},{"@type":"ListItem","position":2,"name":"Blog","item":"${SITE}/blog/"},{"@type":"ListItem","position":3,"name":"${cfg.crumb}","item":"${url}"}]}
+</script>
+<script type="application/ld+json">
+${faqJsonLd(cfg.faqs)}
+</script>
+${ADS_LOADER}
+</head>
+<body>
+${header("blog/" + cfg.slug)}
+<nav class="breadcrumbs wrap" aria-label="Breadcrumb">
+  <ol><li><a href="/">Home</a></li><li><a href="/blog/">Blog</a></li><li aria-current="page">${cfg.crumb}</li></ol>
+</nav>
+<main class="wrap">
+  <article class="post-body">
+  <p class="post-tag">${cfg.category}</p>
+  <h1>${cfg.h1}</h1>
+  <p class="post-meta">Published <time datetime="${pub}">${prettyDate(pub)}</time>${mod !== pub ? ` · Updated <time datetime="${mod}">${prettyDate(mod)}</time>` : ""} · GravelCalculator.ca</p>
+  <p class="lede">${cfg.lede}</p>
+${blogCta(cfg)}
+
+${cfg.content}
+
+${adSlot(cfg.adSlots ? cfg.adSlots[0] : "3333333301")}
+
+${faqHtml(cfg.faqs)}
+
+${related}
+
+  <p class="disclaimer"><strong>Disclaimer:</strong> This guide gives general estimates for planning. Actual gravel quantities, weights and prices vary with material type, particle size, moisture, compaction, supplier and your province. Costs are material-only ballparks in Canadian dollars and exclude labour, delivery and taxes unless stated. Always confirm quantities and prices with your local supplier.</p>
+  </article>
+</main>
+${footer()}
+</body>
+</html>
+`;
+}
+
+/* ---- the 10 launch posts ---- */
+const posts = [];
+
+posts.push({
+  slug: "how-much-gravel-do-i-need-for-a-driveway.html",
+  category: "Driveways",
+  title: "How Much Gravel Do I Need for a Driveway? (Canada Guide + Calculator)",
+  desc: "Work out how much gravel a driveway needs — depth, layers, gravel type, tonnes, cubic yards and cost. Step-by-step Canadian guide with a free driveway calculator.",
+  keywords: "how much gravel do i need for a driveway, gravel for driveway, driveway gravel calculator, how much gravel for a driveway canada, gravel driveway depth",
+  crumb: "Gravel for a Driveway",
+  h1: "How Much Gravel Do I Need for a Driveway?",
+  lede: "A gravel driveway is usually built in <strong>two or three layers</strong>, so the amount of gravel you need depends on the driveway's area, the depth of each layer and the gravel type. Here's how to estimate it — in <strong>cubic yards and tonnes</strong> — without guesswork.",
+  date: "2026-06-02",
+  ctaTarget: { slug: "gravel-driveway-calculator.html", label: "Driveway Gravel Calculator" },
+  related: ["gravel-driveway-calculator.html", "gravel-tonnage-calculator.html", "crushed-gravel-calculator.html", "cubic-yards-of-gravel.html"],
+  adSlots: ["3333333101", "3333333102"],
+  content: `  <section id="quick">
+    <div class="key-takeaways">
+      <h2>Quick answer</h2>
+      <p>For a typical residential gravel driveway, plan on <strong>8–12 inches (20–30 cm) of total gravel</strong> built up in layers. A 100 ft² section at 10 inches deep needs about <strong>3 cubic yards (roughly 3.7 tonnes)</strong> of gravel. Multiply for your driveway's full area, then order 5–10% extra for compaction.</p>
+    </div>
+  </section>
+  <section id="layers">
+    <h2>Gravel driveway layers</h2>
+    <p>A long-lasting gravel driveway is rarely a single dump of stone. It's built in graded layers so it drains and stays firm:</p>
+    <ul>
+      <li><strong>Sub-base (4–6 in):</strong> large angular stone such as 2–4 in (50–100 mm) clear or crusher run for a stable foundation.</li>
+      <li><strong>Base (3–4 in):</strong> 3/4 in (19 mm) crusher run that compacts into a tight, load-bearing layer.</li>
+      <li><strong>Top / driving layer (2–3 in):</strong> 3/4 in clear stone or a decorative gravel for the surface you actually drive on.</li>
+    </ul>
+    <p>On soft or clay soils, add a layer of <strong>geotextile fabric</strong> under the sub-base to stop the stone from sinking into the ground.</p>
+  </section>
+  <section id="howto">
+    <h2>How to calculate driveway gravel step by step</h2>
+    <ol class="steps">
+      <li>Measure the driveway <strong>length × width in feet</strong> to get the area in square feet.</li>
+      <li>Decide the <strong>total gravel depth</strong> (8–12 in is typical) and convert to feet (inches ÷ 12).</li>
+      <li>Multiply <strong>area × depth</strong> to get cubic feet, then divide by 27 for <strong>cubic yards</strong>.</li>
+      <li>Multiply cubic yards by the gravel's weight (about <strong>1.2–1.4 tonnes per yard</strong>) to get tonnes.</li>
+    </ol>
+    <div class="formula-box">
+      <p class="formula"><strong>Cubic yards</strong> = (Length ft × Width ft × Total depth ft) ÷ 27</p>
+    </div>
+  </section>
+  <section id="table">
+    <h2>Driveway gravel quantities at a glance</h2>
+    <p>Approximate gravel for a single 10-inch-deep driveway build (all layers combined):</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Driveway size</th><th>Area</th><th>Cubic yards (10&quot; deep)</th><th>Tonnes (≈)</th></tr></thead>
+      <tbody>
+        <tr><td>1 car (10 × 20 ft)</td><td>200 ft²</td><td>6.2 yd³</td><td>7.6 t</td></tr>
+        <tr><td>2 car (20 × 20 ft)</td><td>400 ft²</td><td>12.3 yd³</td><td>15 t</td></tr>
+        <tr><td>Short rural drive (10 × 50 ft)</td><td>500 ft²</td><td>15.4 yd³</td><td>18.8 t</td></tr>
+        <tr><td>Long rural drive (12 × 100 ft)</td><td>1,200 ft²</td><td>37 yd³</td><td>45 t</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">Tonnes assume crusher run at about 1.6 t/m³ (≈1.22 t/yd³). Add 5–10% for compaction.</p>
+  </section>
+  <section id="type">
+    <h2>What gravel is best for a driveway?</h2>
+    <p>Use <strong>angular crushed stone</strong> (crusher run for the base, 3/4 in clear for the top) — the sharp edges lock together and compact, unlike round pea gravel or river rock, which shift and rut under tires. For the full breakdown, see <a href="/blog/best-gravel-for-driveways-canada.html">best gravel for driveways in Canada</a>. To estimate cost, read <a href="/blog/gravel-driveway-cost-canada.html">gravel driveway cost in Canada</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "How deep should gravel be for a driveway?", a: "Plan on 8–12 inches (20–30 cm) of total gravel for a residential driveway, built in layers: a 4–6 in coarse sub-base, a 3–4 in crusher-run base, and a 2–3 in top layer. Heavier vehicles or soft soils need the deeper end of that range." },
+    { q: "How many tonnes of gravel for a driveway?", a: "A 10 × 20 ft single-car driveway at 10 inches deep needs roughly 6 cubic yards, or about 7.6 tonnes of crusher run. Scale up linearly with area — double the area, double the gravel." },
+    { q: "How much gravel do I need per square foot of driveway?", a: "At 4 inches deep you need about 0.012 cubic yards (≈0.015 tonnes) per square foot. For a full 10-inch build it's roughly 0.031 yd³ (≈0.038 t) per square foot." },
+    { q: "Should I use pea gravel for a driveway?", a: "Pea gravel is not ideal as a driving surface because its round stones don't lock together and tend to scatter and rut. Use angular crushed stone for the structural layers; a thin decorative top layer of pea gravel can work over a firm compacted base." }
+  ]
+});
+
+posts.push({
+  slug: "gravel-driveway-cost-canada.html",
+  category: "Cost",
+  title: "Gravel Driveway Cost in Canada: Price Per Tonne, Yard & Truckload",
+  desc: "What does a gravel driveway cost in Canada? Price per tonne, per cubic yard and per square foot, plus delivery, labour and a full cost-estimate example.",
+  keywords: "gravel driveway cost canada, gravel cost per tonne canada, gravel price per yard, cost of gravel driveway, gravel delivery cost canada",
+  crumb: "Gravel Driveway Cost",
+  h1: "Gravel Driveway Cost in Canada",
+  lede: "Gravel is one of the cheapest driveway surfaces in Canada, but the final price swings with <strong>gravel type, depth, delivery distance and labour</strong>. Here are realistic 2026 cost ranges per tonne, per cubic yard and per square foot, plus a worked example.",
+  date: "2026-06-04",
+  ctaTarget: { slug: "gravel-driveway-calculator.html", label: "Driveway Gravel Calculator" },
+  ctaText: `<strong>Pricing a driveway?</strong> Enter your area, depth and a price per tonne in the <a href="/gravel-driveway-calculator.html">Driveway Gravel Calculator</a> to get an instant material cost in CAD.`,
+  related: ["gravel-driveway-calculator.html", "gravel-tonnage-calculator.html", "bulk-bagged-gravel-calculator.html", "concrete-calculator.html"],
+  adSlots: ["3333333201", "3333333202"],
+  content: `  <section id="ranges">
+    <h2>Gravel price ranges in Canada (2026)</h2>
+    <p>These are typical material-only ballparks. Bulk gravel from a quarry or landscape-supply yard is far cheaper per unit than bagged gravel from a hardware store.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Sold by</th><th>Typical price (CAD)</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Per tonne (bulk, picked up)</td><td>$15 – $50</td><td>Crusher run is cheapest; decorative stone costs more</td></tr>
+        <tr><td>Per cubic yard (bulk)</td><td>$20 – $70</td><td>1 yd³ ≈ 1.2–1.4 tonnes</td></tr>
+        <tr><td>Delivered per tonne</td><td>$30 – $90</td><td>Includes trucking; rises with distance</td></tr>
+        <tr><td>Per square foot (installed)</td><td>$1 – $4</td><td>Material + grading + labour</td></tr>
+        <tr><td>Full truckload (≈15–20 t)</td><td>$300 – $900</td><td>Cheapest per-tonne option for big jobs</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">Prices vary widely by province and how far you are from a quarry. Decorative and washed stone sit at the high end; crusher run and road base at the low end.</p>
+  </section>
+  <section id="factors">
+    <h2>What drives the price</h2>
+    <ul>
+      <li><strong>Gravel type:</strong> crusher run and road base are cheapest; pea gravel, river rock and decorative stone cost two to four times more.</li>
+      <li><strong>Depth &amp; layers:</strong> a proper 8–12 in driveway uses three to four times the gravel of a thin top-up.</li>
+      <li><strong>Delivery distance:</strong> trucking can equal or exceed the material cost if you're far from a pit.</li>
+      <li><strong>Labour &amp; grading:</strong> excavation, fabric and machine grading add to a DIY material-only figure.</li>
+      <li><strong>Order size:</strong> per-tonne prices drop sharply once you're buying full truckloads.</li>
+    </ul>
+  </section>
+  <section id="example">
+    <h2>Worked example: a 2-car driveway</h2>
+    <p>A 20 × 20 ft (400 ft²) driveway at 10 inches of total gravel needs about <strong>12.3 cubic yards ≈ 15 tonnes</strong> of crusher run.</p>
+    <ul>
+      <li>Material at $30/tonne delivered: 15 × $30 = <strong>$450</strong></li>
+      <li>Material at $60/tonne delivered: 15 × $60 = <strong>$900</strong></li>
+    </ul>
+    <p>Add grading, fabric and labour if you hire it out, and the installed cost typically lands between <strong>$1 and $4 per square foot</strong>, i.e. roughly $400–$1,600 for this driveway.</p>
+  </section>
+  <section id="save">
+    <h2>How to keep the cost down</h2>
+    <ul>
+      <li>Buy in <strong>full truckloads</strong> rather than by the bag — see <a href="/blog/bulk-gravel-vs-bagged-gravel.html">bulk vs bagged gravel</a>.</li>
+      <li>Use cheaper crusher run for the base layers and save decorative stone for a thin top layer.</li>
+      <li>Pick up yourself if you have a trailer and the yard is close.</li>
+      <li>Compare with a hard surface first — see <a href="/concrete-calculator.html">concrete costs</a> if you're weighing gravel against a slab.</li>
+    </ul>
+  </section>`,
+  faqs: [
+    { q: "How much does a gravel driveway cost in Canada?", a: "Most residential gravel driveways cost about $1–$4 per square foot installed, or roughly $400–$1,600 for a typical two-car driveway. Material alone is often $15–$50 per tonne in bulk, or $30–$90 per tonne delivered." },
+    { q: "How much is a tonne of gravel in Canada?", a: "Bulk crusher run is commonly $15–$50 per tonne picked up, and $30–$90 per tonne delivered, depending on the gravel type, province and how far you are from a quarry. Decorative stone costs more." },
+    { q: "How much is a cubic yard of gravel?", a: "A cubic yard of bulk gravel typically runs $20–$70 in Canada. One cubic yard weighs about 1.2–1.4 tonnes, so per-yard and per-tonne prices are close." },
+    { q: "Is a gravel driveway cheaper than concrete?", a: "Yes. Gravel is usually the cheapest driveway surface up front — often a fraction of a concrete or asphalt driveway — though it needs periodic top-ups and grading. Use the concrete calculator to compare a paved option." }
+  ]
+});
+
+posts.push({
+  slug: "tonnes-of-gravel-in-a-cubic-yard.html",
+  category: "Conversions",
+  title: "How Many Tonnes of Gravel Are in a Cubic Yard?",
+  desc: "Convert cubic yards of gravel to tonnes. A cubic yard of gravel weighs about 1.1–1.5 tonnes — see the exact figures by gravel type, plus the conversion formula.",
+  keywords: "tonnes in a cubic yard of gravel, how many tonnes in a cubic yard, cubic yard to tonnes gravel, gravel cubic yard to tonne conversion",
+  crumb: "Tonnes in a Cubic Yard",
+  h1: "How Many Tonnes of Gravel Are in a Cubic Yard?",
+  lede: "A cubic yard of gravel weighs roughly <strong>1.1 to 1.5 tonnes (about 1.2 to 1.7 US tons)</strong> — the exact figure depends on the gravel's density. Here's the conversion, a quick-reference table, and how to do it for any material.",
+  date: "2026-06-06",
+  ctaTarget: { slug: "gravel-tonnage-calculator.html", label: "Gravel Tonnage Calculator" },
+  related: ["gravel-tonnage-calculator.html", "cubic-yards-of-gravel.html", "cubic-yard-calculator.html", "gravel-coverage-calculator.html"],
+  adSlots: ["3333333301", "3333333302"],
+  content: `  <section id="answer">
+    <div class="key-takeaways">
+      <h2>The short answer</h2>
+      <p>1 cubic yard of typical gravel ≈ <strong>1.2–1.4 tonnes</strong>. Loose dry gravel is on the lighter side (≈1.16 t/yd³) and pea gravel or wet gravel on the heavier side (≈1.4–1.5 t/yd³).</p>
+    </div>
+  </section>
+  <section id="formula">
+    <h2>The conversion formula</h2>
+    <p>Weight comes from <strong>volume × density</strong>. One cubic yard equals 0.7646 cubic metres, so:</p>
+    <div class="formula-box">
+      <p class="formula"><strong>Tonnes per yd³</strong> = 0.7646 × Density (t/m³)</p>
+    </div>
+    <p>For crusher run at 1.60 t/m³: 0.7646 × 1.60 ≈ <strong>1.22 tonnes per cubic yard</strong>.</p>
+  </section>
+  <section id="table">
+    <h2>Tonnes per cubic yard by gravel type</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Gravel type</th><th>Density (t/m³)</th><th>Tonnes / yd³</th><th>≈ lb / yd³</th></tr></thead>
+      <tbody>
+        <tr><td>Loose dry gravel</td><td>1.52</td><td>1.16</td><td>2,560</td></tr>
+        <tr><td>River rock</td><td>1.44</td><td>1.10</td><td>2,430</td></tr>
+        <tr><td>Crushed stone / crusher run</td><td>1.60</td><td>1.22</td><td>2,700</td></tr>
+        <tr><td>Crushed limestone</td><td>1.68</td><td>1.28</td><td>2,830</td></tr>
+        <tr><td>Pea gravel</td><td>1.79</td><td>1.37</td><td>3,020</td></tr>
+        <tr><td>Wet gravel</td><td>2.00</td><td>1.53</td><td>3,370</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+  <section id="reverse">
+    <h2>Going the other way: tonnes to cubic yards</h2>
+    <p>To turn a tonnage back into yards, divide by the same factor. For crusher run, 1 tonne ÷ 1.22 ≈ <strong>0.82 cubic yards</strong>. As a rough rule, <strong>1 tonne of gravel ≈ 0.7–0.9 cubic yards</strong>.</p>
+    <p>Not sure which density to use? The <a href="/gravel-tonnage-calculator.html">Gravel Tonnage Calculator</a> has presets for each gravel type, and the <a href="/cubic-yards-of-gravel.html">Cubic Yards Calculator</a> works from your area and depth.</p>
+  </section>`,
+  faqs: [
+    { q: "How many tonnes are in a cubic yard of gravel?", a: "About 1.1–1.5 tonnes, depending on the gravel. Typical crushed stone is roughly 1.22 tonnes per cubic yard; pea gravel and wet gravel are heavier at about 1.4–1.5 tonnes per yard." },
+    { q: "How do I convert cubic yards of gravel to tonnes?", a: "Multiply cubic yards by 0.7646 to get cubic metres, then multiply by the gravel's density in t/m³. Or just multiply cubic yards by about 1.2–1.4 for typical gravel." },
+    { q: "How many cubic yards are in a tonne of gravel?", a: "Roughly 0.7–0.9 cubic yards per tonne for typical gravel. Denser or wet gravel gives fewer yards per tonne; loose dry gravel gives slightly more." },
+    { q: "Why does the weight of a cubic yard of gravel vary?", a: "Because density changes with the stone's mineral type, particle size, how tightly it packs and how wet it is. Wet gravel can weigh 20–30% more than the same volume when dry." }
+  ]
+});
+
+posts.push({
+  slug: "how-much-does-a-yard-of-gravel-weigh.html",
+  category: "Conversions",
+  title: "How Much Does a Yard of Gravel Weigh?",
+  desc: "A cubic yard of gravel weighs about 2,400–3,400 lb (1.1–1.5 tonnes). See weights for pea gravel, river rock, crushed limestone, wet gravel and crusher run.",
+  keywords: "how much does a yard of gravel weigh, weight of a yard of gravel, gravel weight per yard, how much does gravel weigh, pea gravel weight per yard",
+  crumb: "Weight of a Yard of Gravel",
+  h1: "How Much Does a Yard of Gravel Weigh?",
+  lede: "A cubic yard of gravel weighs about <strong>2,400 to 3,400 pounds (1.1 to 1.5 tonnes)</strong>. The exact weight depends on the gravel type and how wet it is — here are the numbers for the common ones, and why it matters for your truck and trailer.",
+  date: "2026-06-08",
+  ctaTarget: { slug: "gravel-tonnage-calculator.html", label: "Gravel Tonnage Calculator" },
+  related: ["gravel-tonnage-calculator.html", "cubic-yards-of-gravel.html", "cubic-yard-calculator.html", "landscape-rock-calculator.html"],
+  adSlots: ["3333333401", "3333333402"],
+  content: `  <section id="table">
+    <h2>Weight of a cubic yard of gravel by type</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Gravel type</th><th>Pounds / yd³</th><th>Tonnes / yd³</th></tr></thead>
+      <tbody>
+        <tr><td>River rock (smooth)</td><td>≈ 2,430 lb</td><td>1.10 t</td></tr>
+        <tr><td>Loose dry gravel</td><td>≈ 2,560 lb</td><td>1.16 t</td></tr>
+        <tr><td>Crusher run / crushed stone</td><td>≈ 2,700 lb</td><td>1.22 t</td></tr>
+        <tr><td>Crushed limestone</td><td>≈ 2,830 lb</td><td>1.28 t</td></tr>
+        <tr><td>Pea gravel</td><td>≈ 3,020 lb</td><td>1.37 t</td></tr>
+        <tr><td>Wet gravel</td><td>≈ 3,370 lb</td><td>1.53 t</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">A US ton is 2,000 lb; a metric tonne is 2,205 lb. So a yard of crushed stone is roughly 1.35 US tons or 1.22 tonnes.</p>
+  </section>
+  <section id="why">
+    <h2>Why moisture matters</h2>
+    <p>Water adds real weight. The same gravel can weigh <strong>10–30% more when soaked</strong> than when bone dry, because water fills the gaps between stones. If gravel has been sitting in the rain or you're hauling it after a storm, plan for the heavier end of the range.</p>
+  </section>
+  <section id="hauling">
+    <h2>What that means for hauling</h2>
+    <p>Weight, not volume, is usually what limits a pickup or trailer:</p>
+    <ul>
+      <li>A <strong>1/2-ton pickup</strong> is typically rated for roughly half a cubic yard of gravel (≈1,000–1,500 lb payload) — check your vehicle's payload rating.</li>
+      <li>A single-axle <strong>utility trailer</strong> often tops out near 1 cubic yard of gravel.</li>
+      <li>A <strong>full tandem dump truck</strong> hauls about 10–14 cubic yards (15–20 tonnes).</li>
+    </ul>
+    <p>Always work to your vehicle's payload and trailer rating, not just what fits in the box. Overloading is a safety and legal issue.</p>
+  </section>
+  <section id="estimate">
+    <h2>Estimate the weight for your job</h2>
+    <p>Enter your area and depth in the <a href="/gravel-tonnage-calculator.html">Gravel Tonnage Calculator</a> to get the total weight in tonnes, kilograms and pounds, or convert a known volume with the <a href="/blog/tonnes-of-gravel-in-a-cubic-yard.html">cubic-yard-to-tonnes guide</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "How much does a yard of gravel weigh?", a: "About 2,400–3,400 lb (1.1–1.5 tonnes). Typical crushed stone is roughly 2,700 lb (1.22 tonnes) per cubic yard; pea gravel and wet gravel weigh more." },
+    { q: "How much does a yard of pea gravel weigh?", a: "Around 3,000 lb (about 1.37 tonnes) per cubic yard, since pea gravel packs a little denser than loose crushed stone." },
+    { q: "Can a pickup truck carry a yard of gravel?", a: "Most half-ton pickups can only safely carry about half a cubic yard of gravel because a full yard weighs well over a tonne. Check your truck's payload rating before loading." },
+    { q: "Does wet gravel weigh more than dry gravel?", a: "Yes. Water fills the gaps between stones, so wet gravel can weigh 10–30% more than the same volume of dry gravel." }
+  ]
+});
+
+posts.push({
+  slug: "bulk-gravel-vs-bagged-gravel.html",
+  category: "Buying",
+  title: "Bulk Gravel vs Bagged Gravel: Which Is Cheaper?",
+  desc: "Bulk gravel is usually far cheaper than bagged once your project passes about one cubic yard. Compare cost, convenience and the break-even point.",
+  keywords: "bulk gravel vs bagged gravel, is bulk gravel cheaper, bagged gravel vs bulk, gravel by the bag or bulk, bulk vs bag gravel cost",
+  crumb: "Bulk vs Bagged Gravel",
+  h1: "Bulk Gravel vs Bagged Gravel: Which Is Cheaper?",
+  lede: "For anything bigger than a small garden bed, <strong>bulk gravel is almost always cheaper</strong> than bagged — often by 2–4× per unit. Here's the cost comparison, the break-even point, and when bags still make sense.",
+  date: "2026-06-10",
+  ctaTarget: { slug: "bulk-bagged-gravel-calculator.html", label: "Bulk & Bagged Gravel Calculator" },
+  ctaText: `<strong>Comparing bulk vs bags?</strong> The <a href="/bulk-bagged-gravel-calculator.html">Bulk &amp; Bagged Gravel Calculator</a> tells you how many bags you need and whether bulk works out cheaper for your project size.`,
+  related: ["bulk-bagged-gravel-calculator.html", "gravel-tonnage-calculator.html", "cubic-yards-of-gravel.html", "pea-gravel-calculator.html"],
+  adSlots: ["3333333501", "3333333502"],
+  content: `  <section id="cost">
+    <h2>The cost difference</h2>
+    <p>Bagged gravel is convenient but you pay for the packaging, handling and store markup. Bulk gravel is sold loose by the tonne or cubic yard at a landscape-supply yard or quarry.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Format</th><th>Typical price (CAD)</th><th>Effective cost per yd³</th></tr></thead>
+      <tbody>
+        <tr><td>Bagged, 0.5 ft³ bag</td><td>$5 – $9 per bag</td><td>≈ $270 – $490 / yd³</td></tr>
+        <tr><td>Bagged, 30 kg bag</td><td>$6 – $10 per bag</td><td>≈ $200 – $350 / yd³</td></tr>
+        <tr><td>Bulk, picked up</td><td>$20 – $70 per yd³</td><td>$20 – $70 / yd³</td></tr>
+        <tr><td>Bulk, delivered</td><td>$40 – $100 per yd³</td><td>$40 – $100 / yd³</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">It takes about 40 bags of 0.5 ft³ to make a single cubic yard (27 ft³). That's why bags add up fast.</p>
+  </section>
+  <section id="breakeven">
+    <h2>The break-even point</h2>
+    <p>Bulk usually wins once your project reaches <strong>about 1 cubic yard (roughly 1.2 tonnes)</strong>. Below that, the delivery fee or minimum order on bulk can make bags competitive — especially if you only need a bag or two and can carry them home.</p>
+    <p>As a rule of thumb:</p>
+    <ul>
+      <li><strong>Under ~½ yard:</strong> bags are convenient and often fine.</li>
+      <li><strong>½ to 1 yard:</strong> compare the bulk delivery minimum against the bag count.</li>
+      <li><strong>Over 1 yard:</strong> buy bulk — the savings are large.</li>
+    </ul>
+  </section>
+  <section id="when-bags">
+    <h2>When bagged gravel still makes sense</h2>
+    <ul>
+      <li>Small or one-off jobs (a planter, a drainage patch, a few pavers).</li>
+      <li>No way to receive a bulk delivery or store a loose pile.</li>
+      <li>You need a clean, specific decorative stone in a small amount.</li>
+      <li>Access is tight and you'd be barrowing anyway.</li>
+    </ul>
+    <p>To see how many bags your project needs — and the bulk equivalent — use the <a href="/bulk-bagged-gravel-calculator.html">Bulk &amp; Bagged Gravel Calculator</a>, or read <a href="/blog/how-many-bags-of-gravel-do-i-need.html">how many bags of gravel do I need</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "Is bulk gravel cheaper than bagged?", a: "Yes, usually much cheaper. Bagged gravel can work out to $200–$490 per cubic yard, while bulk gravel is often $20–$100 per cubic yard. Bulk wins for any project over about one cubic yard." },
+    { q: "How many bags of gravel make a cubic yard?", a: "About 40 bags of 0.5 ft³, or 20 bags of 1 ft³, since a cubic yard is 27 cubic feet. By weight, roughly 40–45 bags of 30 kg gravel equal one cubic yard." },
+    { q: "When should I buy bagged gravel instead of bulk?", a: "For small jobs under about half a cubic yard, when you can't take a bulk delivery, or when you need a small amount of a specific decorative stone. Otherwise bulk is cheaper." },
+    { q: "Is bulk gravel worth the delivery fee?", a: "For projects over roughly one cubic yard, yes — the per-unit savings on bulk usually more than cover delivery. For very small jobs, the delivery minimum can make bags competitive." }
+  ]
+});
+
+posts.push({
+  slug: "how-many-bags-of-gravel-do-i-need.html",
+  category: "Buying",
+  title: "How Many Bags of Gravel Do I Need?",
+  desc: "Find how many bags of gravel you need by area and depth. Coverage for 0.5 ft³, 1 ft³, 25 kg and 50 lb bags, plus the bulk-vs-bag break-even point.",
+  keywords: "how many bags of gravel do i need, bags of gravel calculator, gravel bag coverage, how many bags of gravel per cubic yard, 50 lb bag gravel coverage",
+  crumb: "How Many Bags of Gravel",
+  h1: "How Many Bags of Gravel Do I Need?",
+  lede: "How many bags of gravel you need comes down to your <strong>area, depth and the bag size</strong>. Here's the coverage for common bag sizes, a quick lookup table, and the point where bulk gravel becomes the smarter buy.",
+  date: "2026-06-12",
+  ctaTarget: { slug: "bulk-bagged-gravel-calculator.html", label: "Bulk & Bagged Gravel Calculator" },
+  related: ["bulk-bagged-gravel-calculator.html", "pea-gravel-calculator.html", "gravel-coverage-calculator.html", "gravel-tonnage-calculator.html"],
+  adSlots: ["3333333601", "3333333602"],
+  content: `  <section id="coverage">
+    <h2>How much does one bag of gravel cover?</h2>
+    <p>Gravel bags are sold by volume (cubic feet or litres) or by weight (kg or lb). Coverage depends on how deep you spread it.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Bag size</th><th>Volume</th><th>Coverage at 2&quot; deep</th></tr></thead>
+      <tbody>
+        <tr><td>0.5 ft³ bag</td><td>≈ 14 L</td><td>≈ 3 ft²</td></tr>
+        <tr><td>1 ft³ bag</td><td>≈ 28 L</td><td>≈ 6 ft²</td></tr>
+        <tr><td>25 kg bag</td><td>≈ 0.5 ft³</td><td>≈ 3 ft²</td></tr>
+        <tr><td>50 lb bag</td><td>≈ 0.5 ft³</td><td>≈ 3 ft²</td></tr>
+        <tr><td>Bulk bag (1 tonne)</td><td>≈ 0.7–0.8 yd³</td><td>≈ 90–110 ft²</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">A 25 kg or 50 lb bag of gravel holds roughly half a cubic foot. Coverage halves if you double the depth.</p>
+  </section>
+  <section id="howmany">
+    <h2>Bags per cubic yard and cubic metre</h2>
+    <ul>
+      <li><strong>1 cubic yard</strong> (27 ft³) ≈ <strong>54 bags</strong> of 0.5 ft³, or <strong>27 bags</strong> of 1 ft³.</li>
+      <li><strong>1 cubic metre</strong> ≈ <strong>71 bags</strong> of 0.5 ft³, or <strong>36 bags</strong> of 1 ft³.</li>
+      <li>By weight, <strong>1 tonne</strong> of gravel ≈ <strong>40 bags</strong> of 25 kg.</li>
+    </ul>
+  </section>
+  <section id="steps">
+    <h2>How to work out your bag count</h2>
+    <ol class="steps">
+      <li>Find the <strong>volume you need</strong>: area × depth (in consistent units).</li>
+      <li>Convert to cubic feet (or litres) to match the bag label.</li>
+      <li><strong>Divide</strong> the total volume by the volume per bag.</li>
+      <li>Add about <strong>5–10%</strong> for settling and round up.</li>
+    </ol>
+    <p>The <a href="/bulk-bagged-gravel-calculator.html">Bulk &amp; Bagged Gravel Calculator</a> does this automatically for any bag size, and tells you the bulk equivalent. For pea gravel specifically, the <a href="/pea-gravel-calculator.html">Pea Gravel Calculator</a> is preset to the right density.</p>
+  </section>
+  <section id="bulk">
+    <h2>When to switch to bulk</h2>
+    <p>Once you're past about <strong>40–50 bags (roughly one cubic yard)</strong>, bulk gravel is usually cheaper and far less work to haul and open. See <a href="/blog/bulk-gravel-vs-bagged-gravel.html">bulk vs bagged gravel</a> for the full cost comparison.</p>
+  </section>`,
+  faqs: [
+    { q: "How many bags of gravel do I need?", a: "Divide the volume you need (area × depth) by the volume of one bag. As a guide, a 0.5 ft³ bag covers about 3 ft² at 2 inches deep, so a 30 ft² path at 2 inches needs about 10 bags plus a little extra." },
+    { q: "How many bags of gravel are in a cubic yard?", a: "About 54 bags of 0.5 ft³, or 27 bags of 1 ft³, since a cubic yard is 27 cubic feet. By weight that's roughly 40–45 bags of 25 kg." },
+    { q: "How much area does a 50 lb bag of gravel cover?", a: "A 50 lb bag holds about half a cubic foot of gravel, covering roughly 3 square feet at 2 inches deep or 6 square feet at 1 inch deep." },
+    { q: "Is it cheaper to buy gravel in bags or in bulk?", a: "Bulk is cheaper for anything over about one cubic yard (40–50 bags). Bags only win for small jobs or when you can't receive a bulk delivery." }
+  ]
+});
+
+posts.push({
+  slug: "gravel-depth-guide.html",
+  category: "Planning",
+  title: "Gravel Depth Guide: How Deep Should Gravel Be?",
+  desc: "How deep should gravel be? Recommended gravel depths for driveways, walkways, patios, garden beds, French drains and shed bases, in inches and centimetres.",
+  keywords: "how deep should gravel be, gravel depth guide, gravel depth for driveway, gravel depth for patio, how thick should gravel be, gravel layer depth",
+  crumb: "Gravel Depth Guide",
+  h1: "Gravel Depth Guide: How Deep Should Gravel Be?",
+  lede: "Gravel depth is the single biggest factor in how much material you need — and whether the surface holds up. Here are recommended depths for every common project, from a 2-inch garden bed to a 12-inch driveway base.",
+  date: "2026-06-14",
+  ctaTarget: { slug: "", label: "Gravel Calculator" },
+  related: ["gravel-driveway-calculator.html", "patio-gravel-calculator.html", "french-drain-gravel-calculator.html", "gravel-coverage-calculator.html"],
+  adSlots: ["3333333701", "3333333702"],
+  content: `  <section id="table">
+    <h2>Recommended gravel depth by project</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Project</th><th>Recommended depth</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Garden / planting bed</td><td>2–3 in (5–7.5 cm)</td><td>Decorative mulch layer over soil or fabric</td></tr>
+        <tr><td>Walkway / path</td><td>2–4 in (5–10 cm)</td><td>Deeper if it carries a wheelbarrow or cart</td></tr>
+        <tr><td>Patio base (under pavers)</td><td>4–6 in (10–15 cm)</td><td>Compacted crushed stone, plus bedding sand</td></tr>
+        <tr><td>Driveway top layer</td><td>2–3 in (5–7.5 cm)</td><td>Driving surface over the base</td></tr>
+        <tr><td>Driveway total base</td><td>8–12 in (20–30 cm)</td><td>All layers combined; deeper on soft soil</td></tr>
+        <tr><td>Shed / building base</td><td>4–6 in (10–15 cm)</td><td>Compacted 3/4 in crushed stone in a frame</td></tr>
+        <tr><td>French drain</td><td>Fills the trench</td><td>Depends on trench size around the pipe</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+  <section id="why">
+    <h2>Why depth matters</h2>
+    <p>Too shallow and the gravel shifts, scatters and lets weeds or mud through. Too deep and you've spent money on stone that does nothing. The right depth gives enough material to <strong>spread the load, drain water and stay put</strong> without waste. Heavier traffic and softer ground both call for more depth.</p>
+  </section>
+  <section id="compaction">
+    <h2>Don't forget compaction</h2>
+    <p>Crushed stone <strong>loses 15–20% of its loose depth</strong> once compacted. If you want a finished 4-inch base, spread closer to 5 inches loose and compact it down. Order about <strong>5–10% extra</strong> material to cover compaction and settling.</p>
+  </section>
+  <section id="layers">
+    <h2>Build deep layers in lifts</h2>
+    <p>For anything thicker than about 4 inches — like a driveway or shed base — add and compact the gravel in <strong>lifts of 3–4 inches</strong> at a time. Compacting one thick layer won't firm up the bottom, and the surface will settle unevenly later.</p>
+    <p>Estimate any depth instantly with the <a href="/">main Gravel Calculator</a>, or use the project-specific <a href="/gravel-driveway-calculator.html">driveway</a>, <a href="/patio-gravel-calculator.html">patio</a> and <a href="/french-drain-gravel-calculator.html">French drain</a> calculators.</p>
+  </section>`,
+  faqs: [
+    { q: "How deep should gravel be?", a: "It depends on the job: 2–3 inches for garden beds, 2–4 inches for walkways, 4–6 inches for a patio or shed base, and 8–12 inches total for a driveway. Deeper is needed for heavier traffic or soft ground." },
+    { q: "How deep should gravel be for a driveway?", a: "Plan on 8–12 inches (20–30 cm) of total gravel built in layers, with a 2–3 inch top driving layer over a compacted base. Use the deeper end for heavy vehicles or clay soils." },
+    { q: "How deep should gravel be under pavers?", a: "A paver patio or path needs about 4–6 inches of compacted crushed-stone base, plus roughly 1 inch of bedding sand on top before the pavers." },
+    { q: "How much extra gravel should I order for compaction?", a: "Add about 5–10%. Crushed stone loses roughly 15–20% of its loose depth when compacted, so spreading a little extra ensures you hit your finished depth." }
+  ]
+});
+
+posts.push({
+  slug: "crushed-stone-vs-gravel.html",
+  category: "Materials",
+  title: "Crushed Stone vs Gravel: What's the Difference?",
+  desc: "Crushed stone is machine-crushed with sharp, angular edges; gravel is naturally rounded. Compare shape, compaction, drainage, driveway use and price.",
+  keywords: "crushed stone vs gravel, difference between crushed stone and gravel, crushed stone or gravel for driveway, gravel vs crushed stone, angular vs round gravel",
+  crumb: "Crushed Stone vs Gravel",
+  h1: "Crushed Stone vs Gravel: What's the Difference?",
+  lede: "People use the words interchangeably, but there's a real difference: <strong>crushed stone is mechanically crushed with sharp, angular edges</strong>, while <strong>gravel is naturally weathered and rounded</strong>. That one difference changes how each compacts, drains and performs.",
+  date: "2026-06-16",
+  ctaTarget: { slug: "crushed-gravel-calculator.html", label: "Crushed Gravel Calculator" },
+  related: ["crushed-gravel-calculator.html", "gravel-driveway-calculator.html", "landscape-rock-calculator.html", "aggregate-calculator.html"],
+  adSlots: ["3333333801", "3333333802"],
+  content: `  <section id="compare">
+    <h2>Side-by-side comparison</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th></th><th>Crushed stone</th><th>Natural gravel</th></tr></thead>
+      <tbody>
+        <tr><td>Shape</td><td>Angular, sharp edges</td><td>Rounded, smooth</td></tr>
+        <tr><td>Made by</td><td>Crushing quarried rock</td><td>Natural erosion / river action</td></tr>
+        <tr><td>Compaction</td><td>Locks together, stays firm</td><td>Shifts and rolls underfoot</td></tr>
+        <tr><td>Best for</td><td>Driveways, bases, drainage</td><td>Decorative beds, drainage stone</td></tr>
+        <tr><td>Look</td><td>Greyer, more uniform</td><td>Varied, natural colours</td></tr>
+        <tr><td>Price</td><td>Often a little cheaper</td><td>Decorative grades cost more</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+  <section id="compaction">
+    <h2>Compaction and stability</h2>
+    <p>Angular crushed stone is the winner for anything structural. The sharp faces <strong>interlock</strong> when compacted, forming a firm surface that resists rutting. Round gravel can't lock the same way — the stones roll past each other, which is why pure rounded gravel makes a poor driving surface but a comfortable decorative cover.</p>
+  </section>
+  <section id="drainage">
+    <h2>Drainage</h2>
+    <p>Both drain well, but in different ways. <strong>Clean (washed) crushed stone</strong> with no fines is excellent for French drains and behind retaining walls. <strong>Crusher run</strong> (crushed stone with stone dust) compacts tight and sheds water off the surface — ideal for a base layer rather than drainage. Rounded gravel drains freely but won't compact.</p>
+  </section>
+  <section id="choose">
+    <h2>Which should you use?</h2>
+    <ul>
+      <li><strong>Driveways &amp; bases:</strong> crushed stone (crusher run base, clear stone top).</li>
+      <li><strong>French drains &amp; behind walls:</strong> clean angular crushed stone.</li>
+      <li><strong>Decorative beds &amp; borders:</strong> rounded gravel or river rock for looks and bare-foot comfort.</li>
+      <li><strong>Pathways:</strong> either — crushed for firmness, rounded for appearance.</li>
+    </ul>
+    <p>Estimate crushed sizes (3/4 in, 20 mm, crusher run, clear stone) with the <a href="/crushed-gravel-calculator.html">Crushed Gravel Calculator</a>, and see <a href="/blog/best-gravel-for-driveways-canada.html">the best gravel for driveways</a> for specific Canadian grades.</p>
+  </section>`,
+  faqs: [
+    { q: "What is the difference between crushed stone and gravel?", a: "Crushed stone is quarried rock mechanically broken into angular pieces with sharp edges, while natural gravel is rounded by weathering and water. The angular shape makes crushed stone compact and lock together better." },
+    { q: "Is crushed stone or gravel better for a driveway?", a: "Crushed stone is better for driveways. Its angular edges interlock and compact into a firm surface, whereas rounded gravel shifts and ruts under tires." },
+    { q: "Which is better for drainage, crushed stone or gravel?", a: "Clean, washed crushed stone is the top choice for French drains and behind walls. Rounded gravel also drains well but won't compact; crusher run compacts tight and is better as a base than a drainage stone." },
+    { q: "Is crushed stone cheaper than gravel?", a: "Often, yes — basic crusher run and crushed stone are usually among the cheapest aggregates, while decorative natural gravel and river rock cost more per tonne." }
+  ]
+});
+
+posts.push({
+  slug: "how-much-gravel-do-i-need-for-a-french-drain.html",
+  category: "Drainage",
+  title: "How Much Gravel Do I Need for a French Drain?",
+  desc: "Calculate French drain gravel by trench length, width and depth. Which gravel to use, how the perforated pipe affects volume, and a worked example.",
+  keywords: "french drain gravel calculator, how much gravel for a french drain, french drain gravel, gravel for french drain, french drain stone size",
+  crumb: "Gravel for a French Drain",
+  h1: "How Much Gravel Do I Need for a French Drain?",
+  lede: "French drain gravel comes down to the <strong>trench volume minus the pipe</strong>. Measure the trench length, width and depth, pick a clean washed stone, and subtract the space the pipe takes up. Here's the method and a worked example.",
+  date: "2026-06-17",
+  ctaTarget: { slug: "french-drain-gravel-calculator.html", label: "French Drain Gravel Calculator" },
+  related: ["french-drain-gravel-calculator.html", "crushed-gravel-calculator.html", "gravel-tonnage-calculator.html", "aggregate-calculator.html"],
+  adSlots: ["3333333901", "3333333902"],
+  content: `  <section id="formula">
+    <h2>The basic calculation</h2>
+    <p>A French drain trench is a simple box, so the gravel volume is length × width × depth, then subtract the pipe:</p>
+    <div class="formula-box">
+      <p class="formula"><strong>Gravel volume</strong> = (Length × Width × Depth) − Pipe volume</p>
+    </div>
+    <p>A 4-inch perforated pipe takes up only about 0.087 ft³ per foot of trench, so on a narrow trench you can often ignore it; on a tight trench it's worth subtracting.</p>
+  </section>
+  <section id="example">
+    <h2>Worked example</h2>
+    <p>A trench <strong>30 ft long, 12 in wide, 18 in deep</strong>:</p>
+    <ul>
+      <li>Volume = 30 ft × 1 ft × 1.5 ft = <strong>45 ft³</strong></li>
+      <li>Less a 4 in pipe (≈0.087 ft³/ft × 30 = 2.6 ft³) ≈ <strong>42 ft³</strong></li>
+      <li>That's 42 ÷ 27 ≈ <strong>1.6 cubic yards</strong>, or about <strong>1.7 tonnes</strong> of clear stone.</li>
+    </ul>
+  </section>
+  <section id="stone">
+    <h2>What gravel to use</h2>
+    <p>Use <strong>clean, washed, angular stone with no fines</strong> — commonly 3/4 in (19–20 mm) clear stone. The lack of stone dust keeps the voids open so water flows freely. Avoid crusher run here: its fines pack tight and choke the drain.</p>
+    <ul>
+      <li>Wrap the trench (and ideally the pipe) in <strong>landscape/filter fabric</strong> to keep soil out of the stone.</li>
+      <li>Lay the perforated pipe with holes <strong>facing down</strong> on a thin bed of stone.</li>
+      <li>Surround and cover the pipe with stone, then fold the fabric over the top.</li>
+    </ul>
+  </section>
+  <section id="estimate">
+    <h2>Estimate your drain</h2>
+    <p>Enter your trench dimensions in the <a href="/french-drain-gravel-calculator.html">French Drain Gravel Calculator</a> for the volume and tonnage, and use the <a href="/crushed-gravel-calculator.html">Crushed Gravel Calculator</a> if you're ordering a specific clear-stone size. Not sure how deep to dig? See the <a href="/blog/gravel-depth-guide.html">gravel depth guide</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "How much gravel do I need for a French drain?", a: "Multiply the trench length × width × depth for the volume, then subtract the pipe. For example, a 30 ft trench that's 12 in wide and 18 in deep needs about 1.6 cubic yards (roughly 1.7 tonnes) of clear stone." },
+    { q: "What kind of gravel goes in a French drain?", a: "Clean, washed, angular stone with no fines — typically 3/4 inch (19–20 mm) clear stone. The open voids let water flow. Avoid crusher run, whose stone dust clogs the drain." },
+    { q: "Do I need landscape fabric in a French drain?", a: "Yes, it's strongly recommended. Wrapping the stone (and pipe) in filter fabric keeps surrounding soil and silt from washing into the gravel and clogging the drain over time." },
+    { q: "How deep should a French drain be?", a: "Most French drains are about 12–24 inches deep and 6–12 inches wide, sized to the pipe and how much water you're moving. The trench should slope at least 1% (about 1 inch per 8 feet) toward the outlet." }
+  ]
+});
+
+posts.push({
+  slug: "best-gravel-for-driveways-canada.html",
+  category: "Driveways",
+  title: "Best Gravel for Driveways in Canada",
+  desc: "The best gravel for Canadian driveways: crusher run, 3/4 inch clear stone, road base and limestone. What each layer needs, drainage tips and what to avoid.",
+  keywords: "best gravel for driveway canada, best gravel for driveway, crusher run driveway, 3/4 clear stone driveway, driveway gravel types canada",
+  crumb: "Best Gravel for Driveways",
+  h1: "Best Gravel for Driveways in Canada",
+  lede: "The best gravel driveway uses <strong>different stone for each layer</strong>: a coarse sub-base, a compacting crusher-run base, and a clean stone or decorative top. Here are the grades Canadians actually use, what each layer does, and the mistakes to avoid.",
+  date: "2026-06-18",
+  ctaTarget: { slug: "gravel-driveway-calculator.html", label: "Driveway Gravel Calculator" },
+  related: ["gravel-driveway-calculator.html", "crushed-gravel-calculator.html", "gravel-tonnage-calculator.html", "cubic-yards-of-gravel.html"],
+  adSlots: ["3333334001", "3333334002"],
+  content: `  <section id="grades">
+    <h2>The best gravel grades, layer by layer</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Layer</th><th>Recommended gravel</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Sub-base</td><td>2–4 in (50–100 mm) clear or pit run</td><td>Coarse, stable foundation that drains</td></tr>
+        <tr><td>Base</td><td>3/4 in (19 mm) crusher run / "Granular A"</td><td>Stone + dust compacts rock-hard</td></tr>
+        <tr><td>Top / surface</td><td>3/4 in clear stone or crushed limestone</td><td>Clean driving surface, sheds water</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">In Ontario you'll hear "Granular A" and "Granular B"; elsewhere it's "road base," "crush," "3/4 minus" or "crusher run." They're regional names for similar graded crushed stone.</p>
+  </section>
+  <section id="crusherrun">
+    <h2>Why crusher run is the workhorse</h2>
+    <p>Crusher run (crushed stone mixed with stone dust, also called 3/4 minus or Granular A) is the go-to base because the dust fills the gaps between stones and <strong>compacts into a hard, almost paved surface</strong>. It carries the load and sheds water off the crown of the driveway.</p>
+  </section>
+  <section id="toplayer">
+    <h2>Choosing a top layer</h2>
+    <ul>
+      <li><strong>3/4 in clear stone:</strong> clean, no dust, drains fast, doesn't track mud — but stays a bit loose.</li>
+      <li><strong>Crushed limestone:</strong> packs to a tight, light-grey surface; a popular finished look.</li>
+      <li><strong>Decorative gravel:</strong> for appearance over a firm compacted base only.</li>
+    </ul>
+  </section>
+  <section id="avoid">
+    <h2>Mistakes to avoid</h2>
+    <ul>
+      <li><strong>Pea gravel or river rock as the surface:</strong> round stones won't compact and will rut and scatter. Save them for borders.</li>
+      <li><strong>Skipping the base:</strong> a thin layer of nice stone over bare soil sinks into mud. Build the graded layers.</li>
+      <li><strong>No drainage crown:</strong> shape the driveway slightly higher in the middle so water runs off.</li>
+      <li><strong>No fabric on clay:</strong> on soft or clay soil, lay geotextile under the sub-base to stop the stone sinking.</li>
+    </ul>
+    <p>Work out how much of each layer you need with the <a href="/gravel-driveway-calculator.html">Driveway Gravel Calculator</a> and the <a href="/crushed-gravel-calculator.html">Crushed Gravel Calculator</a>. For quantities and cost, see <a href="/blog/how-much-gravel-do-i-need-for-a-driveway.html">how much gravel a driveway needs</a> and <a href="/blog/gravel-driveway-cost-canada.html">gravel driveway cost in Canada</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "What is the best gravel for a driveway in Canada?", a: "Use crusher run (3/4 minus / Granular A) for a compacting base and 3/4 inch clear stone or crushed limestone for the top. A coarse 2–4 inch sub-base goes underneath on soft ground. Angular crushed stone is best because it locks together." },
+    { q: "What is crusher run gravel?", a: "Crusher run is crushed stone mixed with stone dust (also called 3/4 minus, road base or Granular A). The dust fills the gaps so it compacts into a hard, stable, almost paved base — ideal for driveways." },
+    { q: "Can I use pea gravel for a driveway?", a: "Not as the main surface. Pea gravel's round stones don't compact and will rut and scatter under tires. Use angular crushed stone for the structural layers; pea gravel only works as a thin decorative top over a firm compacted base." },
+    { q: "What is Granular A vs Granular B?", a: "They're Ontario gradation terms. Granular B is a coarser, cheaper sub-base material; Granular A is a finer crushed-stone-and-dust mix used as the compacting base layer. Other provinces use names like road base or 3/4 crush." }
+  ]
+});
+
+/* write blog posts */
+if (!fs.existsSync("blog")) fs.mkdirSync("blog");
+posts.forEach(p => {
+  fs.writeFileSync("blog/" + p.slug, blogPost(p));
+  console.log("wrote blog/" + p.slug);
+});
+
+/* blog index page */
+const blogCards = posts.map(p =>
+  `      <a class="hub-card" href="/blog/${p.slug}"><span class="post-tag">${p.category}</span><span class="hub-name">${p.h1}</span><span class="hub-desc">${p.desc}</span></a>`
+).join("\n");
+
+const blogIndex = `<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gravel Blog | Driveways, Cost, Depth &amp; Buying Guides | GravelCalculator.ca</title>
+<meta name="description" content="Practical gravel guides for Canadian projects: how much gravel you need, driveway cost, gravel depth, bulk vs bagged, crushed stone vs gravel and more.">
+<meta name="keywords" content="gravel blog, gravel guides, how much gravel do i need, gravel driveway cost, gravel depth, crushed stone vs gravel, bulk vs bagged gravel">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="${SITE}/blog/">
+<meta name="theme-color" content="#1f6f43">
+<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GravelCalculator.ca">
+<meta property="og:title" content="Gravel Blog | Guides for Driveways, Cost, Depth &amp; Buying">
+<meta property="og:description" content="Practical gravel guides for Canadian projects — how much you need, cost, depth, bulk vs bagged and material comparisons.">
+<meta property="og:url" content="${SITE}/blog/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:image" content="${SITE}/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gravel Blog | GravelCalculator.ca">
+<meta name="twitter:description" content="Practical gravel guides for Canadian projects.">
+<meta name="twitter:image" content="${SITE}/og-image.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com">
+<link rel="stylesheet" href="/style.css?v=3">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Blog","name":"GravelCalculator.ca Blog","url":"${SITE}/blog/","inLanguage":"en-CA","description":"Practical gravel guides for Canadian landscaping and construction projects.","publisher":{"@type":"Organization","name":"GravelCalculator.ca","url":"${SITE}/","logo":"${SITE}/favicon.svg"},"blogPost":[${posts.map(p => `{"@type":"BlogPosting","headline":"${p.h1.replace(/"/g,'\\"')}","url":"${SITE}/blog/${p.slug}","datePublished":"${p.date || BLOG_MOD}","dateModified":"${p.modified || BLOG_MOD}"}`).join(",")}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"${SITE}/"},{"@type":"ListItem","position":2,"name":"Blog","item":"${SITE}/blog/"}]}
+</script>
+${ADS_LOADER}
+</head>
+<body>
+${header("blog/")}
+<nav class="breadcrumbs wrap" aria-label="Breadcrumb">
+  <ol><li><a href="/">Home</a></li><li aria-current="page">Blog</li></ol>
+</nav>
+<main class="wrap">
+  <article>
+  <h1>Gravel Blog &amp; Project Guides</h1>
+  <p class="lede">Practical, no-nonsense <strong>gravel guides for Canadian projects</strong> — how much gravel you need, what it costs, how deep to lay it, and which type to buy. Every guide links to a free calculator so you can get exact numbers for your job.</p>
+  <section id="posts" aria-labelledby="posts-h">
+    <h2 id="posts-h" class="visually-hidden">All blog posts</h2>
+    <div class="hub-grid">
+${blogCards}
+    </div>
+  </section>
+${adSlot("3333330001")}
+  <section id="about-blog">
+    <h2>Start with the calculators</h2>
+    <p>Every article pairs with a tool. Jump straight to the <a href="/">main Gravel Calculator</a>, the <a href="/gravel-driveway-calculator.html">Driveway Gravel Calculator</a>, the <a href="/gravel-tonnage-calculator.html">Tonnage Calculator</a> or the full <a href="/calculators.html">list of gravel calculators</a> any time.</p>
+  </section>
+  <p class="disclaimer"><strong>Disclaimer:</strong> Our guides give general estimates for planning. Actual quantities, weights and prices vary with material, moisture, compaction, supplier and province. Always confirm with your local supplier.</p>
+  </article>
+</main>
+${footer()}
+</body>
+</html>
+`;
+fs.writeFileSync("blog/index.html", blogIndex);
+console.log("wrote blog/index.html");
+
+/* =================== SITEMAP =================== */
+const SITEMAP = [
+  { loc: "/", freq: "monthly", pri: "1.0", mod: LASTMOD },
+  { loc: "/calculators.html", freq: "monthly", pri: "0.9", mod: LASTMOD },
+  { loc: "/blog/", freq: "weekly", pri: "0.8", mod: BLOG_MOD },
+  { loc: "/cubic-yards-of-gravel.html", freq: "monthly", pri: "0.9", mod: LASTMOD },
+  { loc: "/gravel-tonnage-calculator.html", freq: "monthly", pri: "0.9", mod: LASTMOD },
+  { loc: "/gravel-coverage-calculator.html", freq: "monthly", pri: "0.9", mod: LASTMOD },
+  { loc: "/bulk-bagged-gravel-calculator.html", freq: "monthly", pri: "0.8", mod: LASTMOD },
+  { loc: "/calculateur-de-gravier.html", freq: "monthly", pri: "0.8", mod: LASTMOD },
+  { loc: "/pea-gravel-calculator.html", freq: "monthly", pri: "0.9", mod: LASTMOD },
+  { loc: "/gravel-driveway-calculator.html", freq: "monthly", pri: "0.9", mod: LASTMOD },
+  { loc: "/crushed-gravel-calculator.html", freq: "monthly", pri: "0.9", mod: LASTMOD },
+  { loc: "/french-drain-gravel-calculator.html", freq: "monthly", pri: "0.8", mod: LASTMOD },
+  { loc: "/patio-gravel-calculator.html", freq: "monthly", pri: "0.8", mod: LASTMOD },
+  { loc: "/aquarium-gravel-calculator.html", freq: "monthly", pri: "0.8", mod: LASTMOD },
+  { loc: "/cubic-yard-calculator.html", freq: "monthly", pri: "0.9", mod: LASTMOD },
+  { loc: "/landscape-rock-calculator.html", freq: "monthly", pri: "0.8", mod: LASTMOD },
+  { loc: "/topsoil-calculator.html", freq: "monthly", pri: "0.8", mod: LASTMOD },
+  { loc: "/sand-calculator.html", freq: "monthly", pri: "0.8", mod: LASTMOD },
+  { loc: "/aggregate-calculator.html", freq: "monthly", pri: "0.8", mod: LASTMOD },
+  { loc: "/concrete-calculator.html", freq: "monthly", pri: "0.9", mod: LASTMOD },
+  ...posts.map(p => ({ loc: "/blog/" + p.slug, freq: "monthly", pri: "0.7", mod: p.modified || BLOG_MOD })),
+  { loc: "/about.html", freq: "yearly", pri: "0.4", mod: LASTMOD },
+  { loc: "/contact.html", freq: "yearly", pri: "0.4", mod: LASTMOD },
+  { loc: "/privacy.html", freq: "yearly", pri: "0.3", mod: LASTMOD },
+  { loc: "/terms.html", freq: "yearly", pri: "0.3", mod: LASTMOD }
+];
+const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${SITEMAP.map(u => `  <url><loc>${SITE}${u.loc}</loc><lastmod>${u.mod}</lastmod><changefreq>${u.freq}</changefreq><priority>${u.pri}</priority></url>`).join("\n")}
+</urlset>
+`;
+fs.writeFileSync("sitemap.xml", sitemapXml);
+console.log("wrote sitemap.xml (" + SITEMAP.length + " urls)");
+
+console.log("Done. " + (pages.length + 3) + " calculator pages + " + posts.length + " blog posts generated.");
