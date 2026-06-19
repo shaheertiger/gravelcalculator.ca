@@ -63,6 +63,19 @@ Volume = 200 × 0.03 = 6 m³; Weight = 6 × 1.52 ≈ 9.1 tonnes; ≈ 7.8 cubic y
 - Privacy policy: https://www.gravelcalculator.ca/privacy.html
 - Terms of use: https://www.gravelcalculator.ca/terms.html
 
+## Blog / guides
+- Blog index: https://www.gravelcalculator.ca/blog/
+- How much gravel do I need for a driveway: https://www.gravelcalculator.ca/blog/how-much-gravel-do-i-need-for-a-driveway.html
+- Gravel driveway cost in Canada: https://www.gravelcalculator.ca/blog/gravel-driveway-cost-canada.html
+- How many tonnes of gravel in a cubic yard: https://www.gravelcalculator.ca/blog/tonnes-of-gravel-in-a-cubic-yard.html
+- How much does a yard of gravel weigh: https://www.gravelcalculator.ca/blog/how-much-does-a-yard-of-gravel-weigh.html
+- Bulk gravel vs bagged gravel: https://www.gravelcalculator.ca/blog/bulk-gravel-vs-bagged-gravel.html
+- How many bags of gravel do I need: https://www.gravelcalculator.ca/blog/how-many-bags-of-gravel-do-i-need.html
+- Gravel depth guide (how deep should gravel be): https://www.gravelcalculator.ca/blog/gravel-depth-guide.html
+- Crushed stone vs gravel: https://www.gravelcalculator.ca/blog/crushed-stone-vs-gravel.html
+- How much gravel for a French drain: https://www.gravelcalculator.ca/blog/how-much-gravel-do-i-need-for-a-french-drain.html
+- Best gravel for driveways in Canada: https://www.gravelcalculator.ca/blog/best-gravel-for-driveways-canada.html
+
 ## Notes
 Estimates are for material only and exclude labour, delivery and taxes. Actual
 quantities vary with gravel type, particle size, moisture and compaction. Attribution

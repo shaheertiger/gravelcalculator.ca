@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.gravelcalculator.ca/</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
   <url><loc>https://www.gravelcalculator.ca/calculators.html</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.gravelcalculator.ca/blog/</loc><lastmod>2026-06-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.gravelcalculator.ca/cubic-yards-of-gravel.html</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.gravelcalculator.ca/gravel-tonnage-calculator.html</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.gravelcalculator.ca/gravel-coverage-calculator.html</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
@@ -19,6 +20,16 @@
   <url><loc>https://www.gravelcalculator.ca/sand-calculator.html</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.gravelcalculator.ca/aggregate-calculator.html</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.gravelcalculator.ca/concrete-calculator.html</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.gravelcalculator.ca/blog/how-much-gravel-do-i-need-for-a-driveway.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.gravelcalculator.ca/blog/gravel-driveway-cost-canada.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.gravelcalculator.ca/blog/tonnes-of-gravel-in-a-cubic-yard.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.gravelcalculator.ca/blog/how-much-does-a-yard-of-gravel-weigh.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.gravelcalculator.ca/blog/bulk-gravel-vs-bagged-gravel.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.gravelcalculator.ca/blog/how-many-bags-of-gravel-do-i-need.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.gravelcalculator.ca/blog/gravel-depth-guide.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.gravelcalculator.ca/blog/crushed-stone-vs-gravel.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.gravelcalculator.ca/blog/how-much-gravel-do-i-need-for-a-french-drain.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.gravelcalculator.ca/blog/best-gravel-for-driveways-canada.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.gravelcalculator.ca/about.html</loc><lastmod>2026-06-10</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
   <url><loc>https://www.gravelcalculator.ca/contact.html</loc><lastmod>2026-06-10</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
   <url><loc>https://www.gravelcalculator.ca/privacy.html</loc><lastmod>2026-06-10</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
