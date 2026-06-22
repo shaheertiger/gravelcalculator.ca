@@ -2130,6 +2130,261 @@ posts.push({
   ]
 });
 
+posts.push({
+  slug: "how-much-gravel-for-a-shed-base.html",
+  category: "Projects",
+  title: "How Much Gravel Do I Need for a Shed Base?",
+  desc: "Work out the crushed gravel for a shed base. Recommended depth, a quick size-by-size table (8x8, 10x10, 10x12, 12x16) in cubic yards and tonnes, plus how far to extend the pad.",
+  keywords: "how much gravel for a shed base, shed base gravel calculator, gravel pad for shed, shed foundation gravel, crushed stone shed base depth",
+  crumb: "Gravel for a Shed Base",
+  h1: "How Much Gravel Do I Need for a Shed Base?",
+  lede: "A gravel shed base needs <strong>4 to 6 inches of compacted crushed stone</strong>, extended about a foot past the shed on every side. Here is the depth to use, a size-by-size quantity table, and the stone that compacts best.",
+  date: "2026-06-22",
+  modified: "2026-06-22",
+  ctaTarget: { slug: "crushed-gravel-calculator.html", label: "Crushed Gravel Calculator" },
+  ctaText: `<strong>Sizing a shed pad?</strong> The <a href="/crushed-gravel-calculator.html">Crushed Gravel Calculator</a> turns your pad length, width and depth into cubic yards and tonnes of 3/4 inch crushed stone.`,
+  related: ["crushed-gravel-calculator.html", "patio-gravel-calculator.html", "gravel-driveway-calculator.html", "aggregate-calculator.html"],
+  adSlots: ["3333334101", "3333334102"],
+  content: `  <section id="depth">
+    <h2>How deep should a gravel shed base be?</h2>
+    <p>For a typical garden or storage shed, build the pad <strong>4 inches (100 mm) of compacted crushed stone</strong> on firm ground. On soft, wet or clay soil, go to <strong>6 inches (150 mm)</strong> and lay geotextile fabric underneath so the stone does not sink into the mud.</p>
+    <p>Extend the gravel <strong>about 300 mm (12 in) past the shed footprint</strong> on every side. The extra apron keeps the edges from crumbling and gives rain somewhere to drain away from the building.</p>
+    <p class="result-note">A 10 x 12 ft shed therefore sits on a pad of about 12 x 14 ft once you add the one-foot border.</p>
+  </section>
+  <section id="table">
+    <h2>Gravel needed by shed size</h2>
+    <p>These figures include a 1 ft border all round and assume a 4 inch compacted depth. Add roughly 50% more stone if you build a 6 inch pad.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Shed size</th><th>Pad size (with border)</th><th>Volume at 4&quot;</th><th>Crushed stone</th></tr></thead>
+      <tbody>
+        <tr><td>8 x 8 ft</td><td>10 x 10 ft</td><td>≈ 1.2 yd³</td><td>≈ 1.8 t</td></tr>
+        <tr><td>10 x 10 ft</td><td>12 x 12 ft</td><td>≈ 1.8 yd³</td><td>≈ 2.6 t</td></tr>
+        <tr><td>10 x 12 ft</td><td>12 x 14 ft</td><td>≈ 2.1 yd³</td><td>≈ 3.0 t</td></tr>
+        <tr><td>12 x 16 ft</td><td>14 x 18 ft</td><td>≈ 3.1 yd³</td><td>≈ 4.5 t</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">Order 5–10% extra for compaction and spillage. Crushed stone loses volume as it is tamped down.</p>
+  </section>
+  <section id="stone">
+    <h2>What gravel works best?</h2>
+    <p>Use <strong>3/4 inch (19 mm) crusher run</strong> — crushed stone mixed with stone dust, also sold as Granular A or 3/4 minus. The dust packs the gaps so the pad compacts rock hard and stays level. Avoid pea gravel or round river rock: they will not lock together and the shed will shift.</p>
+    <p>Compact in two lifts with a plate tamper, checking for level as you go, then frame your shed or set blocks on the finished surface. To turn your own measurements into a precise order, use the <a href="/crushed-gravel-calculator.html">Crushed Gravel Calculator</a> or the all-purpose <a href="/aggregate-calculator.html">Aggregate Calculator</a>, and see the <a href="/blog/gravel-depth-guide.html">gravel depth guide</a> for other projects.</p>
+  </section>`,
+  faqs: [
+    { q: "How deep should gravel be for a shed base?", a: "Four inches (100 mm) of compacted crushed stone on firm ground, or six inches (150 mm) on soft, wet or clay soil with geotextile fabric underneath. Extend the gravel about a foot past the shed on every side." },
+    { q: "What kind of gravel is best for a shed base?", a: "Use 3/4 inch crusher run (Granular A or 3/4 minus) — crushed stone with stone dust that compacts hard and stays level. Avoid pea gravel or round river rock, which will not pack down." },
+    { q: "How much gravel do I need for a 10x12 shed?", a: "About 2.1 cubic yards (roughly 3 tonnes) of crushed stone for a 4 inch pad, allowing a one-foot border around the shed. Add 5–10% extra for compaction." },
+    { q: "Do I need fabric under a gravel shed base?", a: "On firm, well-drained ground it is optional. On soft, clay or wet soil lay geotextile landscape fabric under the stone so the gravel does not work its way into the mud and the pad stays stable." }
+  ]
+});
+
+posts.push({
+  slug: "how-much-does-a-tonne-of-gravel-cover.html",
+  category: "Coverage",
+  title: "How Much Area Does a Tonne of Gravel Cover?",
+  desc: "How much ground one tonne of gravel covers at common depths, in square feet and square metres, with a quick lookup table for 1, 2, 3 and 4 inch layers.",
+  keywords: "how much does a tonne of gravel cover, how much area does a ton of gravel cover, tonne of gravel coverage, square feet per tonne gravel, gravel coverage per tonne",
+  crumb: "Coverage Per Tonne",
+  h1: "How Much Area Does a Tonne of Gravel Cover?",
+  lede: "One tonne of typical gravel covers <strong>about 10 m² (110 ft²) at 5 cm (2 in) deep</strong>. Coverage halves each time you double the depth — here is the full breakdown in metric and imperial.",
+  date: "2026-06-22",
+  modified: "2026-06-22",
+  ctaTarget: { slug: "gravel-coverage-calculator.html", label: "Gravel Coverage Calculator" },
+  ctaText: `<strong>Need your exact coverage?</strong> The <a href="/gravel-coverage-calculator.html">Gravel Coverage Calculator</a> shows how much area your tonnes or cubic yards will cover at any depth.`,
+  related: ["gravel-coverage-calculator.html", "gravel-tonnage-calculator.html", "cubic-yards-of-gravel.html", "landscape-rock-calculator.html"],
+  adSlots: ["3333334201", "3333334202"],
+  content: `  <section id="coverage">
+    <h2>Coverage by depth</h2>
+    <p>A tonne of gravel is a fixed weight, so the area it covers depends entirely on how thick you spread it. Using a typical density of about 1.5 t/m³:</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Depth</th><th>Coverage (metric)</th><th>Coverage (imperial)</th></tr></thead>
+      <tbody>
+        <tr><td>2.5 cm (1 in)</td><td>≈ 27 m²</td><td>≈ 290 ft²</td></tr>
+        <tr><td>5 cm (2 in)</td><td>≈ 13 m²</td><td>≈ 140 ft²</td></tr>
+        <tr><td>7.5 cm (3 in)</td><td>≈ 9 m²</td><td>≈ 97 ft²</td></tr>
+        <tr><td>10 cm (4 in)</td><td>≈ 6.7 m²</td><td>≈ 72 ft²</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">Rule of thumb: one tonne ≈ 13 m² (140 ft²) at 2 inches deep. Double the depth and the coverage halves.</p>
+  </section>
+  <section id="why">
+    <h2>Why coverage varies</h2>
+    <p>Lighter, rounder stone like pea gravel or river rock (around 1.4–1.5 t/m³) covers a little more ground per tonne, while denser crushed limestone (about 1.6–1.7 t/m³) covers slightly less. Moisture adds weight too, so wet gravel covers less area per tonne than dry.</p>
+    <ul>
+      <li><strong>Pea gravel / river rock:</strong> ≈ 14–15 m² (150–160 ft²) per tonne at 2 in.</li>
+      <li><strong>Crushed stone / limestone:</strong> ≈ 12 m² (130 ft²) per tonne at 2 in.</li>
+    </ul>
+  </section>
+  <section id="convert">
+    <h2>From area to tonnes</h2>
+    <p>To go the other way, divide your area by the coverage above. For 50 m² at 5 cm deep you need about 50 ÷ 13 ≈ <strong>3.8 tonnes</strong>. The <a href="/gravel-coverage-calculator.html">Gravel Coverage Calculator</a> does this instantly, and the <a href="/gravel-tonnage-calculator.html">Gravel Tonnage Calculator</a> converts a known volume into tonnes. See also <a href="/blog/how-much-does-a-yard-of-gravel-weigh.html">how much a yard of gravel weighs</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "How much area does a tonne of gravel cover?", a: "About 13 m² (140 ft²) at 5 cm (2 in) deep for typical gravel. At 1 inch it covers roughly 27 m² (290 ft²); at 4 inches about 6.7 m² (72 ft²). Coverage halves each time you double the depth." },
+    { q: "How many square feet does a ton of gravel cover at 3 inches?", a: "Roughly 95–100 ft² (about 9 m²) per tonne at a 3 inch depth, for gravel of typical density. Lighter pea gravel covers a bit more and dense crushed limestone a bit less." },
+    { q: "How many tonnes of gravel do I need for 100 square metres?", a: "At a 5 cm (2 in) depth, about 7.5–8 tonnes (100 ÷ 13 m² per tonne). At 10 cm (4 in) you would need roughly 15 tonnes." },
+    { q: "Does gravel type change the coverage?", a: "Yes. Lighter, rounder stone such as pea gravel or river rock covers slightly more area per tonne, while denser crushed limestone covers a little less. Wet gravel weighs more, so it covers less per tonne than dry." }
+  ]
+});
+
+posts.push({
+  slug: "how-much-gravel-under-a-concrete-slab.html",
+  category: "Projects",
+  title: "How Much Gravel Do I Need Under a Concrete Slab?",
+  desc: "How thick the gravel base under a concrete slab should be, what stone to use, and a quick table of crushed-stone quantities for common slab sizes in cubic yards and tonnes.",
+  keywords: "gravel under concrete slab, how much gravel under a slab, base for concrete slab, crushed stone under concrete, sub-base for concrete slab depth",
+  crumb: "Gravel Under a Slab",
+  h1: "How Much Gravel Do I Need Under a Concrete Slab?",
+  lede: "A concrete slab needs a <strong>compacted gravel sub-base of about 4 inches (100 mm)</strong> — more on soft ground. Here is the right depth, the stone to use, and how much you will need by slab size.",
+  date: "2026-06-22",
+  modified: "2026-06-22",
+  ctaTarget: { slug: "concrete-calculator.html", label: "Concrete Calculator" },
+  ctaText: `<strong>Pouring a slab?</strong> Size the stone base with the <a href="/crushed-gravel-calculator.html">Crushed Gravel Calculator</a>, then the <a href="/concrete-calculator.html">Concrete Calculator</a> for the concrete itself.`,
+  related: ["crushed-gravel-calculator.html", "concrete-calculator.html", "aggregate-calculator.html", "patio-gravel-calculator.html"],
+  adSlots: ["3333334301", "3333334302"],
+  content: `  <section id="depth">
+    <h2>How thick should the gravel base be?</h2>
+    <p>For most slabs — sheds, garages, patios, walkways — lay <strong>4 inches (100 mm) of compacted crushed stone</strong> over firm, well-drained ground. On soft, frost-prone or clay soil, increase the sub-base to <strong>6–8 inches (150–200 mm)</strong> and compact it in lifts. The gravel spreads the load, stops the slab cracking, and lets water drain so frost cannot heave it.</p>
+    <p class="result-note">Always compact the gravel before you pour. Loose stone settles and the slab will crack above the low spots.</p>
+  </section>
+  <section id="stone">
+    <h2>What gravel goes under concrete?</h2>
+    <p>Use <strong>3/4 inch (19 mm) crusher run</strong> (also called Granular A or 3/4 minus) — angular crushed stone with stone dust that compacts to a tight, stable base. Some pros top it with a thin layer of clear 3/4 inch stone as a capillary break. Avoid rounded pea gravel, which will not lock together under load.</p>
+  </section>
+  <section id="table">
+    <h2>Gravel needed by slab size</h2>
+    <p>Figures are for a 4 inch compacted base. Increase by about half for a 6 inch sub-base.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Slab size</th><th>Area</th><th>Volume at 4&quot;</th><th>Crushed stone</th></tr></thead>
+      <tbody>
+        <tr><td>10 x 10 ft</td><td>100 ft²</td><td>≈ 1.2 yd³</td><td>≈ 1.8 t</td></tr>
+        <tr><td>12 x 12 ft</td><td>144 ft²</td><td>≈ 1.8 yd³</td><td>≈ 2.6 t</td></tr>
+        <tr><td>20 x 20 ft (single garage)</td><td>400 ft²</td><td>≈ 4.9 yd³</td><td>≈ 7.1 t</td></tr>
+        <tr><td>24 x 24 ft (double garage)</td><td>576 ft²</td><td>≈ 7.1 yd³</td><td>≈ 10.3 t</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">Add 5–10% extra for compaction. For your exact slab, use the <a href="/crushed-gravel-calculator.html">Crushed Gravel Calculator</a>.</p>
+  </section>
+  <section id="next">
+    <h2>Then size the concrete</h2>
+    <p>Once the base is set, work out the concrete itself with the <a href="/concrete-calculator.html">Concrete Calculator</a> — it gives cubic yards, cubic metres, pre-mix bags and cost for slabs, footings and columns. For other base projects, see the <a href="/blog/gravel-depth-guide.html">gravel depth guide</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "How much gravel do I need under a concrete slab?", a: "Plan on a 4 inch (100 mm) compacted crushed-stone base over firm ground, or 6–8 inches on soft or frost-prone soil. A 10x10 ft slab needs about 1.2 cubic yards (roughly 1.8 tonnes) at 4 inches." },
+    { q: "What kind of gravel goes under a concrete slab?", a: "Use 3/4 inch crusher run (Granular A or 3/4 minus) — angular crushed stone with dust that compacts to a firm, stable, well-draining base. Avoid rounded pea gravel under load-bearing concrete." },
+    { q: "Do you need gravel under a concrete slab?", a: "Yes, in almost all cases. A compacted gravel sub-base spreads the load, provides drainage so frost cannot heave the slab, and gives a level surface to pour on, which greatly reduces cracking." },
+    { q: "How deep should gravel be under a garage slab?", a: "At least 4 inches of compacted crushed stone, and 6–8 inches on soft or clay soil. Compact in lifts before pouring so the base does not settle under the weight of the slab and vehicles." }
+  ]
+});
+
+posts.push({
+  slug: "how-much-gravel-for-a-fire-pit.html",
+  category: "Projects",
+  title: "How Much Gravel Do I Need for a Fire Pit?",
+  desc: "How much gravel to put in the base of a fire pit and the surrounding area, what stone is safe around fire, and quick quantities for common fire-pit and patio sizes.",
+  keywords: "how much gravel for a fire pit, fire pit gravel base, gravel around fire pit, fire pit base material, best gravel for fire pit area",
+  crumb: "Gravel for a Fire Pit",
+  h1: "How Much Gravel Do I Need for a Fire Pit?",
+  lede: "A fire pit needs <strong>a few inches of gravel in the base</strong> for drainage, plus a gravel apron around it if you want a finished seating area. Here is what to use and how much to buy.",
+  date: "2026-06-22",
+  modified: "2026-06-22",
+  ctaTarget: { slug: "pea-gravel-calculator.html", label: "Pea Gravel Calculator" },
+  ctaText: `<strong>Building a gravel fire-pit area?</strong> The <a href="/pea-gravel-calculator.html">Pea Gravel Calculator</a> and <a href="/landscape-rock-calculator.html">Landscape Rock Calculator</a> turn your dimensions into bags, tonnes and cost.`,
+  related: ["pea-gravel-calculator.html", "landscape-rock-calculator.html", "patio-gravel-calculator.html", "gravel-coverage-calculator.html"],
+  adSlots: ["3333334401", "3333334402"],
+  content: `  <section id="base">
+    <h2>Gravel in the fire-pit base</h2>
+    <p>Put <strong>4–6 inches (100–150 mm) of gravel</strong> in the bottom of the pit. It lets rain drain away and creates an air gap so the fire breathes. Use a heat-tolerant stone (see below), level it, and you are ready to burn.</p>
+    <p class="result-note">A 3 ft (90 cm) diameter pit needs only about 0.1–0.15 yd³ — roughly 3–5 bags of 0.5 ft³ gravel — for a 5 inch base.</p>
+  </section>
+  <section id="safe-stone">
+    <h2>Which gravel is safe around fire?</h2>
+    <p>Use dense, dry, angular crushed stone such as <strong>crushed granite, crushed limestone or lava rock</strong>. Avoid stones that trap moisture and can crack or pop when heated:</p>
+    <ul>
+      <li><strong>Avoid river rock and pea gravel inside the pit</strong> — smooth, dense and often damp, they can heat unevenly and burst.</li>
+      <li><strong>Avoid sandstone, limestone cobbles and any wet stone</strong> directly in the fire for the same reason.</li>
+      <li><strong>Pea gravel is fine for the surrounding seating area</strong>, just not as the base under the flames.</li>
+    </ul>
+  </section>
+  <section id="apron">
+    <h2>Gravel for the seating area around it</h2>
+    <p>A gravel apron around the pit gives a clean, non-flammable surface for chairs. Spread <strong>2–3 inches (50–75 mm)</strong> of pea gravel or crushed stone over a compacted base.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Circle around pit</th><th>Area</th><th>Gravel at 3&quot;</th></tr></thead>
+      <tbody>
+        <tr><td>8 ft diameter</td><td>≈ 50 ft²</td><td>≈ 0.5 yd³ (≈ 0.7 t)</td></tr>
+        <tr><td>10 ft diameter</td><td>≈ 79 ft²</td><td>≈ 0.7 yd³ (≈ 1.0 t)</td></tr>
+        <tr><td>12 ft diameter</td><td>≈ 113 ft²</td><td>≈ 1.0 yd³ (≈ 1.5 t)</td></tr>
+      </tbody>
+    </table></div>
+    <p>Use the <a href="/pea-gravel-calculator.html">Pea Gravel Calculator</a> for the seating area and the <a href="/gravel-coverage-calculator.html">Gravel Coverage Calculator</a> to check how far a tonne goes. For depth advice on paths and patios, see the <a href="/blog/gravel-depth-guide.html">gravel depth guide</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "How much gravel do I put in the bottom of a fire pit?", a: "Add 4–6 inches (100–150 mm) of heat-tolerant crushed stone in the base for drainage and airflow. A 3 ft diameter pit only needs about 3–5 bags of 0.5 ft³ gravel for a 5 inch layer." },
+    { q: "What gravel is safe for a fire pit?", a: "Use dry, dense, angular crushed stone such as crushed granite, crushed limestone or lava rock. Avoid river rock and pea gravel inside the pit — they can trap moisture and crack or pop when heated." },
+    { q: "Can you use pea gravel around a fire pit?", a: "Yes, for the surrounding seating area pea gravel is fine and looks good. Just do not use smooth, dense pea gravel or river rock directly under the flames, where trapped moisture can make stones burst." },
+    { q: "How much gravel for a fire pit seating area?", a: "Spread 2–3 inches of gravel. A 10 ft diameter circle around the pit is about 79 ft² and needs roughly 0.7 cubic yards (about 1 tonne) of gravel at a 3 inch depth." }
+  ]
+});
+
+posts.push({
+  slug: "how-much-river-rock-do-i-need.html",
+  category: "Coverage",
+  title: "How Much River Rock Do I Need?",
+  desc: "Calculate river rock for landscaping beds, borders and dry creek beds. Recommended depth by stone size, coverage per tonne, and a quick quantity table.",
+  keywords: "how much river rock do i need, river rock calculator, river rock coverage, river rock depth, how much river rock per square foot",
+  crumb: "How Much River Rock",
+  h1: "How Much River Rock Do I Need?",
+  lede: "River rock is sold by weight, and how much you need depends on <strong>your area, the stone size and the depth</strong>. Here is the depth to use, coverage per tonne, and a fast lookup table.",
+  date: "2026-06-22",
+  modified: "2026-06-22",
+  ctaTarget: { slug: "landscape-rock-calculator.html", label: "Landscape Rock Calculator" },
+  ctaText: `<strong>Estimating river rock?</strong> The <a href="/landscape-rock-calculator.html">Landscape Rock &amp; Stone Calculator</a> turns your bed dimensions into tonnes, cubic yards and cost.`,
+  related: ["landscape-rock-calculator.html", "pea-gravel-calculator.html", "gravel-coverage-calculator.html", "crushed-gravel-calculator.html"],
+  adSlots: ["3333334501", "3333334502"],
+  content: `  <section id="depth">
+    <h2>How deep should river rock be?</h2>
+    <p>Match the depth to the stone size — you want at least two layers of stone so the ground does not show through:</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Stone size</th><th>Recommended depth</th><th>Typical use</th></tr></thead>
+      <tbody>
+        <tr><td>Small (3/8–3/4 in)</td><td>2 in (50 mm)</td><td>Beds, borders, ground cover</td></tr>
+        <tr><td>Medium (1–2 in)</td><td>3 in (75 mm)</td><td>Pathways, drainage areas</td></tr>
+        <tr><td>Large (2–5 in)</td><td>4 in (100 mm)+</td><td>Dry creek beds, accents</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">For weed control, lay landscape fabric first, then the river rock on top.</p>
+  </section>
+  <section id="coverage">
+    <h2>River rock coverage per tonne</h2>
+    <p>River rock is smooth and rounded, with a density around 1.4–1.5 t/m³. One tonne covers roughly:</p>
+    <ul>
+      <li><strong>≈ 14 m² (150 ft²)</strong> at 5 cm (2 in) deep</li>
+      <li><strong>≈ 9 m² (100 ft²)</strong> at 7.5 cm (3 in) deep</li>
+      <li><strong>≈ 7 m² (75 ft²)</strong> at 10 cm (4 in) deep</li>
+    </ul>
+  </section>
+  <section id="table">
+    <h2>River rock by bed size</h2>
+    <p>For a 2 inch depth of small-to-medium river rock:</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Bed size</th><th>Area</th><th>River rock</th></tr></thead>
+      <tbody>
+        <tr><td>10 x 10 ft</td><td>100 ft²</td><td>≈ 0.6 yd³ (≈ 0.9 t)</td></tr>
+        <tr><td>10 x 20 ft</td><td>200 ft²</td><td>≈ 1.2 yd³ (≈ 1.8 t)</td></tr>
+        <tr><td>20 x 20 ft</td><td>400 ft²</td><td>≈ 2.5 yd³ (≈ 3.6 t)</td></tr>
+      </tbody>
+    </table></div>
+    <p>Use the <a href="/landscape-rock-calculator.html">Landscape Rock Calculator</a> for your exact bed, or compare with the <a href="/pea-gravel-calculator.html">Pea Gravel Calculator</a>. See <a href="/blog/crushed-stone-vs-gravel.html">crushed stone vs gravel</a> to choose between angular and rounded stone.</p>
+  </section>`,
+  faqs: [
+    { q: "How much river rock do I need per square foot?", a: "At a 2 inch depth, one tonne of river rock covers about 150 ft², so you need roughly 13 lb (about 6 kg) per square foot. For a 100 ft² bed at 2 inches, plan on about 0.9 tonnes." },
+    { q: "How deep should river rock be?", a: "About 2 inches for small 3/8–3/4 inch stone, 3 inches for 1–2 inch stone, and 4 inches or more for large 2–5 inch rock. You want at least two layers so the ground underneath does not show." },
+    { q: "How much area does a tonne of river rock cover?", a: "Roughly 14 m² (150 ft²) at 2 inches deep, 9 m² (100 ft²) at 3 inches, and 7 m² (75 ft²) at 4 inches. River rock is fairly light, so it covers a bit more per tonne than crushed stone." },
+    { q: "Should I put fabric under river rock?", a: "Yes, for landscaping beds lay landscape fabric first. It blocks weeds and stops the rock from sinking into the soil, which keeps the bed looking clean and makes the stone easier to maintain." }
+  ]
+});
+
 /* write blog posts */
 if (!fs.existsSync("blog")) fs.mkdirSync("blog");
 posts.forEach(p => {
