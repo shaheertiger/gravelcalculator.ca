@@ -5,7 +5,7 @@ const fs = require("fs");
 
 const SITE = "https://www.gravelcalculator.ca";
 const YEAR = 2026;
-const LASTMOD = "2026-06-10";
+const LASTMOD = "2026-06-22";
 const ADS_CLIENT = "ca-pub-2963693328827195";
 // AdSense verification/serving loader stays in <head> on every page (needed for site review).
 const ADS_LOADER = `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADS_CLIENT}" crossorigin="anonymous"></script>`;
@@ -265,8 +265,6 @@ function page(cfg) {
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="${url}">
 <meta name="theme-color" content="#1f6f43">
-<!-- Bing Webmaster Tools: replace with your verification code (or use BingSiteAuth.xml) -->
-<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GravelCalculator.ca">
 <meta property="og:title" content="${cfg.title}">
@@ -1001,8 +999,6 @@ const aquariumPage = `<!DOCTYPE html>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="${SITE}/aquarium-gravel-calculator.html">
 <meta name="theme-color" content="#1f6f43">
-<!-- Bing Webmaster Tools: replace with your verification code (or use BingSiteAuth.xml) -->
-<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GravelCalculator.ca">
 <meta property="og:title" content="Aquarium Gravel Calculator | Fish Tank Substrate">
@@ -1190,7 +1186,6 @@ const concretePage = `<!DOCTYPE html>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="${SITE}/concrete-calculator.html">
 <meta name="theme-color" content="#1f6f43">
-<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GravelCalculator.ca">
 <meta property="og:title" content="Concrete Calculator | Cubic Yards, Bags &amp; Cost">
@@ -1288,7 +1283,6 @@ const frPage = `<!DOCTYPE html>
 <link rel="alternate" hreflang="en-ca" href="${SITE}/">
 <link rel="alternate" hreflang="fr-ca" href="${SITE}/calculateur-de-gravier.html">
 <meta name="theme-color" content="#1f6f43">
-<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GravelCalculator.ca">
 <meta property="og:title" content="Calculateur de Gravier | Estimez le Gravier en Vrac">
@@ -1402,7 +1396,6 @@ const hubPage = `<!DOCTYPE html>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="${SITE}/calculators.html">
 <meta name="theme-color" content="#1f6f43">
-<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GravelCalculator.ca">
 <meta property="og:title" content="All Gravel Calculators | Free Tools">
@@ -1512,7 +1505,6 @@ function blogPost(cfg) {
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="${url}">
 <meta name="theme-color" content="#1f6f43">
-<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="GravelCalculator.ca">
 <meta property="og:title" content="${cfg.title}">
@@ -2161,7 +2153,6 @@ const blogIndex = `<!DOCTYPE html>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="${SITE}/blog/">
 <meta name="theme-color" content="#1f6f43">
-<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GravelCalculator.ca">
 <meta property="og:title" content="Gravel Blog | Guides for Driveways, Cost, Depth &amp; Buying">
