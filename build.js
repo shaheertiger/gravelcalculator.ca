@@ -5,7 +5,7 @@ const fs = require("fs");
 
 const SITE = "https://www.gravelcalculator.ca";
 const YEAR = 2026;
-const LASTMOD = "2026-06-10";
+const LASTMOD = "2026-06-22";
 const ADS_CLIENT = "ca-pub-2963693328827195";
 // AdSense verification/serving loader stays in <head> on every page (needed for site review).
 const ADS_LOADER = `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADS_CLIENT}" crossorigin="anonymous"></script>`;
@@ -265,8 +265,6 @@ function page(cfg) {
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="${url}">
 <meta name="theme-color" content="#1f6f43">
-<!-- Bing Webmaster Tools: replace with your verification code (or use BingSiteAuth.xml) -->
-<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GravelCalculator.ca">
 <meta property="og:title" content="${cfg.title}">
@@ -1001,8 +999,6 @@ const aquariumPage = `<!DOCTYPE html>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="${SITE}/aquarium-gravel-calculator.html">
 <meta name="theme-color" content="#1f6f43">
-<!-- Bing Webmaster Tools: replace with your verification code (or use BingSiteAuth.xml) -->
-<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GravelCalculator.ca">
 <meta property="og:title" content="Aquarium Gravel Calculator | Fish Tank Substrate">
@@ -1190,7 +1186,6 @@ const concretePage = `<!DOCTYPE html>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="${SITE}/concrete-calculator.html">
 <meta name="theme-color" content="#1f6f43">
-<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GravelCalculator.ca">
 <meta property="og:title" content="Concrete Calculator | Cubic Yards, Bags &amp; Cost">
@@ -1288,7 +1283,6 @@ const frPage = `<!DOCTYPE html>
 <link rel="alternate" hreflang="en-ca" href="${SITE}/">
 <link rel="alternate" hreflang="fr-ca" href="${SITE}/calculateur-de-gravier.html">
 <meta name="theme-color" content="#1f6f43">
-<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GravelCalculator.ca">
 <meta property="og:title" content="Calculateur de Gravier | Estimez le Gravier en Vrac">
@@ -1402,7 +1396,6 @@ const hubPage = `<!DOCTYPE html>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="${SITE}/calculators.html">
 <meta name="theme-color" content="#1f6f43">
-<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GravelCalculator.ca">
 <meta property="og:title" content="All Gravel Calculators | Free Tools">
@@ -1512,7 +1505,6 @@ function blogPost(cfg) {
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="${url}">
 <meta name="theme-color" content="#1f6f43">
-<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="GravelCalculator.ca">
 <meta property="og:title" content="${cfg.title}">
@@ -2138,6 +2130,499 @@ posts.push({
   ]
 });
 
+posts.push({
+  slug: "how-much-gravel-for-a-shed-base.html",
+  category: "Projects",
+  title: "How Much Gravel Do I Need for a Shed Base?",
+  desc: "Work out the crushed gravel for a shed base. Recommended depth, a quick size-by-size table (8x8, 10x10, 10x12, 12x16) in cubic yards and tonnes, plus how far to extend the pad.",
+  keywords: "how much gravel for a shed base, shed base gravel calculator, gravel pad for shed, shed foundation gravel, crushed stone shed base depth",
+  crumb: "Gravel for a Shed Base",
+  h1: "How Much Gravel Do I Need for a Shed Base?",
+  lede: "A gravel shed base needs <strong>4 to 6 inches of compacted crushed stone</strong>, extended about a foot past the shed on every side. Here is the depth to use, a size-by-size quantity table, and the stone that compacts best.",
+  date: "2026-06-22",
+  modified: "2026-06-22",
+  ctaTarget: { slug: "crushed-gravel-calculator.html", label: "Crushed Gravel Calculator" },
+  ctaText: `<strong>Sizing a shed pad?</strong> The <a href="/crushed-gravel-calculator.html">Crushed Gravel Calculator</a> turns your pad length, width and depth into cubic yards and tonnes of 3/4 inch crushed stone.`,
+  related: ["crushed-gravel-calculator.html", "patio-gravel-calculator.html", "gravel-driveway-calculator.html", "aggregate-calculator.html"],
+  adSlots: ["3333334101", "3333334102"],
+  content: `  <section id="depth">
+    <h2>How deep should a gravel shed base be?</h2>
+    <p>For a typical garden or storage shed, build the pad <strong>4 inches (100 mm) of compacted crushed stone</strong> on firm ground. On soft, wet or clay soil, go to <strong>6 inches (150 mm)</strong> and lay geotextile fabric underneath so the stone does not sink into the mud.</p>
+    <p>Extend the gravel <strong>about 300 mm (12 in) past the shed footprint</strong> on every side. The extra apron keeps the edges from crumbling and gives rain somewhere to drain away from the building.</p>
+    <p class="result-note">A 10 x 12 ft shed therefore sits on a pad of about 12 x 14 ft once you add the one-foot border.</p>
+  </section>
+  <section id="table">
+    <h2>Gravel needed by shed size</h2>
+    <p>These figures include a 1 ft border all round and assume a 4 inch compacted depth. Add roughly 50% more stone if you build a 6 inch pad.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Shed size</th><th>Pad size (with border)</th><th>Volume at 4&quot;</th><th>Crushed stone</th></tr></thead>
+      <tbody>
+        <tr><td>8 x 8 ft</td><td>10 x 10 ft</td><td>≈ 1.2 yd³</td><td>≈ 1.8 t</td></tr>
+        <tr><td>10 x 10 ft</td><td>12 x 12 ft</td><td>≈ 1.8 yd³</td><td>≈ 2.6 t</td></tr>
+        <tr><td>10 x 12 ft</td><td>12 x 14 ft</td><td>≈ 2.1 yd³</td><td>≈ 3.0 t</td></tr>
+        <tr><td>12 x 16 ft</td><td>14 x 18 ft</td><td>≈ 3.1 yd³</td><td>≈ 4.5 t</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">Order 5–10% extra for compaction and spillage. Crushed stone loses volume as it is tamped down.</p>
+  </section>
+  <section id="stone">
+    <h2>What gravel works best?</h2>
+    <p>Use <strong>3/4 inch (19 mm) crusher run</strong> — crushed stone mixed with stone dust, also sold as Granular A or 3/4 minus. The dust packs the gaps so the pad compacts rock hard and stays level. Avoid pea gravel or round river rock: they will not lock together and the shed will shift.</p>
+    <p>Compact in two lifts with a plate tamper, checking for level as you go, then frame your shed or set blocks on the finished surface. To turn your own measurements into a precise order, use the <a href="/crushed-gravel-calculator.html">Crushed Gravel Calculator</a> or the all-purpose <a href="/aggregate-calculator.html">Aggregate Calculator</a>, and see the <a href="/blog/gravel-depth-guide.html">gravel depth guide</a> for other projects.</p>
+  </section>`,
+  faqs: [
+    { q: "How deep should gravel be for a shed base?", a: "Four inches (100 mm) of compacted crushed stone on firm ground, or six inches (150 mm) on soft, wet or clay soil with geotextile fabric underneath. Extend the gravel about a foot past the shed on every side." },
+    { q: "What kind of gravel is best for a shed base?", a: "Use 3/4 inch crusher run (Granular A or 3/4 minus) — crushed stone with stone dust that compacts hard and stays level. Avoid pea gravel or round river rock, which will not pack down." },
+    { q: "How much gravel do I need for a 10x12 shed?", a: "About 2.1 cubic yards (roughly 3 tonnes) of crushed stone for a 4 inch pad, allowing a one-foot border around the shed. Add 5–10% extra for compaction." },
+    { q: "Do I need fabric under a gravel shed base?", a: "On firm, well-drained ground it is optional. On soft, clay or wet soil lay geotextile landscape fabric under the stone so the gravel does not work its way into the mud and the pad stays stable." }
+  ]
+});
+
+posts.push({
+  slug: "how-much-does-a-tonne-of-gravel-cover.html",
+  category: "Coverage",
+  title: "How Much Area Does a Tonne of Gravel Cover?",
+  desc: "How much ground one tonne of gravel covers at common depths, in square feet and square metres, with a quick lookup table for 1, 2, 3 and 4 inch layers.",
+  keywords: "how much does a tonne of gravel cover, how much area does a ton of gravel cover, tonne of gravel coverage, square feet per tonne gravel, gravel coverage per tonne",
+  crumb: "Coverage Per Tonne",
+  h1: "How Much Area Does a Tonne of Gravel Cover?",
+  lede: "One tonne of typical gravel covers <strong>about 10 m² (110 ft²) at 5 cm (2 in) deep</strong>. Coverage halves each time you double the depth — here is the full breakdown in metric and imperial.",
+  date: "2026-06-22",
+  modified: "2026-06-22",
+  ctaTarget: { slug: "gravel-coverage-calculator.html", label: "Gravel Coverage Calculator" },
+  ctaText: `<strong>Need your exact coverage?</strong> The <a href="/gravel-coverage-calculator.html">Gravel Coverage Calculator</a> shows how much area your tonnes or cubic yards will cover at any depth.`,
+  related: ["gravel-coverage-calculator.html", "gravel-tonnage-calculator.html", "cubic-yards-of-gravel.html", "landscape-rock-calculator.html"],
+  adSlots: ["3333334201", "3333334202"],
+  content: `  <section id="coverage">
+    <h2>Coverage by depth</h2>
+    <p>A tonne of gravel is a fixed weight, so the area it covers depends entirely on how thick you spread it. Using a typical density of about 1.5 t/m³:</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Depth</th><th>Coverage (metric)</th><th>Coverage (imperial)</th></tr></thead>
+      <tbody>
+        <tr><td>2.5 cm (1 in)</td><td>≈ 27 m²</td><td>≈ 290 ft²</td></tr>
+        <tr><td>5 cm (2 in)</td><td>≈ 13 m²</td><td>≈ 140 ft²</td></tr>
+        <tr><td>7.5 cm (3 in)</td><td>≈ 9 m²</td><td>≈ 97 ft²</td></tr>
+        <tr><td>10 cm (4 in)</td><td>≈ 6.7 m²</td><td>≈ 72 ft²</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">Rule of thumb: one tonne ≈ 13 m² (140 ft²) at 2 inches deep. Double the depth and the coverage halves.</p>
+  </section>
+  <section id="why">
+    <h2>Why coverage varies</h2>
+    <p>Lighter, rounder stone like pea gravel or river rock (around 1.4–1.5 t/m³) covers a little more ground per tonne, while denser crushed limestone (about 1.6–1.7 t/m³) covers slightly less. Moisture adds weight too, so wet gravel covers less area per tonne than dry.</p>
+    <ul>
+      <li><strong>Pea gravel / river rock:</strong> ≈ 14–15 m² (150–160 ft²) per tonne at 2 in.</li>
+      <li><strong>Crushed stone / limestone:</strong> ≈ 12 m² (130 ft²) per tonne at 2 in.</li>
+    </ul>
+  </section>
+  <section id="convert">
+    <h2>From area to tonnes</h2>
+    <p>To go the other way, divide your area by the coverage above. For 50 m² at 5 cm deep you need about 50 ÷ 13 ≈ <strong>3.8 tonnes</strong>. The <a href="/gravel-coverage-calculator.html">Gravel Coverage Calculator</a> does this instantly, and the <a href="/gravel-tonnage-calculator.html">Gravel Tonnage Calculator</a> converts a known volume into tonnes. See also <a href="/blog/how-much-does-a-yard-of-gravel-weigh.html">how much a yard of gravel weighs</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "How much area does a tonne of gravel cover?", a: "About 13 m² (140 ft²) at 5 cm (2 in) deep for typical gravel. At 1 inch it covers roughly 27 m² (290 ft²); at 4 inches about 6.7 m² (72 ft²). Coverage halves each time you double the depth." },
+    { q: "How many square feet does a ton of gravel cover at 3 inches?", a: "Roughly 95–100 ft² (about 9 m²) per tonne at a 3 inch depth, for gravel of typical density. Lighter pea gravel covers a bit more and dense crushed limestone a bit less." },
+    { q: "How many tonnes of gravel do I need for 100 square metres?", a: "At a 5 cm (2 in) depth, about 7.5–8 tonnes (100 ÷ 13 m² per tonne). At 10 cm (4 in) you would need roughly 15 tonnes." },
+    { q: "Does gravel type change the coverage?", a: "Yes. Lighter, rounder stone such as pea gravel or river rock covers slightly more area per tonne, while denser crushed limestone covers a little less. Wet gravel weighs more, so it covers less per tonne than dry." }
+  ]
+});
+
+posts.push({
+  slug: "how-much-gravel-under-a-concrete-slab.html",
+  category: "Projects",
+  title: "How Much Gravel Do I Need Under a Concrete Slab?",
+  desc: "How thick the gravel base under a concrete slab should be, what stone to use, and a quick table of crushed-stone quantities for common slab sizes in cubic yards and tonnes.",
+  keywords: "gravel under concrete slab, how much gravel under a slab, base for concrete slab, crushed stone under concrete, sub-base for concrete slab depth",
+  crumb: "Gravel Under a Slab",
+  h1: "How Much Gravel Do I Need Under a Concrete Slab?",
+  lede: "A concrete slab needs a <strong>compacted gravel sub-base of about 4 inches (100 mm)</strong> — more on soft ground. Here is the right depth, the stone to use, and how much you will need by slab size.",
+  date: "2026-06-22",
+  modified: "2026-06-22",
+  ctaTarget: { slug: "concrete-calculator.html", label: "Concrete Calculator" },
+  ctaText: `<strong>Pouring a slab?</strong> Size the stone base with the <a href="/crushed-gravel-calculator.html">Crushed Gravel Calculator</a>, then the <a href="/concrete-calculator.html">Concrete Calculator</a> for the concrete itself.`,
+  related: ["crushed-gravel-calculator.html", "concrete-calculator.html", "aggregate-calculator.html", "patio-gravel-calculator.html"],
+  adSlots: ["3333334301", "3333334302"],
+  content: `  <section id="depth">
+    <h2>How thick should the gravel base be?</h2>
+    <p>For most slabs — sheds, garages, patios, walkways — lay <strong>4 inches (100 mm) of compacted crushed stone</strong> over firm, well-drained ground. On soft, frost-prone or clay soil, increase the sub-base to <strong>6–8 inches (150–200 mm)</strong> and compact it in lifts. The gravel spreads the load, stops the slab cracking, and lets water drain so frost cannot heave it.</p>
+    <p class="result-note">Always compact the gravel before you pour. Loose stone settles and the slab will crack above the low spots.</p>
+  </section>
+  <section id="stone">
+    <h2>What gravel goes under concrete?</h2>
+    <p>Use <strong>3/4 inch (19 mm) crusher run</strong> (also called Granular A or 3/4 minus) — angular crushed stone with stone dust that compacts to a tight, stable base. Some pros top it with a thin layer of clear 3/4 inch stone as a capillary break. Avoid rounded pea gravel, which will not lock together under load.</p>
+  </section>
+  <section id="table">
+    <h2>Gravel needed by slab size</h2>
+    <p>Figures are for a 4 inch compacted base. Increase by about half for a 6 inch sub-base.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Slab size</th><th>Area</th><th>Volume at 4&quot;</th><th>Crushed stone</th></tr></thead>
+      <tbody>
+        <tr><td>10 x 10 ft</td><td>100 ft²</td><td>≈ 1.2 yd³</td><td>≈ 1.8 t</td></tr>
+        <tr><td>12 x 12 ft</td><td>144 ft²</td><td>≈ 1.8 yd³</td><td>≈ 2.6 t</td></tr>
+        <tr><td>20 x 20 ft (single garage)</td><td>400 ft²</td><td>≈ 4.9 yd³</td><td>≈ 7.1 t</td></tr>
+        <tr><td>24 x 24 ft (double garage)</td><td>576 ft²</td><td>≈ 7.1 yd³</td><td>≈ 10.3 t</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">Add 5–10% extra for compaction. For your exact slab, use the <a href="/crushed-gravel-calculator.html">Crushed Gravel Calculator</a>.</p>
+  </section>
+  <section id="next">
+    <h2>Then size the concrete</h2>
+    <p>Once the base is set, work out the concrete itself with the <a href="/concrete-calculator.html">Concrete Calculator</a> — it gives cubic yards, cubic metres, pre-mix bags and cost for slabs, footings and columns. For other base projects, see the <a href="/blog/gravel-depth-guide.html">gravel depth guide</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "How much gravel do I need under a concrete slab?", a: "Plan on a 4 inch (100 mm) compacted crushed-stone base over firm ground, or 6–8 inches on soft or frost-prone soil. A 10x10 ft slab needs about 1.2 cubic yards (roughly 1.8 tonnes) at 4 inches." },
+    { q: "What kind of gravel goes under a concrete slab?", a: "Use 3/4 inch crusher run (Granular A or 3/4 minus) — angular crushed stone with dust that compacts to a firm, stable, well-draining base. Avoid rounded pea gravel under load-bearing concrete." },
+    { q: "Do you need gravel under a concrete slab?", a: "Yes, in almost all cases. A compacted gravel sub-base spreads the load, provides drainage so frost cannot heave the slab, and gives a level surface to pour on, which greatly reduces cracking." },
+    { q: "How deep should gravel be under a garage slab?", a: "At least 4 inches of compacted crushed stone, and 6–8 inches on soft or clay soil. Compact in lifts before pouring so the base does not settle under the weight of the slab and vehicles." }
+  ]
+});
+
+posts.push({
+  slug: "how-much-gravel-for-a-fire-pit.html",
+  category: "Projects",
+  title: "How Much Gravel Do I Need for a Fire Pit?",
+  desc: "How much gravel to put in the base of a fire pit and the surrounding area, what stone is safe around fire, and quick quantities for common fire-pit and patio sizes.",
+  keywords: "how much gravel for a fire pit, fire pit gravel base, gravel around fire pit, fire pit base material, best gravel for fire pit area",
+  crumb: "Gravel for a Fire Pit",
+  h1: "How Much Gravel Do I Need for a Fire Pit?",
+  lede: "A fire pit needs <strong>a few inches of gravel in the base</strong> for drainage, plus a gravel apron around it if you want a finished seating area. Here is what to use and how much to buy.",
+  date: "2026-06-22",
+  modified: "2026-06-22",
+  ctaTarget: { slug: "pea-gravel-calculator.html", label: "Pea Gravel Calculator" },
+  ctaText: `<strong>Building a gravel fire-pit area?</strong> The <a href="/pea-gravel-calculator.html">Pea Gravel Calculator</a> and <a href="/landscape-rock-calculator.html">Landscape Rock Calculator</a> turn your dimensions into bags, tonnes and cost.`,
+  related: ["pea-gravel-calculator.html", "landscape-rock-calculator.html", "patio-gravel-calculator.html", "gravel-coverage-calculator.html"],
+  adSlots: ["3333334401", "3333334402"],
+  content: `  <section id="base">
+    <h2>Gravel in the fire-pit base</h2>
+    <p>Put <strong>4–6 inches (100–150 mm) of gravel</strong> in the bottom of the pit. It lets rain drain away and creates an air gap so the fire breathes. Use a heat-tolerant stone (see below), level it, and you are ready to burn.</p>
+    <p class="result-note">A 3 ft (90 cm) diameter pit needs only about 0.1–0.15 yd³ — roughly 3–5 bags of 0.5 ft³ gravel — for a 5 inch base.</p>
+  </section>
+  <section id="safe-stone">
+    <h2>Which gravel is safe around fire?</h2>
+    <p>Use dense, dry, angular crushed stone such as <strong>crushed granite, crushed limestone or lava rock</strong>. Avoid stones that trap moisture and can crack or pop when heated:</p>
+    <ul>
+      <li><strong>Avoid river rock and pea gravel inside the pit</strong> — smooth, dense and often damp, they can heat unevenly and burst.</li>
+      <li><strong>Avoid sandstone, limestone cobbles and any wet stone</strong> directly in the fire for the same reason.</li>
+      <li><strong>Pea gravel is fine for the surrounding seating area</strong>, just not as the base under the flames.</li>
+    </ul>
+  </section>
+  <section id="apron">
+    <h2>Gravel for the seating area around it</h2>
+    <p>A gravel apron around the pit gives a clean, non-flammable surface for chairs. Spread <strong>2–3 inches (50–75 mm)</strong> of pea gravel or crushed stone over a compacted base.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Circle around pit</th><th>Area</th><th>Gravel at 3&quot;</th></tr></thead>
+      <tbody>
+        <tr><td>8 ft diameter</td><td>≈ 50 ft²</td><td>≈ 0.5 yd³ (≈ 0.7 t)</td></tr>
+        <tr><td>10 ft diameter</td><td>≈ 79 ft²</td><td>≈ 0.7 yd³ (≈ 1.0 t)</td></tr>
+        <tr><td>12 ft diameter</td><td>≈ 113 ft²</td><td>≈ 1.0 yd³ (≈ 1.5 t)</td></tr>
+      </tbody>
+    </table></div>
+    <p>Use the <a href="/pea-gravel-calculator.html">Pea Gravel Calculator</a> for the seating area and the <a href="/gravel-coverage-calculator.html">Gravel Coverage Calculator</a> to check how far a tonne goes. For depth advice on paths and patios, see the <a href="/blog/gravel-depth-guide.html">gravel depth guide</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "How much gravel do I put in the bottom of a fire pit?", a: "Add 4–6 inches (100–150 mm) of heat-tolerant crushed stone in the base for drainage and airflow. A 3 ft diameter pit only needs about 3–5 bags of 0.5 ft³ gravel for a 5 inch layer." },
+    { q: "What gravel is safe for a fire pit?", a: "Use dry, dense, angular crushed stone such as crushed granite, crushed limestone or lava rock. Avoid river rock and pea gravel inside the pit — they can trap moisture and crack or pop when heated." },
+    { q: "Can you use pea gravel around a fire pit?", a: "Yes, for the surrounding seating area pea gravel is fine and looks good. Just do not use smooth, dense pea gravel or river rock directly under the flames, where trapped moisture can make stones burst." },
+    { q: "How much gravel for a fire pit seating area?", a: "Spread 2–3 inches of gravel. A 10 ft diameter circle around the pit is about 79 ft² and needs roughly 0.7 cubic yards (about 1 tonne) of gravel at a 3 inch depth." }
+  ]
+});
+
+posts.push({
+  slug: "how-much-river-rock-do-i-need.html",
+  category: "Coverage",
+  title: "How Much River Rock Do I Need?",
+  desc: "Calculate river rock for landscaping beds, borders and dry creek beds. Recommended depth by stone size, coverage per tonne, and a quick quantity table.",
+  keywords: "how much river rock do i need, river rock calculator, river rock coverage, river rock depth, how much river rock per square foot",
+  crumb: "How Much River Rock",
+  h1: "How Much River Rock Do I Need?",
+  lede: "River rock is sold by weight, and how much you need depends on <strong>your area, the stone size and the depth</strong>. Here is the depth to use, coverage per tonne, and a fast lookup table.",
+  date: "2026-06-22",
+  modified: "2026-06-22",
+  ctaTarget: { slug: "landscape-rock-calculator.html", label: "Landscape Rock Calculator" },
+  ctaText: `<strong>Estimating river rock?</strong> The <a href="/landscape-rock-calculator.html">Landscape Rock &amp; Stone Calculator</a> turns your bed dimensions into tonnes, cubic yards and cost.`,
+  related: ["landscape-rock-calculator.html", "pea-gravel-calculator.html", "gravel-coverage-calculator.html", "crushed-gravel-calculator.html"],
+  adSlots: ["3333334501", "3333334502"],
+  content: `  <section id="depth">
+    <h2>How deep should river rock be?</h2>
+    <p>Match the depth to the stone size — you want at least two layers of stone so the ground does not show through:</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Stone size</th><th>Recommended depth</th><th>Typical use</th></tr></thead>
+      <tbody>
+        <tr><td>Small (3/8–3/4 in)</td><td>2 in (50 mm)</td><td>Beds, borders, ground cover</td></tr>
+        <tr><td>Medium (1–2 in)</td><td>3 in (75 mm)</td><td>Pathways, drainage areas</td></tr>
+        <tr><td>Large (2–5 in)</td><td>4 in (100 mm)+</td><td>Dry creek beds, accents</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">For weed control, lay landscape fabric first, then the river rock on top.</p>
+  </section>
+  <section id="coverage">
+    <h2>River rock coverage per tonne</h2>
+    <p>River rock is smooth and rounded, with a density around 1.4–1.5 t/m³. One tonne covers roughly:</p>
+    <ul>
+      <li><strong>≈ 14 m² (150 ft²)</strong> at 5 cm (2 in) deep</li>
+      <li><strong>≈ 9 m² (100 ft²)</strong> at 7.5 cm (3 in) deep</li>
+      <li><strong>≈ 7 m² (75 ft²)</strong> at 10 cm (4 in) deep</li>
+    </ul>
+  </section>
+  <section id="table">
+    <h2>River rock by bed size</h2>
+    <p>For a 2 inch depth of small-to-medium river rock:</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Bed size</th><th>Area</th><th>River rock</th></tr></thead>
+      <tbody>
+        <tr><td>10 x 10 ft</td><td>100 ft²</td><td>≈ 0.6 yd³ (≈ 0.9 t)</td></tr>
+        <tr><td>10 x 20 ft</td><td>200 ft²</td><td>≈ 1.2 yd³ (≈ 1.8 t)</td></tr>
+        <tr><td>20 x 20 ft</td><td>400 ft²</td><td>≈ 2.5 yd³ (≈ 3.6 t)</td></tr>
+      </tbody>
+    </table></div>
+    <p>Use the <a href="/landscape-rock-calculator.html">Landscape Rock Calculator</a> for your exact bed, or compare with the <a href="/pea-gravel-calculator.html">Pea Gravel Calculator</a>. See <a href="/blog/crushed-stone-vs-gravel.html">crushed stone vs gravel</a> to choose between angular and rounded stone.</p>
+  </section>`,
+  faqs: [
+    { q: "How much river rock do I need per square foot?", a: "At a 2 inch depth, one tonne of river rock covers about 150 ft², so you need roughly 13 lb (about 6 kg) per square foot. For a 100 ft² bed at 2 inches, plan on about 0.9 tonnes." },
+    { q: "How deep should river rock be?", a: "About 2 inches for small 3/8–3/4 inch stone, 3 inches for 1–2 inch stone, and 4 inches or more for large 2–5 inch rock. You want at least two layers so the ground underneath does not show." },
+    { q: "How much area does a tonne of river rock cover?", a: "Roughly 14 m² (150 ft²) at 2 inches deep, 9 m² (100 ft²) at 3 inches, and 7 m² (75 ft²) at 4 inches. River rock is fairly light, so it covers a bit more per tonne than crushed stone." },
+    { q: "Should I put fabric under river rock?", a: "Yes, for landscaping beds lay landscape fabric first. It blocks weeds and stops the rock from sinking into the soil, which keeps the bed looking clean and makes the stone easier to maintain." }
+  ]
+});
+
+posts.push({
+  slug: "how-much-gravel-do-i-need-for-1000-square-feet.html",
+  category: "Coverage",
+  title: "How Much Gravel Do I Need for 1,000 Square Feet?",
+  desc: "How many cubic yards and tonnes of gravel cover 1,000 square feet at 2, 3 and 4 inches deep, with a quick depth table and the cost to expect.",
+  keywords: "how much gravel for 1000 square feet, gravel for 1000 sq ft, cubic yards for 1000 square feet, tonnes of gravel for 1000 sq ft, gravel coverage 1000 square feet",
+  crumb: "Gravel for 1,000 sq ft",
+  h1: "How Much Gravel Do I Need for 1,000 Square Feet?",
+  lede: "Covering 1,000 ft² takes <strong>about 6.2 cubic yards (9 tonnes) at 2 inches deep</strong>. Here is the full breakdown by depth, in cubic yards and tonnes, plus the cost to budget for.",
+  date: "2026-06-22",
+  modified: "2026-06-22",
+  ctaTarget: { slug: "gravel-coverage-calculator.html", label: "Gravel Coverage Calculator" },
+  ctaText: `<strong>Different area or depth?</strong> The <a href="/cubic-yards-of-gravel.html">Cubic Yards of Gravel Calculator</a> gives exact yardage for any size, and the <a href="/gravel-coverage-calculator.html">Coverage Calculator</a> checks how far a tonne goes.`,
+  related: ["gravel-coverage-calculator.html", "cubic-yards-of-gravel.html", "gravel-tonnage-calculator.html", "aggregate-calculator.html"],
+  adSlots: ["3333334601", "3333334602"],
+  content: `  <section id="table">
+    <h2>Gravel for 1,000 ft² by depth</h2>
+    <p>A cubic yard covers 27 ft² at 12 inches, so 1,000 ft² takes the following at common depths:</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Depth</th><th>Cubic yards</th><th>Cubic metres</th><th>Tonnes</th></tr></thead>
+      <tbody>
+        <tr><td>2 in (5 cm)</td><td>≈ 6.2 yd³</td><td>≈ 4.7 m³</td><td>≈ 9.0 t</td></tr>
+        <tr><td>3 in (7.5 cm)</td><td>≈ 9.3 yd³</td><td>≈ 7.1 m³</td><td>≈ 13.5 t</td></tr>
+        <tr><td>4 in (10 cm)</td><td>≈ 12.3 yd³</td><td>≈ 9.4 m³</td><td>≈ 18.0 t</td></tr>
+        <tr><td>6 in (15 cm)</td><td>≈ 18.5 yd³</td><td>≈ 14.2 m³</td><td>≈ 27.0 t</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">Tonnage assumes a typical density of about 1.5 t/m³. Add 5–10% extra for compaction and uneven ground.</p>
+  </section>
+  <section id="cost">
+    <h2>What will it cost?</h2>
+    <p>At roughly CAD $20–$70 per cubic yard for bulk gravel, 1,000 ft² at 2 inches (about 6.2 yd³) runs <strong>around $125–$435 in material</strong>, before delivery. A 4 inch layer roughly doubles that. Decorative stone such as river rock or coloured gravel costs more.</p>
+  </section>
+  <section id="how">
+    <h2>How the math works</h2>
+    <p>Multiply area by depth (in the same units), then convert: 1,000 ft² × 2 in ÷ 12 = 166.7 ft³, and 166.7 ÷ 27 ≈ 6.2 yd³. To skip the arithmetic, enter your numbers in the <a href="/cubic-yards-of-gravel.html">Cubic Yards of Gravel Calculator</a> or the <a href="/aggregate-calculator.html">Aggregate Calculator</a>. See also <a href="/blog/how-much-does-a-tonne-of-gravel-cover.html">how much a tonne of gravel covers</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "How many yards of gravel do I need for 1,000 square feet?", a: "About 6.2 cubic yards at 2 inches deep, 9.3 yards at 3 inches, and 12.3 yards at 4 inches. Multiply area by depth in feet, then divide by 27 to get cubic yards." },
+    { q: "How many tonnes of gravel for 1,000 square feet?", a: "Roughly 9 tonnes at 2 inches, 13.5 tonnes at 3 inches, and 18 tonnes at 4 inches, using a typical gravel density of about 1.5 t/m³. Add 5–10% for compaction." },
+    { q: "How much does it cost to gravel 1,000 square feet?", a: "At about $20–$70 per cubic yard for bulk gravel, a 2 inch layer over 1,000 ft² costs roughly $125–$435 in material before delivery. A 4 inch layer is about double, and decorative stone costs more." },
+    { q: "How deep should gravel be for a 1,000 sq ft area?", a: "It depends on use: 2 inches for decorative ground cover, 3–4 inches for paths, and 4–6 inches of compacted base for driveways or parking. Deeper layers need proportionally more gravel." }
+  ]
+});
+
+posts.push({
+  slug: "types-of-gravel.html",
+  category: "Guides",
+  title: "Types of Gravel: A Buyer's Guide",
+  desc: "The main types of gravel — crusher run, 3/4 clear stone, pea gravel, river rock, limestone and more — what each is for, and how to choose for driveways, patios and drainage.",
+  keywords: "types of gravel, gravel types, kinds of gravel, gravel sizes explained, best type of gravel for driveway, gravel grades",
+  crumb: "Types of Gravel",
+  h1: "Types of Gravel: A Buyer's Guide",
+  lede: "Gravel comes in many sizes and shapes, and the right one depends on the job. Here are the <strong>common types of gravel in Canada</strong>, what each is best for, and how to pick.",
+  date: "2026-06-22",
+  modified: "2026-06-22",
+  ctaTarget: { slug: "crushed-gravel-calculator.html", label: "Crushed Gravel Calculator" },
+  ctaText: `<strong>Picked your gravel?</strong> The <a href="/crushed-gravel-calculator.html">Crushed Gravel Calculator</a> and <a href="/aggregate-calculator.html">Aggregate Calculator</a> turn your area into tonnes, cubic yards and cost.`,
+  related: ["crushed-gravel-calculator.html", "pea-gravel-calculator.html", "landscape-rock-calculator.html", "aggregate-calculator.html"],
+  adSlots: ["3333334701", "3333334702"],
+  content: `  <section id="overview">
+    <h2>The main types of gravel</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Type</th><th>Size / shape</th><th>Best for</th></tr></thead>
+      <tbody>
+        <tr><td>Crusher run (3/4 minus, Granular A)</td><td>Crushed + dust</td><td>Driveway and slab bases — compacts hard</td></tr>
+        <tr><td>3/4&quot; clear stone</td><td>19 mm, no fines</td><td>Drainage, French drains, top layers</td></tr>
+        <tr><td>Pea gravel</td><td>Rounded, 3/8&quot;</td><td>Patios, paths, play areas, decoration</td></tr>
+        <tr><td>River rock</td><td>Rounded, 1–5&quot;</td><td>Landscaping beds, dry creek beds, accents</td></tr>
+        <tr><td>Crushed limestone</td><td>Angular, light grey</td><td>Paths and surfaces that pack tight</td></tr>
+        <tr><td>Pit run / Granular B</td><td>Coarse mixed</td><td>Cheap deep sub-base fill</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+  <section id="angular-vs-round">
+    <h2>Angular vs rounded — the key choice</h2>
+    <p><strong>Angular crushed stone</strong> (crusher run, clear stone, limestone) has sharp faces that lock together and compact, so it is the choice for any load-bearing or structural job — driveways, slab bases, paths. <strong>Rounded stone</strong> (pea gravel, river rock) looks great and is comfortable underfoot but will not compact, so keep it decorative or use it where drainage matters more than stability.</p>
+  </section>
+  <section id="sizes">
+    <h2>Gravel sizes explained</h2>
+    <ul>
+      <li><strong>Fines / stone dust:</strong> packs joints; mixed into crusher run.</li>
+      <li><strong>3/8 in (pea gravel):</strong> small, smooth, easy to walk on.</li>
+      <li><strong>3/4 in (19 mm):</strong> the all-rounder for bases and drainage.</li>
+      <li><strong>1–2 in:</strong> drainage and decorative cover.</li>
+      <li><strong>2–5 in:</strong> river rock and large decorative stone.</li>
+    </ul>
+    <p>To choose for a specific project, see <a href="/blog/best-gravel-for-driveways-canada.html">best gravel for driveways</a>, <a href="/blog/crushed-stone-vs-gravel.html">crushed stone vs gravel</a>, and the <a href="/blog/gravel-depth-guide.html">gravel depth guide</a>. Then size your order with the <a href="/crushed-gravel-calculator.html">Crushed Gravel Calculator</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "What are the main types of gravel?", a: "The common ones are crusher run (3/4 minus / Granular A) for bases, 3/4 inch clear stone for drainage, pea gravel and river rock for decoration, crushed limestone for tight-packing surfaces, and pit run (Granular B) for cheap sub-base fill." },
+    { q: "What is the difference between angular and rounded gravel?", a: "Angular crushed stone has sharp faces that lock together and compact, so it suits driveways, slab bases and paths. Rounded stone like pea gravel and river rock will not compact, so it is best used decoratively or where drainage matters most." },
+    { q: "What size gravel is best for a driveway?", a: "Use 3/4 inch crusher run for the compacting base and 3/4 inch clear stone or crushed limestone for the top. Avoid pea gravel and river rock as a driving surface because round stone ruts and scatters." },
+    { q: "What is crusher run gravel used for?", a: "Crusher run — crushed stone mixed with stone dust, also called 3/4 minus or Granular A — is the standard base material for driveways, shed pads and slabs because the dust fills the gaps so it compacts rock hard." }
+  ]
+});
+
+posts.push({
+  slug: "limestone-vs-gravel.html",
+  category: "Compare",
+  title: "Limestone vs Gravel: Which Should You Use?",
+  desc: "Crushed limestone vs gravel for driveways, patios and bases — how they differ in compaction, drainage, look, dust and cost, and when to pick each.",
+  keywords: "limestone vs gravel, crushed limestone vs gravel, limestone or gravel for driveway, limestone gravel driveway, is limestone good for a driveway",
+  crumb: "Limestone vs Gravel",
+  h1: "Limestone vs Gravel: Which Should You Use?",
+  lede: "Crushed limestone packs into a <strong>tight, hard, light-grey surface</strong>, while gravel drains better and resists weather. Here is how they compare and when to choose each.",
+  date: "2026-06-22",
+  modified: "2026-06-22",
+  ctaTarget: { slug: "crushed-gravel-calculator.html", label: "Crushed Gravel Calculator" },
+  ctaText: `<strong>Comparing materials?</strong> Price either one with the <a href="/crushed-gravel-calculator.html">Crushed Gravel Calculator</a> — enter your area and depth for tonnes, yards and cost.`,
+  related: ["crushed-gravel-calculator.html", "gravel-driveway-calculator.html", "gravel-tonnage-calculator.html", "aggregate-calculator.html"],
+  adSlots: ["3333334801", "3333334802"],
+  content: `  <section id="compare">
+    <h2>Side by side</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th></th><th>Crushed limestone</th><th>Gravel (crushed/river)</th></tr></thead>
+      <tbody>
+        <tr><td>Compaction</td><td>Excellent — packs hard</td><td>Good (crushed) to poor (rounded)</td></tr>
+        <tr><td>Drainage</td><td>Moderate (fines hold water)</td><td>Better, especially clear stone</td></tr>
+        <tr><td>Dust</td><td>More — light grey dust</td><td>Less with washed clear stone</td></tr>
+        <tr><td>Look</td><td>Uniform light grey</td><td>Varied browns, tans, greys</td></tr>
+        <tr><td>Cost</td><td>Similar, varies by region</td><td>Similar, varies by type</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+  <section id="limestone">
+    <h2>When limestone wins</h2>
+    <p>Crushed limestone is calcium carbonate, so it has angular faces and fines that bind into a <strong>firm, almost paved surface</strong>. Choose it for driveways and paths where you want a tight, clean, uniform finish that sheds water off a crown. The trade-off is dust and a tendency to hold some moisture.</p>
+  </section>
+  <section id="gravel">
+    <h2>When gravel wins</h2>
+    <p>Granite or trap-rock gravel and washed clear stone <strong>drain faster and weather better</strong>, with less dust. Pick gravel for wet sites, drainage layers and French drains, or where you prefer a natural multi-colour look. Rounded river gravel is decorative only — it will not compact.</p>
+    <p>Either way, size your order with the <a href="/crushed-gravel-calculator.html">Crushed Gravel Calculator</a> and read <a href="/blog/best-gravel-for-driveways-canada.html">best gravel for driveways in Canada</a> and <a href="/blog/crushed-stone-vs-gravel.html">crushed stone vs gravel</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "Is limestone or gravel better for a driveway?", a: "Crushed limestone compacts into a tight, hard, uniform surface, which many people prefer for driveways. Crushed gravel and clear stone drain better and produce less dust. For wet or poorly draining sites, gravel is often the safer choice." },
+    { q: "What is the difference between limestone and gravel?", a: "Limestone is a specific crushed rock (calcium carbonate) with angular faces and fines that pack hard but produce dust. Gravel is a broader category that includes crushed stone and rounded river stone, and washed clear stone drains better with less dust." },
+    { q: "Does crushed limestone drain well?", a: "Less well than clean clear stone. Limestone contains fines (dust) that fill the gaps and help it compact, but those fines also hold some moisture. For drainage layers and French drains, use washed clear stone instead." },
+    { q: "Is limestone more expensive than gravel?", a: "Prices are broadly similar and depend mostly on your region and how close the quarry is. In limestone-rich areas it can be the cheaper option; elsewhere local gravel may cost less. Get quotes for both delivered to your site." }
+  ]
+});
+
+posts.push({
+  slug: "how-much-does-gravel-cost.html",
+  category: "Cost",
+  title: "How Much Does Gravel Cost in Canada?",
+  desc: "Gravel prices in Canada by the tonne, cubic yard and bag, plus delivery costs and what makes decorative stone more expensive — with a quick price table.",
+  keywords: "how much does gravel cost, gravel cost per yard, gravel price per tonne, gravel cost canada, gravel delivery cost, price of gravel",
+  crumb: "Gravel Cost",
+  h1: "How Much Does Gravel Cost in Canada?",
+  lede: "Bulk gravel runs <strong>roughly CAD $15–$70 per tonne</strong> or <strong>$20–$100 per cubic yard</strong> delivered, depending on the stone and your location. Here is the full price picture.",
+  date: "2026-06-22",
+  modified: "2026-06-22",
+  ctaTarget: { slug: "gravel-driveway-calculator.html", label: "Gravel Driveway Calculator" },
+  ctaText: `<strong>Budgeting a project?</strong> Add your price per tonne or yard in the <a href="/aggregate-calculator.html">Aggregate Calculator</a> for an instant material-cost estimate.`,
+  related: ["gravel-driveway-calculator.html", "bulk-bagged-gravel-calculator.html", "gravel-tonnage-calculator.html", "aggregate-calculator.html"],
+  adSlots: ["3333334901", "3333334902"],
+  content: `  <section id="prices">
+    <h2>Typical gravel prices</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>How it's sold</th><th>Typical price (CAD)</th></tr></thead>
+      <tbody>
+        <tr><td>Bulk, per tonne</td><td>$15 – $70</td></tr>
+        <tr><td>Bulk, per cubic yard</td><td>$20 – $100</td></tr>
+        <tr><td>Decorative / river rock, per yard</td><td>$80 – $250</td></tr>
+        <tr><td>Bagged, 0.5 ft³ bag</td><td>$5 – $9</td></tr>
+        <tr><td>Delivery (per load)</td><td>$80 – $200+</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">Plain crushed stone and crusher run are cheapest. Washed, screened and coloured decorative stone cost more.</p>
+  </section>
+  <section id="factors">
+    <h2>What changes the price</h2>
+    <ul>
+      <li><strong>Stone type:</strong> crusher run is cheap; pea gravel, river rock and coloured stone cost more.</li>
+      <li><strong>Distance from the quarry:</strong> delivery is often the biggest line item — haulage adds up fast.</li>
+      <li><strong>Quantity:</strong> per-unit prices drop sharply above about one cubic yard, so bulk beats bags for anything but small jobs.</li>
+      <li><strong>Season and demand:</strong> spring and summer are busy; prices and lead times rise.</li>
+    </ul>
+  </section>
+  <section id="estimate">
+    <h2>Estimate your own cost</h2>
+    <p>Work out the tonnes or yards you need, then multiply by your local price. The <a href="/gravel-driveway-calculator.html">Driveway Gravel Calculator</a> and <a href="/aggregate-calculator.html">Aggregate Calculator</a> include a price field so you get a material total instantly. For driveways specifically, see <a href="/blog/gravel-driveway-cost-canada.html">gravel driveway cost in Canada</a>, and to decide between formats read <a href="/blog/bulk-gravel-vs-bagged-gravel.html">bulk vs bagged gravel</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "How much does a tonne of gravel cost in Canada?", a: "Bulk gravel typically runs CAD $15–$70 per tonne for plain crushed stone, before delivery. Decorative and washed stone cost more. Delivery often adds $80–$200 or more per load depending on distance." },
+    { q: "How much does a yard of gravel cost?", a: "About CAD $20–$100 per cubic yard for bulk gravel delivered, depending on the stone type and your distance from the quarry. Decorative river rock and coloured stone can run $80–$250 per yard." },
+    { q: "Is it cheaper to buy gravel in bulk or bags?", a: "Bulk is much cheaper for anything over about one cubic yard. Bagged gravel can work out to several hundred dollars per cubic yard once you account for packaging, while bulk is a fraction of that." },
+    { q: "How much is gravel delivery?", a: "Delivery is commonly $80–$200 or more per load and is often the largest part of a small order. The closer you are to the quarry or supply yard, the lower the haulage cost." }
+  ]
+});
+
+posts.push({
+  slug: "how-much-gravel-for-a-paver-patio.html",
+  category: "Projects",
+  title: "How Much Gravel Do I Need for a Paver Patio?",
+  desc: "The crushed-stone base for a paver patio — how deep it should be, plus a size-by-size table of gravel quantities in cubic yards and tonnes and how much sand to add.",
+  keywords: "how much gravel for a paver patio, paver base gravel, gravel under pavers, crushed stone base for patio, paver patio base depth",
+  crumb: "Gravel for a Paver Patio",
+  h1: "How Much Gravel Do I Need for a Paver Patio?",
+  lede: "A paver patio needs <strong>4–6 inches of compacted crushed stone</strong> plus about an inch of bedding sand. Here is the depth to use, a size-by-size table, and how to allow for the base.",
+  date: "2026-06-22",
+  modified: "2026-06-22",
+  ctaTarget: { slug: "patio-gravel-calculator.html", label: "Patio Gravel Calculator" },
+  ctaText: `<strong>Building a patio?</strong> The <a href="/patio-gravel-calculator.html">Patio Gravel Calculator</a> sizes the crushed-stone base, and the <a href="/sand-calculator.html">Sand Calculator</a> handles the bedding layer.`,
+  related: ["patio-gravel-calculator.html", "crushed-gravel-calculator.html", "sand-calculator.html", "aggregate-calculator.html"],
+  adSlots: ["3333335001", "3333335002"],
+  content: `  <section id="depth">
+    <h2>How deep should the base be?</h2>
+    <p>For a walk-on paver patio, build <strong>4 inches (100 mm) of compacted crushed stone</strong> on firm ground, or <strong>6 inches (150 mm)</strong> on soft or clay soil. On top of the gravel goes about <strong>1 inch (25 mm) of bedding sand</strong>, then the pavers. Extend the base 6 inches past the patio edges so they do not slump.</p>
+    <p class="result-note">If the patio will carry vehicles, use a 6–8 inch base like a driveway.</p>
+  </section>
+  <section id="table">
+    <h2>Gravel needed by patio size</h2>
+    <p>For a 4 inch compacted crushed-stone base (add ~50% for a 6 inch base):</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Patio size</th><th>Area</th><th>Crushed stone at 4&quot;</th></tr></thead>
+      <tbody>
+        <tr><td>10 x 10 ft</td><td>100 ft²</td><td>≈ 1.2 yd³ (≈ 1.8 t)</td></tr>
+        <tr><td>12 x 12 ft</td><td>144 ft²</td><td>≈ 1.8 yd³ (≈ 2.6 t)</td></tr>
+        <tr><td>14 x 16 ft</td><td>224 ft²</td><td>≈ 2.8 yd³ (≈ 4.0 t)</td></tr>
+        <tr><td>16 x 20 ft</td><td>320 ft²</td><td>≈ 3.9 yd³ (≈ 5.7 t)</td></tr>
+      </tbody>
+    </table></div>
+    <p class="result-note">Add 5–10% extra for compaction. You will also need bedding sand — roughly one cubic yard of sand per 300 ft² at 1 inch.</p>
+  </section>
+  <section id="build">
+    <h2>What stone and sand to use</h2>
+    <p>Use <strong>3/4 inch crusher run</strong> (Granular A) for the base — it compacts to a firm, level platform. Top it with <strong>concrete/bedding sand</strong>, screeded to an even inch, not play sand. Size each layer with the <a href="/patio-gravel-calculator.html">Patio Gravel Calculator</a> and <a href="/sand-calculator.html">Sand Calculator</a>, and see the <a href="/blog/gravel-depth-guide.html">gravel depth guide</a> for other projects.</p>
+  </section>`,
+  faqs: [
+    { q: "How much gravel do I need under a paver patio?", a: "Use 4 inches of compacted crushed stone on firm ground, or 6 inches on soft soil, plus about an inch of bedding sand. A 10x10 ft patio needs roughly 1.2 cubic yards (about 1.8 tonnes) of crushed stone at 4 inches." },
+    { q: "What gravel goes under pavers?", a: "Use 3/4 inch crusher run (Granular A) — angular crushed stone with stone dust that compacts into a firm, level base. Top it with concrete bedding sand, not play sand, before laying the pavers." },
+    { q: "How deep should a paver base be?", a: "Four inches of compacted gravel for a walk-on patio, six inches on soft or clay soil, and six to eight inches if vehicles will drive on it. Add about one inch of bedding sand on top of the gravel." },
+    { q: "How much sand do I need for a paver patio?", a: "About one inch of bedding sand over the gravel base — roughly one cubic yard of sand per 300 square feet. Use coarse concrete sand and screed it level before setting the pavers." }
+  ]
+});
+
 /* write blog posts */
 if (!fs.existsSync("blog")) fs.mkdirSync("blog");
 posts.forEach(p => {
@@ -2161,7 +2646,6 @@ const blogIndex = `<!DOCTYPE html>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="${SITE}/blog/">
 <meta name="theme-color" content="#1f6f43">
-<meta name="msvalidate.01" content="REPLACE_WITH_BING_VERIFICATION_CODE">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GravelCalculator.ca">
 <meta property="og:title" content="Gravel Blog | Guides for Driveways, Cost, Depth &amp; Buying">
