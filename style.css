@@ -173,3 +173,9 @@ details[open] summary { border-bottom: 1px solid var(--line); margin-bottom: 8px
   table { font-size: .9rem; }
   th, td { padding: 8px 10px; }
 }
+
+/* quick answer box (Nov 2026) */
+.quick-answer{background:#eef7f1;border:1px solid #cfe6d8;border-left:4px solid var(--green);border-radius:var(--radius);padding:14px 16px;margin:14px 0 18px}
+.quick-answer p{margin:6px 0 0;line-height:1.55}
+.quick-answer .qa-tag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--green-dark)}
+.table-wrap{overflow-x:auto}
