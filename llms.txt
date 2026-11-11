@@ -55,6 +55,9 @@ Volume = 200 × 0.03 = 6 m³; Weight = 6 × 1.52 ≈ 9.1 tonnes; ≈ 7.8 cubic y
 - Aquarium / fish tank gravel calculator: https://www.gravelcalculator.ca/aquarium-gravel-calculator.html
 - Cubic yard calculator (generic yardage + conversions): https://www.gravelcalculator.ca/cubic-yard-calculator.html
 - Landscape rock & stone calculator: https://www.gravelcalculator.ca/landscape-rock-calculator.html
+- Asphalt calculator: https://www.gravelcalculator.ca/asphalt-calculator.html
+- Limestone screenings calculator: https://www.gravelcalculator.ca/limestone-screenings-calculator.html
+- River rock calculator: https://www.gravelcalculator.ca/river-rock-calculator.html
 - Topsoil & soil calculator: https://www.gravelcalculator.ca/topsoil-calculator.html
 - Sand calculator: https://www.gravelcalculator.ca/sand-calculator.html
 - Aggregate & material calculator: https://www.gravelcalculator.ca/aggregate-calculator.html

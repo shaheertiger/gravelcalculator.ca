@@ -5,7 +5,7 @@ const fs = require("fs");
 
 const SITE = "https://www.gravelcalculator.ca";
 const YEAR = 2026;
-const LASTMOD = "2026-06-22";
+const LASTMOD = "2026-11-11";
 const ADS_CLIENT = "ca-pub-2963693328827195";
 // AdSense verification/serving loader stays in <head> on every page (needed for site review).
 const ADS_LOADER = `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADS_CLIENT}" crossorigin="anonymous"></script>`;
@@ -24,6 +24,8 @@ const DENSITIES = [
   { v: "1.5", label: "Landscape / decorative rock (1.50 t/m³)" },
   { v: "1.6", label: "Sand, dry (1.60 t/m³)" },
   { v: "1.3", label: "Topsoil / garden soil (1.30 t/m³)" },
+  { v: "1.602s", label: "Limestone screenings / stone dust (1.60 t/m³)", real: "1.602" },
+  { v: "2.322", label: "Asphalt, compacted (2.32 t/m³)" },
   { v: "custom", label: "Custom density…" }
 ];
 
@@ -169,9 +171,12 @@ const CALCS = [
   { slug: "aquarium-gravel-calculator.html", name: "Aquarium Gravel Calculator" },
   { slug: "cubic-yard-calculator.html", name: "Cubic Yard Calculator" },
   { slug: "landscape-rock-calculator.html", name: "Landscape Rock &amp; Stone Calculator" },
-  { slug: "topsoil-calculator.html", name: "Topsoil &amp; Soil Calculator" },
+  { slug: "topsoil-calculator.html", name: "Topsoil &amp; Dirt Calculator" },
   { slug: "sand-calculator.html", name: "Sand Calculator" },
   { slug: "aggregate-calculator.html", name: "Aggregate &amp; Material Calculator" },
+  { slug: "asphalt-calculator.html", name: "Asphalt Calculator" },
+  { slug: "limestone-screenings-calculator.html", name: "Limestone Screenings Calculator" },
+  { slug: "river-rock-calculator.html", name: "River Rock Calculator" },
   { slug: "concrete-calculator.html", name: "Concrete Calculator" },
   { slug: "calculateur-de-gravier.html", name: "Calculateur de Gravier (FR)" }
 ];
@@ -250,6 +255,32 @@ ${faqs.map((f, i) => `    <details${i === 0 ? " open" : ""}><summary>${f.q}</sum
   </section>`;
 }
 
+
+/* ---- computed answer blocks (Nov 2026, EatBetter pattern) ----
+ * Every calculator page opens with a quick answer that has numbers, and carries a table computed
+ * from its own preset density, so each page has figures no other page has. */
+const YD3_M3 = 0.764555;
+const fmt1 = (n) => n.toLocaleString("en-CA", { maximumFractionDigits: 1, minimumFractionDigits: 1 });
+function quickAnswer(html) {
+  return `  <div class="quick-answer"><span class="qa-tag">Quick answer</span><p>${html}</p></div>`;
+}
+function materialTable(name, density) {
+  const areas = [100, 250, 500, 1000, 2000];
+  const depths = [2, 3, 4, 6];
+  const cell = (a, d) => { const yd = (a * d / 12) / 27; return `${fmt1(yd)} yd³ · ${fmt1(yd * YD3_M3 * density)} t`; };
+  return `  <section id="by-area">
+    <h2>How much ${name} for 100 to 2,000 sq ft?</h2>
+    <p>Cubic yards and tonnes of ${name} at ${density.toFixed(2)} t/m³ (${Math.round(density * YD3_M3 * 2204.62).toLocaleString("en-CA")} lb per cubic yard), before any allowance for compaction or waste.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Area</th>${depths.map(d => `<th>${d}&quot; deep</th>`).join("")}</tr></thead>
+      <tbody>
+${areas.map(a => `        <tr><td>${a.toLocaleString("en-CA")} ft²</td>${depths.map(d => `<td>${cell(a, d)}</td>`).join("")}</tr>`).join("\n")}
+      </tbody>
+    </table></div>
+    <p class="result-note">1 cubic yard of ${name} weighs about ${fmt1(density * YD3_M3)} tonnes and covers about ${Math.round(324 / 3)} ft² at 3&quot; deep. Order 5–10% extra for compaction and uneven ground.</p>
+  </section>`;
+}
+
 function page(cfg) {
   const url = `${SITE}/${cfg.slug}`;
   const customCalc = cfg.customCalc || calcBlock(cfg);
@@ -305,6 +336,7 @@ ${header(cfg.slug)}
   <article>
   <h1>${cfg.h1}</h1>
   <p class="lede">${cfg.lede}</p>
+${cfg.answer ? quickAnswer(cfg.answer) : ""}
 
   <section id="calculator" aria-labelledby="calc-heading">
     <h2 id="calc-heading" class="visually-hidden">${cfg.h1} Tool</h2>
@@ -314,6 +346,7 @@ ${customCalc}
 ${adSlot(cfg.adSlots ? cfg.adSlots[0] : "0000000000")}
 
 ${cfg.content}
+${cfg.material ? materialTable(cfg.material, parseFloat(String(cfg.defaults && cfg.defaults.density || "1.522"))) : ""}
 
 ${adSlot(cfg.adSlots ? cfg.adSlots[1] : "1111111111")}
 
@@ -337,7 +370,8 @@ const pages = [];
 /* 1. Cubic yards / yards cluster */
 pages.push({
   slug: "cubic-yards-of-gravel.html",
-  title: "Gravel Calculator in Yards | Cubic Yards of Gravel Calculator",
+  answer: "A cubic yard of gravel covers about <b>108 ft² at 3&quot; deep</b> (162 ft² at 2&quot;, 81 ft² at 4&quot;). Cubic yards = length × width × depth (ft) ÷ 27, so 500 ft² at 3&quot; needs <b>4.6 yd³</b>.",
+  title: "Gravel Calculator in Yards: 1 Yard Covers 108 sq ft at 3 in",
   desc: "Calculate cubic yards of gravel fast. Enter area in feet and depth in inches to find how many yards of gravel you need, plus tonnes and cost. Free yardage calculator.",
   keywords: "gravel calculator yards, gravel calculator in yards, calculate yards of gravel, cubic yards of gravel, how to calculate yards of gravel, gravel yardage calculator, yard calculator for gravel, cubic yard calculator gravel",
   appName: "Cubic Yards of Gravel Calculator",
@@ -387,7 +421,9 @@ pages.push({
 /* 2. Gravel tonnage */
 pages.push({
   slug: "gravel-tonnage-calculator.html",
-  title: "Gravel Tonnage Calculator | Calculate Tonnes of Gravel Needed",
+  material: "gravel",
+  answer: "Tonnes = volume (m³) × density. Crushed gravel is about <b>1.6 t per m³</b> or <b>1.2 tonnes per cubic yard</b>, so 100 m² at 5 cm deep (5 m³) is about <b>8 tonnes</b>.",
+  title: "Gravel Tonnage Calculator: 1 m³ ≈ 1.6 Tonnes, 1 yd³ ≈ 1.2 t",
   desc: "Calculate gravel tonnage instantly. Enter area, depth and gravel type to find how many tonnes (and kg or pounds) of gravel you need, plus cubic yards and cost.",
   keywords: "calculate gravel tonnage, gravel tonnage calculator, calculate tonnage of gravel, tonnes of gravel, gravel weight calculator, how much does gravel weigh",
   appName: "Gravel Tonnage Calculator",
@@ -429,7 +465,9 @@ pages.push({
 /* 3. Pea gravel */
 pages.push({
   slug: "pea-gravel-calculator.html",
-  title: "Pea Gravel Calculator | How Much Pea Gravel Do I Need?",
+  material: "pea gravel",
+  answer: "Pea gravel weighs about <b>1.79 t/m³</b>, so one cubic yard is about <b>1.37 tonnes</b> and covers <b>108 ft² at 3&quot; deep</b>. A 10 × 10 ft area at 3&quot; needs about 0.9 yd³ (1.3 t).",
+  title: "Pea Gravel Calculator: 1 Yard ≈ 1.37 Tonnes, Covers 108 sq ft",
   desc: "Free pea gravel calculator. Estimate how much pea gravel you need for a patio, path or garden in cubic yards, tonnes, bags and cost. Metric and imperial units.",
   keywords: "pea gravel calculator, calculate pea gravel, calculate pea gravel needed, calculator for pea gravel, calculating pea gravel, pea gravel coverage, how much pea gravel do i need",
   appName: "Pea Gravel Calculator",
@@ -470,7 +508,9 @@ pages.push({
 /* 4. Driveway */
 pages.push({
   slug: "gravel-driveway-calculator.html",
-  title: "Gravel Driveway Calculator | How Much Gravel for a Driveway",
+  material: "crushed driveway gravel",
+  answer: "A 12 × 50 ft driveway at <b>6&quot; deep</b> needs about <b>11.1 cubic yards</b> (about 13.6 tonnes of crushed gravel). Most Canadian driveways use 4–6&quot; of base plus 2&quot; of top gravel.",
+  title: "Gravel Driveway Calculator: 12 x 50 ft at 6 in = 11 Yards",
   desc: "Gravel driveway calculator: estimate how much gravel you need for a driveway in cubic yards and tonnes, including base and top layers, plus cost. Free and easy.",
   keywords: "gravel driveway calculator, driveway gravel calculator, gravel calculator for driveway, calculating driveway gravel, calculate gravel needed for driveway, calculator for gravel driveway",
   appName: "Gravel Driveway Calculator",
@@ -510,7 +550,9 @@ pages.push({
 /* 5. Crushed gravel (Canadian sizes) */
 pages.push({
   slug: "crushed-gravel-calculator.html",
-  title: "Crushed Gravel Calculator | 3/4&quot;, 20mm &amp; Clear Stone (Canada)",
+  material: "crushed gravel",
+  answer: "Crushed 3/4&quot; gravel and crusher run weigh about <b>1.6 t/m³</b>, so one cubic yard is about <b>1.22 tonnes</b>. For a base, plan 4–6&quot; compacted; add about 10% for compaction.",
+  title: "Crushed Gravel Calculator: 3/4 in &amp; Crusher Run, 1 yd³ ≈ 1.22 t",
   desc: "Crushed gravel calculator for 3/4 inch, 20mm, crusher run and 0-3/4 clear stone. Estimate tonnes and cubic yards of crushed stone needed for bases and driveways.",
   keywords: "crushed gravel calculator, 3/4 gravel calculator, 3 4 crushed gravel calculator, 20mm gravel calculator, 0-3/4 gravel calculator, 3 4 clear gravel calculator, crushed stone calculator, aggregate calculator gravel",
   appName: "Crushed Gravel Calculator",
@@ -548,7 +590,8 @@ pages.push({
 /* 6. French drain */
 pages.push({
   slug: "french-drain-gravel-calculator.html",
-  title: "French Drain Gravel Calculator | Stone for a Trench Drain",
+  material: "drainage stone",
+  title: "French Drain Gravel Calculator: 50 ft x 12 in x 12 in = 1.9 Yards",
   desc: "French drain gravel calculator. Estimate cubic yards and tonnes of clear/drainage stone for a French drain trench by length, width and depth. Free tool.",
   keywords: "calculate gravel for french drain, french drain gravel calculator, drainage gravel calculator, calculate gravel base, clear stone calculator",
   appName: "French Drain Gravel Calculator",
@@ -587,7 +630,9 @@ pages.push({
 /* 7. Patio */
 pages.push({
   slug: "patio-gravel-calculator.html",
-  title: "Patio Gravel Calculator | Base Stone for Patios &amp; Pavers",
+  material: "patio base gravel",
+  answer: "A 10 × 12 ft patio with a <b>4&quot; crushed base</b> needs about <b>1.5 cubic yards</b> (about 1.8 tonnes), plus about 1&quot; of bedding sand under pavers.",
+  title: "Patio Gravel Calculator: 10 x 12 Patio at 4 in = 1.5 Yards",
   desc: "Patio gravel calculator. Estimate the crushed stone base for a paver or gravel patio in cubic yards and tonnes by area and depth. Free and mobile friendly.",
   keywords: "calculate gravel for patio, patio gravel calculator, paver base calculator, gravel base calculator, patio base stone calculator",
   appName: "Patio Gravel Calculator",
@@ -627,7 +672,9 @@ pages.push({
 /* 9. Coverage calculator */
 pages.push({
   slug: "gravel-coverage-calculator.html",
-  title: "Gravel Coverage Calculator | How Much Area Gravel Covers",
+  material: "gravel",
+  answer: "One tonne of typical gravel covers about <b>140 ft² (13 m²) at 2&quot; deep</b>, or about 90 ft² at 3&quot;. One cubic yard covers 162 ft² at 2&quot; and 108 ft² at 3&quot;.",
+  title: "Gravel Coverage Calculator: 1 Tonne Covers ~140 sq ft at 2 in",
   desc: "Gravel coverage calculator. Find out how much area gravel covers, or how much gravel you need for a given area, in square feet, square yards and square metres.",
   keywords: "gravel coverage calculator, area calculator for gravel, calculate square yards of gravel, gravel area calculator, how much area does gravel cover, gravel coverage per tonne",
   appName: "Gravel Coverage Calculator",
@@ -668,7 +715,9 @@ pages.push({
 /* 10. Bulk & bagged */
 pages.push({
   slug: "bulk-bagged-gravel-calculator.html",
-  title: "Bulk &amp; Bagged Gravel Calculator | How Many Bags of Gravel",
+  material: "gravel",
+  answer: "A cubic yard is 27 ft³, so it takes about <b>54 bags of 0.5 ft³</b> or <b>45 bags of 0.6 ft³ (about 30 kg)</b>. Above about 1 yd³, bulk delivery is usually cheaper than bags.",
+  title: "How Many Bags of Gravel? 1 Yard = About 45 Bags (0.5 cu ft)",
   desc: "Bulk and bagged gravel calculator. Work out how many bags of gravel you need, or how much bulk gravel by the tonne or cubic yard, and compare the cost.",
   keywords: "bagged gravel calculator, bulk gravel calculator, how many bags of gravel, burnco gravel calculator, gravel bag calculator, bulk vs bagged gravel",
   appName: "Bulk and Bagged Gravel Calculator",
@@ -709,7 +758,8 @@ pages.push({
 /* 11. Cubic yard calculator (generic + conversions) */
 pages.push({
   slug: "cubic-yard-calculator.html",
-  title: "Cubic Yard Calculator | Yardage Calculator for Gravel, Dirt &amp; Stone",
+  material: "fill material",
+  title: "Cubic Yard Calculator: L x W x D (ft) ÷ 27 = Yards",
   desc: "Free cubic yard calculator. Convert area and depth into cubic yards (yardage) for gravel, dirt, mulch, sand or stone, with cubic-feet, square-yard and cy-to-tons conversions.",
   keywords: "cubic yard calculator, cy calculator, yardage calculator, cubic yards calculator, cf to cy calculator, square yards to cubic yards, cy to tons, cubic yard calculator dirt, volumetric weight calculator",
   appName: "Cubic Yard Calculator",
@@ -754,7 +804,9 @@ pages.push({
 /* 12. Landscape rock & stone */
 pages.push({
   slug: "landscape-rock-calculator.html",
-  title: "Landscape Rock Calculator | Stone &amp; Decorative Rock Coverage",
+  material: "landscape rock",
+  answer: "Decorative and landscape rock weighs about <b>1.5 t/m³</b>, so one tonne covers about <b>140 ft² at 2&quot; deep</b> (95 ft² at 3&quot;). Most beds use 2–3&quot; of rock over landscape fabric.",
+  title: "Landscape Rock Calculator: 1 Tonne Covers ~140 sq ft at 2 in",
   desc: "Landscape rock and stone calculator. Estimate how much decorative rock, river stone or landscaping stone you need by area and depth, in tonnes, cubic yards and cost.",
   keywords: "landscape rock calculator, rock calculator, stone calculator, landscaping rock calculator, decorative stone calculator, landscape calculator, river rock calculator",
   appName: "Landscape Rock Calculator",
@@ -793,12 +845,14 @@ pages.push({
 /* 13. Topsoil & soil */
 pages.push({
   slug: "topsoil-calculator.html",
-  title: "Topsoil Calculator | How Much Soil Do I Need (Yards &amp; Bags)",
+  material: "topsoil",
+  answer: "One cubic yard of topsoil covers about <b>81 ft² at 4&quot; deep</b> (162 ft² at 2&quot;). Garden beds usually need 6–8&quot;; new lawns need 2–4&quot;.",
+  title: "Topsoil &amp; Dirt Calculator: 1 Yard Covers 81 sq ft at 4 in",
   desc: "Free topsoil calculator. Work out how much topsoil or garden soil you need for beds, lawns and raised beds, in cubic yards, cubic metres, tonnes and bags.",
-  keywords: "topsoil calculator, top soil calculator, soil calculator, garden soil calculator, how much topsoil do i need, raised bed soil calculator, dirt calculator",
+  keywords: "topsoil calculator, dirt calculator, top soil calculator, soil calculator, fill dirt calculator, garden soil calculator, how much topsoil do i need, raised bed soil calculator, dirt calculator",
   appName: "Topsoil Calculator",
   crumb: "Topsoil Calculator",
-  h1: "Topsoil &amp; Soil Calculator",
+  h1: "Topsoil &amp; Dirt Calculator",
   lede: "Calculate <strong>how much topsoil or garden soil you need</strong> for lawns, garden beds and raised beds. Enter the area and depth to get the soil in cubic yards, cubic metres, tonnes and bags.",
   calcBar: "Enter area and depth — density preset for topsoil",
   defaults: { shape: "area", area: 100, areaUnit: "ft2", depth: 4, depthUnit: "in", density: "1.3", priceUnit: "yd3" },
@@ -826,7 +880,9 @@ pages.push({
 /* 14. Sand */
 pages.push({
   slug: "sand-calculator.html",
-  title: "Sand Calculator | How Much Sand Do I Need (Yards, Tonnes &amp; Bags)",
+  material: "sand",
+  answer: "Dry sand weighs about <b>1.6 t/m³</b>, so one cubic yard is about <b>1.22 tonnes</b>. At a 1&quot; paver bedding layer, one yard covers about <b>324 ft²</b>.",
+  title: "Sand Calculator: 1 Yard ≈ 1.22 Tonnes, Covers 324 sq ft at 1 in",
   desc: "Free sand calculator. Estimate how much sand you need for paver bases, sandboxes, bedding and fill, in cubic yards, cubic metres, tonnes and bags.",
   keywords: "sand calculator, how much sand do i need, paver sand calculator, sandbox sand calculator, sand and gravel calculator, bedding sand calculator",
   appName: "Sand Calculator",
@@ -859,7 +915,8 @@ pages.push({
 /* 15. Aggregate / material */
 pages.push({
   slug: "aggregate-calculator.html",
-  title: "Aggregate Calculator | Material Calculator for Gravel, Stone &amp; Base",
+  material: "aggregate",
+  title: "Aggregate Calculator: Volume x Density = Tonnes",
   desc: "All-purpose aggregate and material calculator. Estimate gravel, crushed stone, sand or base aggregate by area and depth, in tonnes, cubic yards, cubic metres and cost.",
   keywords: "aggregate calculator, material calculator, landscape calculator, construction aggregate calculator, base material calculator, gravel and stone calculator",
   appName: "Aggregate Calculator",
@@ -899,6 +956,152 @@ pages.push({
 });
 
 /* write standard pages */
+/* 16. Asphalt (asphalt calculator 1,000 · figuring asphalt 880 · bitumen 880 searches, no page before Nov 2026) */
+pages.push({
+  slug: "asphalt-calculator.html",
+  material: "compacted asphalt",
+  answer: "Compacted asphalt weighs about <b>2.32 t/m³</b> (about 145 lb/ft³), so a 12 × 50 ft driveway at <b>2&quot; thick</b> needs about <b>3.7 yd³, or roughly 6.5 tonnes</b> of hot mix. Tonnes = area × thickness × 2.32 t/m³.",
+  title: "Asphalt Calculator: 12 x 50 Driveway at 2 in ≈ 6.5 Tonnes",
+  desc: "Free asphalt calculator for Canada. Enter area and thickness to figure asphalt tonnage, cubic yards and cost for driveways, paths and patches. Compacted hot mix at 2.32 t/m³.",
+  keywords: "asphalt calculator, asphalt tonnage calculator, figuring asphalt, how much asphalt do i need, asphalt driveway calculator, blacktop calculator, bitumen calculator, hot mix asphalt calculator",
+  appName: "Asphalt Calculator",
+  crumb: "Asphalt Calculator",
+  h1: "Asphalt Calculator (Tonnes, Yards &amp; Cost)",
+  lede: "Work out <strong>how much asphalt you need</strong> for a driveway, path or patch. Enter the area and the <strong>compacted thickness</strong> — the calculator returns tonnes of hot mix, cubic yards, cubic metres and an optional cost.",
+  calcBar: "Enter area and compacted thickness — density preset for hot-mix asphalt",
+  defaults: { shape: "rect", depth: 2, depthUnit: "in", density: "2.322", priceUnit: "t" },
+  adSlots: ["2222224001", "2222224002"],
+  content: `  <section id="guide">
+    <h2>How do you figure how much asphalt you need?</h2>
+    <p>Paving plants sell hot-mix asphalt <strong>by the tonne</strong>, so the job is to turn your area and thickness into weight:</p>
+    <ol class="steps">
+      <li>Measure length × width to get the area (ft² or m²).</li>
+      <li>Pick the <strong>compacted</strong> thickness — not the loose depth before rolling.</li>
+      <li>Volume = area × thickness (convert inches to feet, or cm to metres).</li>
+      <li>Tonnes = volume (m³) × <strong>2.32</strong>. One cubic yard of compacted asphalt is about <strong>1.77 tonnes</strong>.</li>
+    </ol>
+    <div class="formula-box">
+      <p class="formula"><strong>Tonnes</strong> = Length (m) × Width (m) × Thickness (m) × 2.32</p>
+      <p class="formula"><strong>Imperial shortcut</strong>: ft² × inches thick × 12 lb ≈ pounds of asphalt (÷ 2,205 for tonnes)</p>
+    </div>
+    <h3>Example</h3>
+    <p>A 12 × 50 ft driveway is 600 ft². At 2&quot; compacted: 600 × 2 ÷ 12 = 100 ft³ = 3.7 yd³ = 2.83 m³. Then 2.83 × 2.32 ≈ <strong>6.6 tonnes</strong>. Add 5% for edges and waste and order about 7 tonnes.</p>
+  </section>
+  <section id="thickness">
+    <h2>How thick should asphalt be?</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Job</th><th>Asphalt (compacted)</th><th>Granular base under it</th></tr></thead>
+      <tbody>
+        <tr><td>Footpath / walkway</td><td>1.5–2&quot; (40–50 mm)</td><td>4&quot; (100 mm)</td></tr>
+        <tr><td>Residential driveway</td><td>2–3&quot; (50–75 mm)</td><td>6–8&quot; (150–200 mm)</td></tr>
+        <tr><td>Driveway with RV / trucks</td><td>3–4&quot; (75–100 mm), two lifts</td><td>8–12&quot; (200–300 mm)</td></tr>
+        <tr><td>Patch / pothole</td><td>Hole depth + 1/2&quot; for compaction</td><td>Existing</td></tr>
+      </tbody>
+    </table></div>
+    <p>The granular base (usually crushed 3/4&quot; gravel) matters as much as the asphalt in a Canadian freeze–thaw climate. Use the <a href="/gravel-driveway-calculator.html">driveway gravel calculator</a> for the base layer.</p>
+  </section>
+  <section id="asphalt-vs-bitumen">
+    <h2>Is asphalt the same as bitumen?</h2>
+    <p>Not quite. <strong>Bitumen</strong> is the black binder; <strong>asphalt</strong> (hot mix, blacktop) is about 5% bitumen and 95% stone and sand. Driveway quotes are for asphalt by the tonne, so calculate asphalt, not bitumen. Cold-patch bags are sold by weight, often 25–30 kg each: one tonne is roughly 35–40 bags.</p>
+  </section>`,
+  faqs: [
+    { q: "How many tonnes of asphalt do I need for a driveway?", a: "Multiply area by compacted thickness and by 2.32 t/m³. A 12 × 50 ft driveway at 2 inches needs about 6.5 tonnes; at 3 inches, about 10 tonnes." },
+    { q: "How much does a cubic yard of asphalt weigh?", a: "About 1.77 tonnes (roughly 3,900 lb) once compacted. Loose hot mix in the truck is lighter per yard because it hasn't been rolled." },
+    { q: "How many square feet does a tonne of asphalt cover?", a: "About 90 ft² at 2 inches thick, or about 60 ft² at 3 inches." },
+    { q: "What is the formula for figuring asphalt?", a: "Tonnes = length × width × thickness (all in metres) × 2.32. In imperial units, ft² × inches ÷ 12 ÷ 27 gives cubic yards; multiply by 1.77 for tonnes." },
+    { q: "Is bitumen the same as asphalt?", a: "No. Bitumen is the binder; asphalt is stone and sand bound with about 5% bitumen. Paving is priced and ordered as asphalt by the tonne." }
+  ]
+});
+
+/* 17. Limestone screenings (KD 5–9 cluster) */
+pages.push({
+  slug: "limestone-screenings-calculator.html",
+  material: "limestone screenings",
+  answer: "Limestone screenings (stone dust) weigh about <b>1.6 t/m³</b>, so one cubic yard is about <b>1.22 tonnes</b>. Under pavers you need about <b>1&quot;</b>: one tonne covers roughly <b>265 ft²</b> at that depth.",
+  title: "Limestone Screenings Calculator: 1 Tonne Covers ~265 sq ft at 1 in",
+  desc: "Free limestone screenings calculator. Work out tonnes and cubic yards of screenings (stone dust, A-gravel fines) for paver bedding, paths and levelling, plus cost.",
+  keywords: "limestone screenings calculator, screenings calculator, stone dust calculator, how much limestone screenings do i need, screenings for pavers, limestone screening per yard",
+  appName: "Limestone Screenings Calculator",
+  crumb: "Limestone Screenings Calculator",
+  h1: "Limestone Screenings &amp; Stone Dust Calculator",
+  lede: "Estimate <strong>limestone screenings</strong> (stone dust) for paver bedding, paths and levelling. Enter the area and depth to get tonnes, cubic yards and cost.",
+  calcBar: "Enter area and depth — density preset for limestone screenings",
+  defaults: { shape: "area", area: 200, areaUnit: "ft2", depth: 1, depthUnit: "in", density: "1.602s", priceUnit: "t" },
+  adSlots: ["2222224101", "2222224102"],
+  content: `  <section id="guide">
+    <h2>How much limestone screenings do I need?</h2>
+    <p>Screenings are the fine crushed limestone left after screening out larger stone (often 0–1/4&quot;). They compact hard, so they are used as a <strong>bedding layer</strong>, not a base.</p>
+    <ul class="use-list">
+      <li><strong>Paver or flagstone bedding:</strong> 1&quot; (25 mm) over a compacted 3/4&quot; crushed base.</li>
+      <li><strong>Garden path or patio surface:</strong> 2–3&quot; (50–75 mm), compacted in two passes.</li>
+      <li><strong>Levelling a pool or shed pad:</strong> 2&quot; (50 mm).</li>
+    </ul>
+    <div class="formula-box"><p class="formula"><strong>Tonnes</strong> = Area (m²) × Depth (m) × 1.6</p></div>
+    <h3>Example</h3>
+    <p>A 10 × 20 ft patio (200 ft²) with 1&quot; of screenings: 200 ÷ 12 = 16.7 ft³ = 0.62 yd³ ≈ <strong>0.75 tonnes</strong>. Order one tonne to allow for compaction and screeding.</p>
+  </section>
+  <section id="screenings-vs-sand">
+    <h2>Limestone screenings or sand under pavers?</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th></th><th>Limestone screenings</th><th>Concrete sand</th></tr></thead>
+      <tbody>
+        <tr><td>Weight</td><td>~1.6 t/m³</td><td>~1.6 t/m³</td></tr>
+        <tr><td>Drainage</td><td>Slower; fines hold water</td><td>Faster</td></tr>
+        <tr><td>Holds a screed</td><td>Very firm once tamped</td><td>Easy to screed, shifts more</td></tr>
+        <tr><td>Common use</td><td>Paths, flagstone, levelling pads</td><td>Interlock paver bedding</td></tr>
+      </tbody>
+    </table></div>
+    <p>Many interlock manufacturers now specify concrete sand or 1/4&quot; chip for bedding because screenings hold water through freeze–thaw. Check your paver supplier's guide. For sand, use the <a href="/sand-calculator.html">sand calculator</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "How much does a yard of limestone screenings weigh?", a: "About 1.2 tonnes (roughly 2,700 lb) per cubic yard when dry; damp screenings weigh more." },
+    { q: "How many square feet does a tonne of screenings cover?", a: "About 265 ft² at 1 inch deep, 130 ft² at 2 inches, or 90 ft² at 3 inches." },
+    { q: "How deep should screenings be under pavers?", a: "About 1 inch (25 mm), screeded flat over a compacted crushed-stone base. Thicker bedding layers tend to shift." },
+    { q: "Are limestone screenings the same as stone dust?", a: "Yes, the terms are used interchangeably in Canada. Some yards also sell them as A-gravel fines or crusher dust." }
+  ]
+});
+
+/* 18. River rock (~800 searches) */
+pages.push({
+  slug: "river-rock-calculator.html",
+  material: "river rock",
+  answer: "River rock weighs about <b>1.44 t/m³</b>, so one cubic yard is about <b>1.1 tonnes</b>. At a typical <b>2&quot; layer</b>, one tonne of river rock covers about <b>145 ft²</b>; larger 3–5&quot; rock needs 3–4&quot; of depth to hide the fabric.",
+  title: "River Rock Calculator: 1 Tonne Covers ~145 sq ft at 2 in",
+  desc: "Free river rock calculator. Work out how much river rock you need in tonnes, cubic yards and bags for beds, dry creek beds and borders, by area and depth.",
+  keywords: "river rock calculator, how much river rock do i need, river rock per square foot, river rock coverage calculator, decorative rock calculator, river stone calculator",
+  appName: "River Rock Calculator",
+  crumb: "River Rock Calculator",
+  h1: "River Rock Calculator",
+  lede: "Find out <strong>how much river rock you need</strong> for garden beds, borders and dry creek beds. Enter the area and depth to get tonnes, cubic yards, bags and cost.",
+  calcBar: "Enter area and depth — density preset for river rock",
+  defaults: { shape: "area", area: 100, areaUnit: "ft2", depth: 2, depthUnit: "in", density: "1.442", priceUnit: "t" },
+  adSlots: ["2222224201", "2222224202"],
+  content: `  <section id="guide">
+    <h2>How deep should river rock be?</h2>
+    <p>Set the depth by the <strong>size of the stone</strong>: the layer should be about twice the stone's diameter so no fabric shows through.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>River rock size</th><th>Depth</th><th>Coverage per tonne</th></tr></thead>
+      <tbody>
+        <tr><td>3/4–1&quot; (20–25 mm)</td><td>2&quot;</td><td>~145 ft² (13.5 m²)</td></tr>
+        <tr><td>1–3&quot; (25–75 mm)</td><td>2–3&quot;</td><td>~100–145 ft²</td></tr>
+        <tr><td>3–5&quot; (75–125 mm)</td><td>4&quot;</td><td>~75 ft² (7 m²)</td></tr>
+        <tr><td>Dry creek bed mix</td><td>4–6&quot;</td><td>~50–75 ft²</td></tr>
+      </tbody>
+    </table></div>
+    <p>Coverage per tonne = 1 ÷ (1.44 t/m³ × depth in metres) m², converted to ft².</p>
+  </section>
+  <section id="bags">
+    <h2>How many bags of river rock do I need?</h2>
+    <p>Bagged river rock is usually sold in 0.5 ft³ bags (about 18–20 kg). A cubic yard is 27 ft³, so it takes about <strong>54 bags per cubic yard</strong>. Beyond about half a yard, bulk delivery is almost always cheaper; see the <a href="/bulk-bagged-gravel-calculator.html">bulk vs bagged calculator</a>.</p>
+  </section>`,
+  faqs: [
+    { q: "How much area does a tonne of river rock cover?", a: "About 145 ft² at 2 inches deep, 100 ft² at 3 inches, or 75 ft² at 4 inches." },
+    { q: "How much does a yard of river rock weigh?", a: "About 1.1 tonnes (roughly 2,400 lb) per cubic yard; denser granite river stone can reach 1.3 tonnes." },
+    { q: "How deep should river rock be in a garden bed?", a: "2 inches for small 3/4–1 inch stone, 3–4 inches for 1–3 inch rock, and 4 inches or more for larger cobble." },
+    { q: "Should I put landscape fabric under river rock?", a: "Usually yes, to slow weeds and stop the rock sinking into the soil; edge the bed so the rock stays put." }
+  ]
+});
+
 pages.forEach(p => {
   fs.writeFileSync(p.slug, page(p));
   console.log("wrote", p.slug);
@@ -1370,9 +1573,12 @@ const HUB = [
   { slug: "aquarium-gravel-calculator.html", name: "Aquarium Gravel Calculator", desc: "Estimate fish-tank gravel/substrate in pounds, kilograms and litres from your tank's length, width and depth." },
   { slug: "cubic-yard-calculator.html", name: "Cubic Yard Calculator", desc: "General cubic yard / yardage calculator for gravel, dirt, mulch and stone, with cubic-feet and square-yard conversions." },
   { slug: "landscape-rock-calculator.html", name: "Landscape Rock &amp; Stone Calculator", desc: "Estimate decorative landscape rock and stone by area and depth, in tonnes and cubic yards." },
-  { slug: "topsoil-calculator.html", name: "Topsoil &amp; Soil Calculator", desc: "Calculate how much topsoil or garden soil you need for beds and lawns, in cubic yards, tonnes and bags." },
+  { slug: "topsoil-calculator.html", name: "Topsoil &amp; Dirt Calculator", desc: "Calculate how much topsoil or garden soil you need for beds and lawns, in cubic yards, tonnes and bags." },
   { slug: "sand-calculator.html", name: "Sand Calculator", desc: "Estimate sand for paver bases, sandboxes and bedding, in cubic yards, tonnes and bags." },
   { slug: "aggregate-calculator.html", name: "Aggregate &amp; Material Calculator", desc: "All-purpose aggregate/material calculator for gravel, stone, sand and base — volume, tonnage and cost." },
+  { slug: "asphalt-calculator.html", name: "Asphalt Calculator", desc: "Figure asphalt tonnage for driveways and patches from area and compacted thickness, at 2.32 t/m³." },
+  { slug: "limestone-screenings-calculator.html", name: "Limestone Screenings Calculator", desc: "Tonnes and yards of limestone screenings (stone dust) for paver bedding, paths and levelling pads." },
+  { slug: "river-rock-calculator.html", name: "River Rock Calculator", desc: "River rock for beds and dry creek beds by area and depth, with coverage per tonne and bag counts." },
   { slug: "concrete-calculator.html", name: "Concrete Calculator", desc: "Estimate concrete for slabs, footings and round columns in cubic yards, cubic metres, pre-mix bags and cost." },
   { slug: "calculateur-de-gravier.html", name: "Calculateur de Gravier (Français)", desc: "Version française : estimez le gravier en vrac (volume, tonnes, verges cubes) et le coût." }
 ];
@@ -2720,6 +2926,9 @@ const SITEMAP = [
   { loc: "/cubic-yard-calculator.html", freq: "monthly", pri: "0.9", mod: LASTMOD },
   { loc: "/landscape-rock-calculator.html", freq: "monthly", pri: "0.8", mod: LASTMOD },
   { loc: "/topsoil-calculator.html", freq: "monthly", pri: "0.8", mod: LASTMOD },
+  { loc: "/asphalt-calculator.html", freq: "monthly", pri: "0.8", mod: LASTMOD },
+  { loc: "/limestone-screenings-calculator.html", freq: "monthly", pri: "0.8", mod: LASTMOD },
+  { loc: "/river-rock-calculator.html", freq: "monthly", pri: "0.8", mod: LASTMOD },
   { loc: "/sand-calculator.html", freq: "monthly", pri: "0.8", mod: LASTMOD },
   { loc: "/aggregate-calculator.html", freq: "monthly", pri: "0.8", mod: LASTMOD },
   { loc: "/concrete-calculator.html", freq: "monthly", pri: "0.9", mod: LASTMOD },
